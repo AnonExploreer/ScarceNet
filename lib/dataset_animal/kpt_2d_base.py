@@ -361,8 +361,11 @@ class Kpt2dSviewRgbImgTopDownDataset(Dataset, metaclass=ABCMeta):
             'rotation': r,
             'score': score,
             'bbox_id': bbox_id,
-            'index': idx
+            'index': idx,
+            'bbox': results['bbox'],
+            'img_id': results['img_id']
         }
+        # print(idx, results["img_id"])
 
         return input, target, target_weight, meta
 

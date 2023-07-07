@@ -15,7 +15,7 @@ trans_inp = transforms.Compose([
 ])
 
 
-def prediction_check(inp, model, dataset, c_ori, s_ori, num_transform=1, num_kpts=17):
+def prediction_check(inp, model, dataset, c_ori, s_ori, num_transform=1, num_kpts=9):
     s0 = np.array([256/200.0, 256/200.0], dtype=np.float32)
     sf = 0.25
     rf = 30

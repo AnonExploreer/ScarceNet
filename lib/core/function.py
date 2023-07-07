@@ -2,18 +2,31 @@
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
+import json
+import math
  
 import time
 import logging
 import numpy as np
 import torch
+import os
 
 from core.evaluate import accuracy
 from core.inference import get_final_preds
 from utils.transforms import flip_back
 logger = logging.getLogger(__name__)
 
+def kpt_convert(original_list):
+    nested_list = []
+    temp_list = []
 
+    for i, item in enumerate(original_list):
+        temp_list.append(item)
+        if (i + 1) % 3 == 0:
+            nested_list.append(temp_list[:2])
+            temp_list = []
+
+    return nested_list
 def train(config, train_loader, model, criterion, optimizer, epoch,
           output_dir, tb_log_dir, writer_dict):
     batch_time = AverageMeter()
@@ -25,6 +38,7 @@ def train(config, train_loader, model, criterion, optimizer, epoch,
     model.train()
     end = time.time()
     for i, (input, target, target_weight, meta) in enumerate(train_loader):
+
         # measure data loading time
         data_time.update(time.time() - end)
         input = input.cuda()
@@ -97,9 +111,13 @@ def validate(config, val_loader, val_dataset, model, criterion, output_dir,
     imgnums = []
     idx = 0
 
+    idx2id = {}
     with torch.no_grad():
         end = time.time()
         for i, (input, target, target_weight, meta) in enumerate(val_loader):
+            for j in range(input.size(0)):
+                idx2id[int(meta['img_id'][j].numpy())] = int(meta['index'][j].numpy())
+
             # compute output
             outputs, _ = model(input)
             if isinstance(outputs, list):
@@ -136,9 +154,11 @@ def validate(config, val_loader, val_dataset, model, criterion, output_dir,
             num_images = input.size(0)
             # measure accuracy and record loss
             losses.update(loss.item(), num_images)
+            
             _, avg_acc, cnt, pred = accuracy(output.cpu().numpy(),
                                              target.cpu().numpy())
 
+            
             acc.update(avg_acc, cnt)
             # measure elapsed time
             batch_time.update(time.time() - end)
@@ -150,6 +170,9 @@ def validate(config, val_loader, val_dataset, model, criterion, output_dir,
 
             preds, maxvals = get_final_preds(
                 config, output.clone().cpu().numpy(), c, s)
+            
+           
+            
 
             all_preds[idx:idx + num_images, :, 0:2] = preds[:, :, 0:2]
             all_preds[idx:idx + num_images, :, 2:3] = maxvals
@@ -179,6 +202,47 @@ def validate(config, val_loader, val_dataset, model, criterion, output_dir,
             config, all_preds, output_dir, all_boxes, image_path,
             filenames, imgnums
         )
+
+        if True:
+            res_folder = os.path.join(output_dir, 'results')
+            res_file = os.path.join(
+                res_folder, 'keypoints_{}_results_{}.json'.format(
+                    'val', config.RANK)
+            )
+            ann_file = "data/AnimalWeb/test_40_unknown.json"
+            print(res_file)
+
+            with open(res_file, 'r') as f:
+                result = json.load(f)
+            with open(ann_file, "r") as f:
+                ann = json.load(f)
+            
+            
+            
+            nme_sum = 0
+            print(len(result))
+            for sample in ann["annotations"]:
+                image_id = sample["image_id"]
+                bbox = sample["bbox"]
+                gt = sample["keypoints"]
+                for d in result:
+                    if d["image_id"] == image_id:
+                        pred = d["keypoints"]
+                        break
+                gt = kpt_convert(gt)
+                pred = kpt_convert(pred)
+                bbox_size = bbox[2] * bbox[3]
+                gt = np.array(gt)
+                pred = np.array(pred)
+                nme = 0
+                for j in range(0, len(gt)):
+                    nme += np.sum(np.linalg.norm(gt[j, ]-pred[j, ]))
+                nme = nme / len(gt) / math.sqrt(bbox_size)
+                nme_sum += nme
+                # print(image_id, bbox, gt, pred, nme)
+            nme = nme_sum / len(ann["annotations"])
+            print("avg_nme = ", nme, "len(ann): ", {len(ann["annotations"])})
+                # print(image_id, bbox, gt, pred, nme)
 
         model_name = config.MODEL.NAME
         if isinstance(name_values, list):
@@ -214,6 +278,8 @@ def validate(config, val_loader, val_dataset, model, criterion, output_dir,
                     global_steps
                 )
             writer_dict['valid_global_steps'] = global_steps + 1
+    with open("idx2id.json", 'w') as f:
+        json.dump(idx2id, f)
     return perf_indicator
 
 

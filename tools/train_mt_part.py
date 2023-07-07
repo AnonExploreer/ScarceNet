@@ -16,6 +16,7 @@ import torch.utils.data
 import torch.utils.data.distributed
 import torchvision.transforms as transforms
 from tensorboardX import SummaryWriter
+import tqdm
 
 import _init_paths
 from config import cfg
@@ -199,14 +200,14 @@ def main():
                     normalize
                 ])
 
-        train_dataset = eval('dataset_animal.' + 'ap10k')(
+        train_dataset = eval('dataset_animal.' + 'animalweb')(
             cfg, cfg.DATASET.ROOT, cfg.DATASET.TRAIN_SET, True,
             transforms.Compose([
                 transforms.ToTensor(),
                 normalize,
             ])
         )
-        valid_dataset = eval('dataset_animal.' + 'ap10k')(
+        valid_dataset = eval('dataset_animal.' + 'animalweb')(
             cfg, cfg.DATASET.ROOT, cfg.DATASET.VAL_SET, False,
             transforms.Compose([
                 transforms.ToTensor(),
@@ -291,7 +292,7 @@ def main():
         if epoch == begin_epoch:
             if args.generate_pseudol:
                 model.eval()
-                train_dataset = eval('dataset_animal.ap10k')(
+                train_dataset = eval('dataset_animal.animalweb')(
                     cfg, cfg.DATASET.ROOT, cfg.DATASET.TRAIN_SET, False,
                     # transforms.Compose([
                     #     transforms.ToTensor(),
@@ -307,13 +308,15 @@ def main():
                 )
                 pseudo_kpts = {}
                 acc_pseudol = AverageMeter()
-                for _, (input, target, target_weight, meta) in enumerate(train_loader):
+                for _, (input, target, target_weight, meta) in enumerate(tqdm.tqdm(train_loader)):
                     for i in range(input.size(0)):
                         c = meta['center'].numpy()
                         s = meta['scale'].numpy()
+                        
                         generated_kpts, score_map = prediction_check(input[i], model, train_dataset, c[i:i+1], s[i:i+1],
                                                                      args.num_transforms)
                         pseudo_kpts[int(meta['index'][i].numpy())] = generated_kpts
+                        # print(int(meta['index'][i].numpy()), meta['image'][i].split("/")[-1], generated_kpts)
                         _, avg_acc, cnt, pred = accuracy(score_map,
                                                          target[i].unsqueeze(0).numpy())
                         acc_pseudol.update(avg_acc, cnt)

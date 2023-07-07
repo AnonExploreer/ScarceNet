@@ -1,0 +1,1228 @@
+2023-07-03 11:04:28,109 Namespace(animalpose=True, augment=True, cfg='experiments/ap10k/hrnet/w32_256x192_adam_lr1e-3.yaml', consistency_rampup=10, const_weight=2.0, dataDir='', dist_thre=0.6, epochs=150, evaluate=False, few_shot_setting=True, fewshot=False, generate_pseudol=False, length=32, logDir='', lr_factor=0.1, m=10, minrate=0.8, modelDir='', n=2, nholes=6, num_transforms=5, opts=['OUTPUT_DIR', 'output_part5_updatev2', 'DATASET.DATASET', 'animalweb_mt_v3', 'MODEL.NAME', 'pose_hrnet_part', 'TRAIN.BATCH_SIZE_PER_GPU', '16', 'LABEL_PER_CLASS', '5'], percentage=0.4, pretrained='output/output_animal_hrnet5_part/model_best.pth', prevModelDir='', resume='', rf_aggre=20, schedule=[190, 200], score_thre=0.5, sf_aggre=0.1, std_gaussian=0.2, topkrampdown=30, true_label_w=2.0, update_epoch=-1)
+2023-07-03 11:04:28,109 AUTO_RESUME: True
+CUDNN:
+  BENCHMARK: True
+  DETERMINISTIC: False
+  ENABLED: True
+DATASET:
+  COLOR_RGB: True
+  DATASET: animalweb_mt_v3
+  DATA_FORMAT: jpg
+  FLIP: True
+  HYBRID_JOINTS_TYPE: 
+  NUM_JOINTS_HALF_BODY: 0
+  PROB_HALF_BODY: 0.0
+  ROOT: 
+  ROT_FACTOR: 0
+  SCALE_FACTOR: 0.0
+  SELECT_DATA: False
+  SUPERCATEGORY: ['animal_face']
+  TEST_SET: test
+  TRAIN_SET: train
+  VAL_SET: val
+DATA_DIR: 
+DEBUG:
+  DEBUG: True
+  SAVE_BATCH_IMAGES_GT: True
+  SAVE_BATCH_IMAGES_PRED: True
+  SAVE_HEATMAPS_GT: True
+  SAVE_HEATMAPS_PRED: True
+GPUS: (0, 1)
+LABEL_PER_CLASS: 5
+LOG_DIR: log
+LOSS:
+  TOPK: 8
+  USE_DIFFERENT_JOINTS_WEIGHT: False
+  USE_OHKM: False
+  USE_TARGET_WEIGHT: True
+MODEL:
+  EXTRA:
+    FINAL_CONV_KERNEL: 1
+    PRETRAINED_LAYERS: ['conv1', 'bn1', 'conv2', 'bn2', 'layer1', 'transition1', 'stage2', 'transition2', 'stage3', 'transition3', 'stage4']
+    STAGE2:
+      BLOCK: BASIC
+      FUSE_METHOD: SUM
+      NUM_BLOCKS: [4, 4]
+      NUM_BRANCHES: 2
+      NUM_CHANNELS: [32, 64]
+      NUM_MODULES: 1
+    STAGE3:
+      BLOCK: BASIC
+      FUSE_METHOD: SUM
+      NUM_BLOCKS: [4, 4, 4]
+      NUM_BRANCHES: 3
+      NUM_CHANNELS: [32, 64, 128]
+      NUM_MODULES: 4
+    STAGE4:
+      BLOCK: BASIC
+      FUSE_METHOD: SUM
+      NUM_BLOCKS: [4, 4, 4, 4]
+      NUM_BRANCHES: 4
+      NUM_CHANNELS: [32, 64, 128, 256]
+      NUM_MODULES: 3
+  HEATMAP_SIZE: [64, 64]
+  IMAGE_SIZE: [256, 256]
+  INIT_WEIGHTS: True
+  NAME: pose_hrnet_part
+  NUM_JOINTS: 9
+  PRETRAINED: 
+  SIGMA: 2
+  TAG_PER_JOINT: True
+  TARGET_TYPE: gaussian
+OUTPUT_DIR: output_part5_updatev2
+PIN_MEMORY: True
+PRINT_FREQ: 100
+RANK: 0
+TEST:
+  BATCH_SIZE_PER_GPU: 32
+  BBOX_THRE: 1.0
+  COCO_BBOX_FILE: 
+  FLIP_TEST: False
+  IMAGE_THRE: 0.0
+  IN_VIS_THRE: 0.2
+  MODEL_FILE: 
+  NMS_THRE: 1.0
+  OKS_THRE: 0.9
+  POST_PROCESS: True
+  SHIFT_HEATMAP: True
+  SOFT_NMS: False
+  USE_GT_BBOX: True
+TRAIN:
+  BATCH_SIZE_PER_GPU: 16
+  BEGIN_EPOCH: 0
+  CHECKPOINT: 
+  END_EPOCH: 210
+  GAMMA1: 0.99
+  GAMMA2: 0.0
+  LR: 0.001
+  LR_FACTOR: 0.1
+  LR_STEP: [170, 200]
+  MOMENTUM: 0.9
+  NESTEROV: False
+  OPTIMIZER: adam
+  RESUME: False
+  SHUFFLE: True
+  WD: 0.0001
+WORKERS: 4
+2023-07-03 11:04:28,362 => init weights from normal distribution
+2023-07-03 11:04:28,751 => init weights from normal distribution
+2023-07-03 11:04:48,438 
+Total Parameters: 28,717,865
+----------------------------------------------------------------------------------------------------------------------------------
+Total Multiply Adds (For Convolution and Linear Layers only): 10.16357421875 GFLOPs
+----------------------------------------------------------------------------------------------------------------------------------
+Number of Layers
+Conv2d : 346 layers   BatchNorm2d : 328 layers   ReLU : 288 layers   Bottleneck : 13 layers   BasicBlock : 104 layers   Upsample : 28 layers   HighResolutionModule : 8 layers   
+2023-07-03 11:04:48,439 Add strong augmentations to student
+2023-07-03 11:04:48,439 Loading training annotations
+2023-07-03 11:04:48,743 => num_images: 22450
+2023-07-03 11:04:49,658 => load 22450 samples
+2023-07-03 11:04:49,658 Loading validation annotations
+2023-07-03 11:04:49,660 => num_images: 150
+2023-07-03 11:04:49,664 => load 150 samples
+2023-07-03 11:04:49,669 => loading checkpoint 'output/output_animal_hrnet5_part/model_best.pth'
+2023-07-03 11:05:06,700 Loading training annotations
+2023-07-03 11:05:07,056 => num_images: 22450
+2023-07-03 11:05:07,697 => load 22450 samples
+2023-07-03 11:05:17,981 Epoch: [0][0/701]	Time 10.277s (10.277s)	Speed 3.1 samples/s	Data 1.876s (1.876s)	Loss_sup 0.00090 (0.00090)	Loss_const 0.00282 (0.00282)	Accuracy 0.714 (0.714)	Accuracy_ema 0.007 (0.007)
+2023-07-03 11:07:30,409 Epoch: [0][100/701]	Time 1.191s (1.413s)	Speed 26.9 samples/s	Data 0.000s (0.019s)	Loss_sup 0.00078 (0.00087)	Loss_const 0.00065 (0.00073)	Accuracy 0.697 (0.654)	Accuracy_ema 0.470 (0.461)
+2023-07-03 11:09:41,392 Epoch: [0][200/701]	Time 1.381s (1.362s)	Speed 23.2 samples/s	Data 0.000s (0.010s)	Loss_sup 0.00067 (0.00081)	Loss_const 0.00050 (0.00065)	Accuracy 0.760 (0.682)	Accuracy_ema 0.545 (0.484)
+2023-07-03 11:11:53,939 Epoch: [0][300/701]	Time 1.297s (1.350s)	Speed 24.7 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00076 (0.00078)	Loss_const 0.00053 (0.00061)	Accuracy 0.676 (0.694)	Accuracy_ema 0.457 (0.494)
+2023-07-03 11:14:06,506 Epoch: [0][400/701]	Time 1.427s (1.344s)	Speed 22.4 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00082 (0.00077)	Loss_const 0.00060 (0.00059)	Accuracy 0.662 (0.700)	Accuracy_ema 0.495 (0.497)
+2023-07-03 11:16:17,184 Epoch: [0][500/701]	Time 1.253s (1.336s)	Speed 25.5 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00079 (0.00075)	Loss_const 0.00060 (0.00058)	Accuracy 0.690 (0.704)	Accuracy_ema 0.450 (0.499)
+2023-07-03 11:18:27,815 Epoch: [0][600/701]	Time 1.272s (1.331s)	Speed 25.1 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00067 (0.00075)	Loss_const 0.00048 (0.00057)	Accuracy 0.739 (0.707)	Accuracy_ema 0.509 (0.499)
+2023-07-03 11:20:36,652 Epoch: [0][700/701]	Time 1.348s (1.325s)	Speed 23.7 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00065 (0.00074)	Loss_const 0.00049 (0.00056)	Accuracy 0.726 (0.710)	Accuracy_ema 0.618 (0.500)
+2023-07-03 11:20:42,165 Test: [0/3]	Time 3.434 (3.434)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0001 (0.0001)	Accuracy 0.677 (0.677)	Accuracy_ema 0.696 (0.696)
+2023-07-03 11:20:43,725 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 11:20:43,788 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 11:20:43,833 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 11:20:43,833 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 11:20:43,833 | pose_hrnet_part | 0.356 | 0.733 | 0.343 | 0.222 | 0.376 | 0.407 | 0.753 | 0.400 | 0.318 | 0.414 |
+2023-07-03 11:20:43,833 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 11:20:43,833 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 11:20:43,833 | pose_hrnet_part | 0.375 | 0.735 | 0.396 | 0.255 | 0.395 | 0.425 | 0.753 | 0.453 | 0.318 | 0.434 |
+2023-07-03 11:20:43,856 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 11:20:49,735 Epoch: [1][0/701]	Time 3.720s (3.720s)	Speed 8.6 samples/s	Data 1.961s (1.961s)	Loss_sup 0.00069 (0.00069)	Loss_const 0.00052 (0.00052)	Accuracy 0.715 (0.715)	Accuracy_ema 0.417 (0.417)
+2023-07-03 11:23:02,773 Epoch: [1][100/701]	Time 1.238s (1.354s)	Speed 25.9 samples/s	Data 0.000s (0.020s)	Loss_sup 0.00069 (0.00067)	Loss_const 0.00048 (0.00048)	Accuracy 0.717 (0.739)	Accuracy_ema 0.376 (0.519)
+2023-07-03 11:25:16,741 Epoch: [1][200/701]	Time 1.379s (1.347s)	Speed 23.2 samples/s	Data 0.000s (0.010s)	Loss_sup 0.00067 (0.00067)	Loss_const 0.00044 (0.00048)	Accuracy 0.704 (0.739)	Accuracy_ema 0.466 (0.518)
+2023-07-03 11:27:29,468 Epoch: [1][300/701]	Time 1.486s (1.340s)	Speed 21.5 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00070 (0.00066)	Loss_const 0.00044 (0.00048)	Accuracy 0.718 (0.739)	Accuracy_ema 0.465 (0.516)
+2023-07-03 11:29:40,295 Epoch: [1][400/701]	Time 1.244s (1.332s)	Speed 25.7 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00058 (0.00066)	Loss_const 0.00042 (0.00048)	Accuracy 0.777 (0.740)	Accuracy_ema 0.641 (0.515)
+2023-07-03 11:31:51,886 Epoch: [1][500/701]	Time 1.202s (1.329s)	Speed 26.6 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00061 (0.00066)	Loss_const 0.00051 (0.00047)	Accuracy 0.773 (0.740)	Accuracy_ema 0.533 (0.514)
+2023-07-03 11:34:03,363 Epoch: [1][600/701]	Time 1.234s (1.327s)	Speed 25.9 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00065 (0.00066)	Loss_const 0.00050 (0.00047)	Accuracy 0.746 (0.739)	Accuracy_ema 0.512 (0.515)
+2023-07-03 11:36:11,266 Epoch: [1][700/701]	Time 1.325s (1.320s)	Speed 24.1 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00073 (0.00066)	Loss_const 0.00054 (0.00047)	Accuracy 0.635 (0.739)	Accuracy_ema 0.459 (0.515)
+2023-07-03 11:36:15,890 Test: [0/3]	Time 2.596 (2.596)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0001 (0.0001)	Accuracy 0.656 (0.656)	Accuracy_ema 0.696 (0.696)
+2023-07-03 11:36:16,960 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 11:36:17,021 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 11:36:17,066 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 11:36:17,066 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 11:36:17,066 | pose_hrnet_part | 0.317 | 0.693 | 0.279 | 0.194 | 0.339 | 0.369 | 0.707 | 0.333 | 0.245 | 0.379 |
+2023-07-03 11:36:17,066 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 11:36:17,066 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 11:36:17,066 | pose_hrnet_part | 0.383 | 0.752 | 0.381 | 0.266 | 0.400 | 0.435 | 0.760 | 0.440 | 0.318 | 0.444 |
+2023-07-03 11:36:17,067 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 11:36:22,729 Epoch: [2][0/701]	Time 3.880s (3.880s)	Speed 8.2 samples/s	Data 2.059s (2.059s)	Loss_sup 0.00080 (0.00080)	Loss_const 0.00068 (0.00068)	Accuracy 0.647 (0.647)	Accuracy_ema 0.402 (0.402)
+2023-07-03 11:38:37,227 Epoch: [2][100/701]	Time 1.232s (1.370s)	Speed 26.0 samples/s	Data 0.000s (0.021s)	Loss_sup 0.00064 (0.00062)	Loss_const 0.00051 (0.00045)	Accuracy 0.724 (0.750)	Accuracy_ema 0.542 (0.511)
+2023-07-03 11:40:51,687 Epoch: [2][200/701]	Time 1.462s (1.357s)	Speed 21.9 samples/s	Data 0.000s (0.010s)	Loss_sup 0.00048 (0.00061)	Loss_const 0.00036 (0.00045)	Accuracy 0.837 (0.751)	Accuracy_ema 0.601 (0.510)
+2023-07-03 11:42:59,701 Epoch: [2][300/701]	Time 1.214s (1.332s)	Speed 26.4 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00075 (0.00061)	Loss_const 0.00046 (0.00044)	Accuracy 0.633 (0.751)	Accuracy_ema 0.528 (0.515)
+2023-07-03 11:45:10,565 Epoch: [2][400/701]	Time 1.289s (1.326s)	Speed 24.8 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00066 (0.00061)	Loss_const 0.00049 (0.00044)	Accuracy 0.705 (0.750)	Accuracy_ema 0.396 (0.516)
+2023-07-03 11:47:21,177 Epoch: [2][500/701]	Time 1.080s (1.322s)	Speed 29.6 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00062 (0.00061)	Loss_const 0.00048 (0.00044)	Accuracy 0.780 (0.750)	Accuracy_ema 0.454 (0.518)
+2023-07-03 11:49:32,629 Epoch: [2][600/701]	Time 1.130s (1.321s)	Speed 28.3 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00059 (0.00061)	Loss_const 0.00041 (0.00044)	Accuracy 0.770 (0.750)	Accuracy_ema 0.479 (0.520)
+2023-07-03 11:51:43,504 Epoch: [2][700/701]	Time 1.270s (1.319s)	Speed 25.2 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00061 (0.00061)	Loss_const 0.00043 (0.00044)	Accuracy 0.720 (0.750)	Accuracy_ema 0.430 (0.520)
+2023-07-03 11:51:48,232 Test: [0/3]	Time 2.597 (2.597)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0001 (0.0001)	Accuracy 0.675 (0.675)	Accuracy_ema 0.705 (0.705)
+2023-07-03 11:51:49,297 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 11:51:49,359 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 11:51:49,402 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 11:51:49,402 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 11:51:49,402 | pose_hrnet_part | 0.340 | 0.657 | 0.324 | 0.209 | 0.358 | 0.382 | 0.673 | 0.360 | 0.245 | 0.393 |
+2023-07-03 11:51:49,403 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 11:51:49,403 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 11:51:49,403 | pose_hrnet_part | 0.388 | 0.751 | 0.376 | 0.258 | 0.408 | 0.440 | 0.760 | 0.447 | 0.318 | 0.450 |
+2023-07-03 11:51:49,403 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 11:51:55,368 Epoch: [3][0/701]	Time 4.100s (4.100s)	Speed 7.8 samples/s	Data 2.394s (2.394s)	Loss_sup 0.00061 (0.00061)	Loss_const 0.00047 (0.00047)	Accuracy 0.757 (0.757)	Accuracy_ema 0.577 (0.577)
+2023-07-03 11:54:09,696 Epoch: [3][100/701]	Time 1.319s (1.371s)	Speed 24.3 samples/s	Data 0.000s (0.024s)	Loss_sup 0.00061 (0.00058)	Loss_const 0.00047 (0.00043)	Accuracy 0.696 (0.756)	Accuracy_ema 0.505 (0.526)
+2023-07-03 11:56:23,174 Epoch: [3][200/701]	Time 1.365s (1.353s)	Speed 23.4 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00050 (0.00058)	Loss_const 0.00039 (0.00042)	Accuracy 0.808 (0.756)	Accuracy_ema 0.619 (0.523)
+2023-07-03 11:58:37,844 Epoch: [3][300/701]	Time 1.183s (1.351s)	Speed 27.1 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00050 (0.00057)	Loss_const 0.00036 (0.00042)	Accuracy 0.807 (0.757)	Accuracy_ema 0.638 (0.527)
+2023-07-03 12:00:52,853 Epoch: [3][400/701]	Time 1.303s (1.351s)	Speed 24.6 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00049 (0.00057)	Loss_const 0.00036 (0.00041)	Accuracy 0.783 (0.759)	Accuracy_ema 0.668 (0.528)
+2023-07-03 12:03:05,570 Epoch: [3][500/701]	Time 1.498s (1.346s)	Speed 21.4 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00058 (0.00057)	Loss_const 0.00036 (0.00041)	Accuracy 0.760 (0.759)	Accuracy_ema 0.552 (0.527)
+2023-07-03 12:05:20,943 Epoch: [3][600/701]	Time 1.324s (1.347s)	Speed 24.2 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00057 (0.00057)	Loss_const 0.00036 (0.00041)	Accuracy 0.778 (0.758)	Accuracy_ema 0.531 (0.527)
+2023-07-03 12:07:35,197 Epoch: [3][700/701]	Time 1.169s (1.347s)	Speed 27.4 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00056 (0.00057)	Loss_const 0.00047 (0.00041)	Accuracy 0.749 (0.758)	Accuracy_ema 0.549 (0.525)
+2023-07-03 12:07:40,243 Test: [0/3]	Time 2.764 (2.764)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0001 (0.0001)	Accuracy 0.672 (0.672)	Accuracy_ema 0.693 (0.693)
+2023-07-03 12:07:41,502 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 12:07:41,560 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 12:07:41,603 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 12:07:41,603 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 12:07:41,603 | pose_hrnet_part | 0.357 | 0.722 | 0.333 | 0.244 | 0.375 | 0.404 | 0.740 | 0.387 | 0.291 | 0.413 |
+2023-07-03 12:07:41,603 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 12:07:41,603 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 12:07:41,603 | pose_hrnet_part | 0.375 | 0.752 | 0.343 | 0.258 | 0.393 | 0.425 | 0.760 | 0.400 | 0.318 | 0.433 |
+2023-07-03 12:07:41,604 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 12:07:46,484 Epoch: [4][0/701]	Time 3.639s (3.639s)	Speed 8.8 samples/s	Data 2.213s (2.213s)	Loss_sup 0.00046 (0.00046)	Loss_const 0.00038 (0.00038)	Accuracy 0.805 (0.805)	Accuracy_ema 0.704 (0.704)
+2023-07-03 12:09:59,017 Epoch: [4][100/701]	Time 1.231s (1.348s)	Speed 26.0 samples/s	Data 0.000s (0.022s)	Loss_sup 0.00052 (0.00052)	Loss_const 0.00039 (0.00037)	Accuracy 0.767 (0.771)	Accuracy_ema 0.610 (0.526)
+2023-07-03 12:12:10,350 Epoch: [4][200/701]	Time 1.343s (1.331s)	Speed 23.8 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00045 (0.00052)	Loss_const 0.00029 (0.00037)	Accuracy 0.795 (0.767)	Accuracy_ema 0.573 (0.526)
+2023-07-03 12:14:22,395 Epoch: [4][300/701]	Time 1.330s (1.327s)	Speed 24.1 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00042 (0.00052)	Loss_const 0.00032 (0.00038)	Accuracy 0.837 (0.767)	Accuracy_ema 0.476 (0.525)
+2023-07-03 12:16:38,072 Epoch: [4][400/701]	Time 1.367s (1.335s)	Speed 23.4 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00043 (0.00052)	Loss_const 0.00034 (0.00037)	Accuracy 0.819 (0.768)	Accuracy_ema 0.559 (0.526)
+2023-07-03 12:18:52,936 Epoch: [4][500/701]	Time 1.404s (1.338s)	Speed 22.8 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00061 (0.00052)	Loss_const 0.00043 (0.00038)	Accuracy 0.726 (0.766)	Accuracy_ema 0.483 (0.526)
+2023-07-03 12:21:07,497 Epoch: [4][600/701]	Time 1.408s (1.339s)	Speed 22.7 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00042 (0.00052)	Loss_const 0.00030 (0.00038)	Accuracy 0.857 (0.766)	Accuracy_ema 0.575 (0.528)
+2023-07-03 12:23:20,989 Epoch: [4][700/701]	Time 1.117s (1.338s)	Speed 28.7 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00062 (0.00052)	Loss_const 0.00044 (0.00037)	Accuracy 0.734 (0.766)	Accuracy_ema 0.531 (0.527)
+2023-07-03 12:23:25,908 Test: [0/3]	Time 2.803 (2.803)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0001 (0.0001)	Accuracy 0.679 (0.679)	Accuracy_ema 0.715 (0.715)
+2023-07-03 12:23:26,814 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 12:23:26,873 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 12:23:26,919 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 12:23:26,920 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 12:23:26,920 | pose_hrnet_part | 0.351 | 0.709 | 0.325 | 0.251 | 0.369 | 0.402 | 0.727 | 0.380 | 0.327 | 0.408 |
+2023-07-03 12:23:26,920 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 12:23:26,920 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 12:23:26,920 | pose_hrnet_part | 0.384 | 0.759 | 0.365 | 0.264 | 0.404 | 0.439 | 0.773 | 0.427 | 0.336 | 0.447 |
+2023-07-03 12:23:26,920 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 12:23:31,366 Epoch: [5][0/701]	Time 3.561s (3.561s)	Speed 9.0 samples/s	Data 2.174s (2.174s)	Loss_sup 0.00055 (0.00055)	Loss_const 0.00046 (0.00046)	Accuracy 0.698 (0.698)	Accuracy_ema 0.483 (0.483)
+2023-07-03 12:25:42,541 Epoch: [5][100/701]	Time 1.223s (1.334s)	Speed 26.2 samples/s	Data 0.000s (0.022s)	Loss_sup 0.00039 (0.00049)	Loss_const 0.00028 (0.00036)	Accuracy 0.825 (0.763)	Accuracy_ema 0.528 (0.526)
+2023-07-03 12:27:54,179 Epoch: [5][200/701]	Time 1.252s (1.325s)	Speed 25.6 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00057 (0.00048)	Loss_const 0.00034 (0.00035)	Accuracy 0.742 (0.769)	Accuracy_ema 0.477 (0.535)
+2023-07-03 12:30:06,430 Epoch: [5][300/701]	Time 1.409s (1.324s)	Speed 22.7 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00045 (0.00048)	Loss_const 0.00032 (0.00035)	Accuracy 0.778 (0.768)	Accuracy_ema 0.566 (0.536)
+2023-07-03 12:32:17,751 Epoch: [5][400/701]	Time 1.192s (1.322s)	Speed 26.8 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00071 (0.00048)	Loss_const 0.00045 (0.00035)	Accuracy 0.655 (0.768)	Accuracy_ema 0.437 (0.537)
+2023-07-03 12:34:29,625 Epoch: [5][500/701]	Time 1.416s (1.321s)	Speed 22.6 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00045 (0.00048)	Loss_const 0.00033 (0.00035)	Accuracy 0.816 (0.768)	Accuracy_ema 0.552 (0.537)
+2023-07-03 12:36:42,144 Epoch: [5][600/701]	Time 1.255s (1.322s)	Speed 25.5 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00041 (0.00048)	Loss_const 0.00032 (0.00035)	Accuracy 0.801 (0.769)	Accuracy_ema 0.630 (0.537)
+2023-07-03 12:38:54,486 Epoch: [5][700/701]	Time 1.165s (1.322s)	Speed 27.5 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00054 (0.00048)	Loss_const 0.00038 (0.00034)	Accuracy 0.762 (0.769)	Accuracy_ema 0.496 (0.536)
+2023-07-03 12:38:59,516 Test: [0/3]	Time 2.924 (2.924)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0000 (0.0000)	Accuracy 0.681 (0.681)	Accuracy_ema 0.710 (0.710)
+2023-07-03 12:39:00,602 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 12:39:00,662 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 12:39:00,712 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 12:39:00,712 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 12:39:00,712 | pose_hrnet_part | 0.373 | 0.748 | 0.357 | 0.227 | 0.392 | 0.421 | 0.767 | 0.400 | 0.345 | 0.427 |
+2023-07-03 12:39:00,712 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 12:39:00,712 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 12:39:00,712 | pose_hrnet_part | 0.379 | 0.749 | 0.363 | 0.248 | 0.402 | 0.435 | 0.767 | 0.427 | 0.327 | 0.443 |
+2023-07-03 12:39:00,713 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 12:39:05,777 Epoch: [6][0/701]	Time 3.844s (3.844s)	Speed 8.3 samples/s	Data 2.298s (2.298s)	Loss_sup 0.00038 (0.00038)	Loss_const 0.00035 (0.00035)	Accuracy 0.777 (0.777)	Accuracy_ema 0.585 (0.585)
+2023-07-03 12:41:16,659 Epoch: [6][100/701]	Time 1.366s (1.334s)	Speed 23.4 samples/s	Data 0.000s (0.023s)	Loss_sup 0.00051 (0.00044)	Loss_const 0.00035 (0.00033)	Accuracy 0.727 (0.771)	Accuracy_ema 0.560 (0.530)
+2023-07-03 12:43:28,560 Epoch: [6][200/701]	Time 1.268s (1.327s)	Speed 25.2 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00036 (0.00044)	Loss_const 0.00027 (0.00033)	Accuracy 0.809 (0.769)	Accuracy_ema 0.545 (0.529)
+2023-07-03 12:45:38,250 Epoch: [6][300/701]	Time 1.450s (1.317s)	Speed 22.1 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00035 (0.00043)	Loss_const 0.00032 (0.00033)	Accuracy 0.839 (0.772)	Accuracy_ema 0.623 (0.533)
+2023-07-03 12:47:56,764 Epoch: [6][400/701]	Time 1.236s (1.334s)	Speed 25.9 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00051 (0.00043)	Loss_const 0.00043 (0.00032)	Accuracy 0.707 (0.770)	Accuracy_ema 0.610 (0.532)
+2023-07-03 12:50:08,751 Epoch: [6][500/701]	Time 1.272s (1.331s)	Speed 25.2 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00055 (0.00043)	Loss_const 0.00027 (0.00032)	Accuracy 0.721 (0.771)	Accuracy_ema 0.428 (0.534)
+2023-07-03 12:52:22,581 Epoch: [6][600/701]	Time 1.245s (1.332s)	Speed 25.7 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00042 (0.00043)	Loss_const 0.00027 (0.00032)	Accuracy 0.773 (0.770)	Accuracy_ema 0.432 (0.534)
+2023-07-03 12:54:40,751 Epoch: [6][700/701]	Time 1.270s (1.339s)	Speed 25.2 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00038 (0.00043)	Loss_const 0.00025 (0.00032)	Accuracy 0.780 (0.770)	Accuracy_ema 0.567 (0.534)
+2023-07-03 12:54:45,964 Test: [0/3]	Time 3.101 (3.101)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0000 (0.0000)	Accuracy 0.720 (0.720)	Accuracy_ema 0.715 (0.715)
+2023-07-03 12:54:47,297 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 12:54:47,357 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 12:54:47,408 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 12:54:47,408 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 12:54:47,408 | pose_hrnet_part | 0.389 | 0.761 | 0.385 | 0.272 | 0.408 | 0.441 | 0.780 | 0.447 | 0.336 | 0.450 |
+2023-07-03 12:54:47,408 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 12:54:47,408 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 12:54:47,408 | pose_hrnet_part | 0.384 | 0.752 | 0.373 | 0.242 | 0.409 | 0.443 | 0.767 | 0.433 | 0.309 | 0.453 |
+2023-07-03 12:54:47,409 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 12:54:52,450 Epoch: [7][0/701]	Time 3.753s (3.753s)	Speed 8.5 samples/s	Data 2.046s (2.046s)	Loss_sup 0.00041 (0.00041)	Loss_const 0.00038 (0.00038)	Accuracy 0.760 (0.760)	Accuracy_ema 0.576 (0.576)
+2023-07-03 12:57:12,299 Epoch: [7][100/701]	Time 1.446s (1.422s)	Speed 22.1 samples/s	Data 0.000s (0.021s)	Loss_sup 0.00037 (0.00039)	Loss_const 0.00032 (0.00031)	Accuracy 0.763 (0.767)	Accuracy_ema 0.560 (0.533)
+2023-07-03 12:59:32,159 Epoch: [7][200/701]	Time 1.360s (1.410s)	Speed 23.5 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00038 (0.00039)	Loss_const 0.00032 (0.00030)	Accuracy 0.749 (0.769)	Accuracy_ema 0.498 (0.532)
+2023-07-03 13:01:54,394 Epoch: [7][300/701]	Time 1.594s (1.414s)	Speed 20.1 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00039 (0.00038)	Loss_const 0.00035 (0.00030)	Accuracy 0.744 (0.771)	Accuracy_ema 0.527 (0.533)
+2023-07-03 13:04:17,350 Epoch: [7][400/701]	Time 1.188s (1.418s)	Speed 26.9 samples/s	Data 0.002s (0.006s)	Loss_sup 0.00044 (0.00038)	Loss_const 0.00030 (0.00030)	Accuracy 0.721 (0.772)	Accuracy_ema 0.512 (0.530)
+2023-07-03 13:06:37,674 Epoch: [7][500/701]	Time 1.370s (1.415s)	Speed 23.4 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00043 (0.00038)	Loss_const 0.00029 (0.00030)	Accuracy 0.724 (0.771)	Accuracy_ema 0.560 (0.531)
+2023-07-03 13:09:00,071 Epoch: [7][600/701]	Time 1.563s (1.417s)	Speed 20.5 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00038 (0.00038)	Loss_const 0.00027 (0.00029)	Accuracy 0.802 (0.773)	Accuracy_ema 0.503 (0.532)
+2023-07-03 13:11:23,739 Epoch: [7][700/701]	Time 1.298s (1.419s)	Speed 24.6 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00044 (0.00038)	Loss_const 0.00027 (0.00029)	Accuracy 0.745 (0.772)	Accuracy_ema 0.531 (0.532)
+2023-07-03 13:11:29,736 Test: [0/3]	Time 3.170 (3.170)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0000 (0.0000)	Accuracy 0.726 (0.726)	Accuracy_ema 0.726 (0.726)
+2023-07-03 13:11:30,975 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 13:11:31,041 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 13:11:31,089 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 13:11:31,089 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 13:11:31,089 | pose_hrnet_part | 0.407 | 0.746 | 0.422 | 0.275 | 0.428 | 0.457 | 0.753 | 0.480 | 0.318 | 0.468 |
+2023-07-03 13:11:31,089 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 13:11:31,089 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 13:11:31,090 | pose_hrnet_part | 0.399 | 0.752 | 0.399 | 0.263 | 0.420 | 0.454 | 0.767 | 0.460 | 0.345 | 0.463 |
+2023-07-03 13:11:31,090 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 13:11:37,318 Epoch: [8][0/701]	Time 3.955s (3.955s)	Speed 8.1 samples/s	Data 2.376s (2.376s)	Loss_sup 0.00016 (0.00016)	Loss_const 0.00015 (0.00015)	Accuracy 0.906 (0.906)	Accuracy_ema 0.721 (0.721)
+2023-07-03 13:13:57,958 Epoch: [8][100/701]	Time 1.422s (1.432s)	Speed 22.5 samples/s	Data 0.000s (0.024s)	Loss_sup 0.00032 (0.00032)	Loss_const 0.00034 (0.00028)	Accuracy 0.781 (0.776)	Accuracy_ema 0.572 (0.541)
+2023-07-03 13:16:19,385 Epoch: [8][200/701]	Time 1.298s (1.423s)	Speed 24.6 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00014 (0.00032)	Loss_const 0.00019 (0.00028)	Accuracy 0.906 (0.774)	Accuracy_ema 0.611 (0.538)
+2023-07-03 13:18:39,155 Epoch: [8][300/701]	Time 1.317s (1.415s)	Speed 24.3 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00036 (0.00032)	Loss_const 0.00028 (0.00028)	Accuracy 0.782 (0.772)	Accuracy_ema 0.411 (0.535)
+2023-07-03 13:20:59,239 Epoch: [8][400/701]	Time 1.429s (1.411s)	Speed 22.4 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00028 (0.00032)	Loss_const 0.00026 (0.00028)	Accuracy 0.790 (0.772)	Accuracy_ema 0.534 (0.536)
+2023-07-03 13:23:18,989 Epoch: [8][500/701]	Time 1.313s (1.408s)	Speed 24.4 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00035 (0.00032)	Loss_const 0.00029 (0.00028)	Accuracy 0.755 (0.771)	Accuracy_ema 0.505 (0.535)
+2023-07-03 13:25:39,933 Epoch: [8][600/701]	Time 1.293s (1.409s)	Speed 24.7 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00039 (0.00032)	Loss_const 0.00026 (0.00027)	Accuracy 0.740 (0.772)	Accuracy_ema 0.531 (0.534)
+2023-07-03 13:28:01,728 Epoch: [8][700/701]	Time 1.471s (1.410s)	Speed 21.8 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00020 (0.00032)	Loss_const 0.00016 (0.00027)	Accuracy 0.858 (0.771)	Accuracy_ema 0.677 (0.534)
+2023-07-03 13:28:06,787 Test: [0/3]	Time 2.812 (2.812)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0001 (0.0001)	Accuracy 0.717 (0.717)	Accuracy_ema 0.726 (0.726)
+2023-07-03 13:28:07,886 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 13:28:07,955 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 13:28:08,009 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 13:28:08,010 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 13:28:08,010 | pose_hrnet_part | 0.399 | 0.762 | 0.388 | 0.253 | 0.423 | 0.453 | 0.773 | 0.447 | 0.327 | 0.463 |
+2023-07-03 13:28:08,010 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 13:28:08,010 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 13:28:08,010 | pose_hrnet_part | 0.410 | 0.761 | 0.419 | 0.280 | 0.434 | 0.467 | 0.773 | 0.480 | 0.364 | 0.476 |
+2023-07-03 13:28:08,011 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 13:28:14,530 Epoch: [9][0/701]	Time 4.253s (4.253s)	Speed 7.5 samples/s	Data 2.388s (2.388s)	Loss_sup 0.00018 (0.00018)	Loss_const 0.00020 (0.00020)	Accuracy 0.808 (0.808)	Accuracy_ema 0.577 (0.577)
+2023-07-03 13:30:31,747 Epoch: [9][100/701]	Time 1.371s (1.401s)	Speed 23.3 samples/s	Data 0.000s (0.024s)	Loss_sup 0.00022 (0.00026)	Loss_const 0.00018 (0.00025)	Accuracy 0.814 (0.782)	Accuracy_ema 0.486 (0.539)
+2023-07-03 13:32:52,171 Epoch: [9][200/701]	Time 1.457s (1.402s)	Speed 22.0 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00018 (0.00026)	Loss_const 0.00020 (0.00025)	Accuracy 0.790 (0.779)	Accuracy_ema 0.453 (0.532)
+2023-07-03 13:35:12,709 Epoch: [9][300/701]	Time 1.443s (1.403s)	Speed 22.2 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00031 (0.00027)	Loss_const 0.00031 (0.00025)	Accuracy 0.745 (0.775)	Accuracy_ema 0.468 (0.530)
+2023-07-03 13:37:33,910 Epoch: [9][400/701]	Time 1.510s (1.406s)	Speed 21.2 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00022 (0.00027)	Loss_const 0.00018 (0.00025)	Accuracy 0.805 (0.774)	Accuracy_ema 0.411 (0.534)
+2023-07-03 13:39:54,102 Epoch: [9][500/701]	Time 1.178s (1.405s)	Speed 27.2 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00026 (0.00027)	Loss_const 0.00027 (0.00025)	Accuracy 0.782 (0.774)	Accuracy_ema 0.512 (0.533)
+2023-07-03 13:42:15,696 Epoch: [9][600/701]	Time 1.587s (1.407s)	Speed 20.2 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00031 (0.00027)	Loss_const 0.00023 (0.00025)	Accuracy 0.759 (0.774)	Accuracy_ema 0.583 (0.534)
+2023-07-03 13:44:34,608 Epoch: [9][700/701]	Time 1.374s (1.404s)	Speed 23.3 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00028 (0.00027)	Loss_const 0.00027 (0.00025)	Accuracy 0.787 (0.774)	Accuracy_ema 0.566 (0.534)
+2023-07-03 13:44:39,941 Test: [0/3]	Time 3.218 (3.218)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0001 (0.0001)	Accuracy 0.745 (0.745)	Accuracy_ema 0.733 (0.733)
+2023-07-03 13:44:41,140 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 13:44:41,207 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 13:44:41,261 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 13:44:41,261 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 13:44:41,262 | pose_hrnet_part | 0.416 | 0.774 | 0.401 | 0.250 | 0.440 | 0.473 | 0.780 | 0.487 | 0.364 | 0.482 |
+2023-07-03 13:44:41,262 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 13:44:41,262 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 13:44:41,262 | pose_hrnet_part | 0.414 | 0.762 | 0.422 | 0.236 | 0.441 | 0.472 | 0.773 | 0.493 | 0.336 | 0.483 |
+2023-07-03 13:44:41,263 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 13:44:47,482 Epoch: [10][0/701]	Time 4.098s (4.098s)	Speed 7.8 samples/s	Data 2.307s (2.307s)	Loss_sup 0.00033 (0.00033)	Loss_const 0.00018 (0.00018)	Accuracy 0.717 (0.717)	Accuracy_ema 0.429 (0.429)
+2023-07-03 13:47:09,175 Epoch: [10][100/701]	Time 1.401s (1.443s)	Speed 22.8 samples/s	Data 0.000s (0.023s)	Loss_sup 0.00020 (0.00028)	Loss_const 0.00022 (0.00023)	Accuracy 0.822 (0.772)	Accuracy_ema 0.471 (0.538)
+2023-07-03 13:49:31,299 Epoch: [10][200/701]	Time 1.452s (1.432s)	Speed 22.0 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00020 (0.00027)	Loss_const 0.00025 (0.00023)	Accuracy 0.823 (0.773)	Accuracy_ema 0.569 (0.537)
+2023-07-03 13:51:46,907 Epoch: [10][300/701]	Time 1.386s (1.407s)	Speed 23.1 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00025 (0.00027)	Loss_const 0.00018 (0.00023)	Accuracy 0.753 (0.773)	Accuracy_ema 0.571 (0.532)
+2023-07-03 13:54:06,041 Epoch: [10][400/701]	Time 1.325s (1.403s)	Speed 24.2 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00024 (0.00027)	Loss_const 0.00020 (0.00023)	Accuracy 0.787 (0.773)	Accuracy_ema 0.568 (0.534)
+2023-07-03 13:56:19,099 Epoch: [10][500/701]	Time 1.221s (1.389s)	Speed 26.2 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00038 (0.00027)	Loss_const 0.00026 (0.00023)	Accuracy 0.701 (0.772)	Accuracy_ema 0.441 (0.535)
+2023-07-03 13:58:31,280 Epoch: [10][600/701]	Time 1.248s (1.378s)	Speed 25.6 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00019 (0.00027)	Loss_const 0.00019 (0.00023)	Accuracy 0.819 (0.773)	Accuracy_ema 0.582 (0.536)
+2023-07-03 14:00:44,489 Epoch: [10][700/701]	Time 1.319s (1.371s)	Speed 24.3 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00037 (0.00027)	Loss_const 0.00026 (0.00023)	Accuracy 0.704 (0.772)	Accuracy_ema 0.498 (0.534)
+2023-07-03 14:00:50,046 Test: [0/3]	Time 3.047 (3.047)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0001 (0.0001)	Accuracy 0.731 (0.731)	Accuracy_ema 0.734 (0.734)
+2023-07-03 14:00:51,053 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 14:00:51,114 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 14:00:51,159 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 14:00:51,160 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 14:00:51,160 | pose_hrnet_part | 0.412 | 0.770 | 0.408 | 0.220 | 0.438 | 0.473 | 0.780 | 0.487 | 0.355 | 0.482 |
+2023-07-03 14:00:51,160 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 14:00:51,160 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 14:00:51,160 | pose_hrnet_part | 0.419 | 0.771 | 0.413 | 0.248 | 0.446 | 0.473 | 0.780 | 0.480 | 0.345 | 0.483 |
+2023-07-03 14:00:51,161 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 14:00:57,033 Epoch: [11][0/701]	Time 3.959s (3.959s)	Speed 8.1 samples/s	Data 2.330s (2.330s)	Loss_sup 0.00021 (0.00021)	Loss_const 0.00017 (0.00017)	Accuracy 0.805 (0.805)	Accuracy_ema 0.606 (0.606)
+2023-07-03 14:03:09,098 Epoch: [11][100/701]	Time 1.247s (1.347s)	Speed 25.7 samples/s	Data 0.000s (0.023s)	Loss_sup 0.00037 (0.00027)	Loss_const 0.00029 (0.00021)	Accuracy 0.674 (0.773)	Accuracy_ema 0.483 (0.541)
+2023-07-03 14:05:25,587 Epoch: [11][200/701]	Time 1.435s (1.356s)	Speed 22.3 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00032 (0.00027)	Loss_const 0.00027 (0.00021)	Accuracy 0.732 (0.774)	Accuracy_ema 0.536 (0.534)
+2023-07-03 14:07:40,557 Epoch: [11][300/701]	Time 1.480s (1.354s)	Speed 21.6 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00033 (0.00027)	Loss_const 0.00024 (0.00021)	Accuracy 0.726 (0.776)	Accuracy_ema 0.583 (0.534)
+2023-07-03 14:09:55,079 Epoch: [11][400/701]	Time 1.281s (1.352s)	Speed 25.0 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00030 (0.00027)	Loss_const 0.00020 (0.00021)	Accuracy 0.728 (0.775)	Accuracy_ema 0.414 (0.533)
+2023-07-03 14:12:06,861 Epoch: [11][500/701]	Time 1.246s (1.345s)	Speed 25.7 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00042 (0.00027)	Loss_const 0.00028 (0.00022)	Accuracy 0.692 (0.773)	Accuracy_ema 0.437 (0.529)
+2023-07-03 14:14:21,727 Epoch: [11][600/701]	Time 1.221s (1.346s)	Speed 26.2 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00025 (0.00027)	Loss_const 0.00019 (0.00022)	Accuracy 0.792 (0.773)	Accuracy_ema 0.590 (0.528)
+2023-07-03 14:16:35,534 Epoch: [11][700/701]	Time 1.333s (1.344s)	Speed 24.0 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00035 (0.00027)	Loss_const 0.00028 (0.00022)	Accuracy 0.731 (0.774)	Accuracy_ema 0.503 (0.529)
+2023-07-03 14:16:41,025 Test: [0/3]	Time 2.935 (2.935)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0001 (0.0001)	Accuracy 0.752 (0.752)	Accuracy_ema 0.743 (0.743)
+2023-07-03 14:16:42,174 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 14:16:42,233 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 14:16:42,278 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 14:16:42,278 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 14:16:42,278 | pose_hrnet_part | 0.422 | 0.778 | 0.435 | 0.254 | 0.451 | 0.483 | 0.793 | 0.500 | 0.345 | 0.494 |
+2023-07-03 14:16:42,278 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 14:16:42,278 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 14:16:42,278 | pose_hrnet_part | 0.421 | 0.771 | 0.414 | 0.242 | 0.450 | 0.479 | 0.787 | 0.480 | 0.336 | 0.490 |
+2023-07-03 14:16:42,279 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 14:16:48,439 Epoch: [12][0/701]	Time 4.402s (4.402s)	Speed 7.3 samples/s	Data 2.664s (2.664s)	Loss_sup 0.00021 (0.00021)	Loss_const 0.00013 (0.00013)	Accuracy 0.833 (0.833)	Accuracy_ema 0.624 (0.624)
+2023-07-03 14:19:03,032 Epoch: [12][100/701]	Time 1.281s (1.376s)	Speed 25.0 samples/s	Data 0.000s (0.027s)	Loss_sup 0.00025 (0.00027)	Loss_const 0.00019 (0.00021)	Accuracy 0.769 (0.778)	Accuracy_ema 0.584 (0.531)
+2023-07-03 14:21:17,362 Epoch: [12][200/701]	Time 1.308s (1.360s)	Speed 24.5 samples/s	Data 0.000s (0.014s)	Loss_sup 0.00017 (0.00027)	Loss_const 0.00018 (0.00020)	Accuracy 0.837 (0.778)	Accuracy_ema 0.538 (0.532)
+2023-07-03 14:23:31,455 Epoch: [12][300/701]	Time 1.322s (1.354s)	Speed 24.2 samples/s	Data 0.000s (0.009s)	Loss_sup 0.00019 (0.00027)	Loss_const 0.00016 (0.00021)	Accuracy 0.837 (0.777)	Accuracy_ema 0.615 (0.531)
+2023-07-03 14:25:44,841 Epoch: [12][400/701]	Time 1.218s (1.349s)	Speed 26.3 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00029 (0.00027)	Loss_const 0.00015 (0.00021)	Accuracy 0.735 (0.777)	Accuracy_ema 0.550 (0.531)
+2023-07-03 14:27:54,360 Epoch: [12][500/701]	Time 1.487s (1.338s)	Speed 21.5 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00038 (0.00027)	Loss_const 0.00022 (0.00021)	Accuracy 0.704 (0.777)	Accuracy_ema 0.470 (0.531)
+2023-07-03 14:30:07,117 Epoch: [12][600/701]	Time 1.433s (1.336s)	Speed 22.3 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00031 (0.00027)	Loss_const 0.00029 (0.00021)	Accuracy 0.732 (0.776)	Accuracy_ema 0.509 (0.530)
+2023-07-03 14:32:20,408 Epoch: [12][700/701]	Time 1.161s (1.336s)	Speed 27.6 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00021 (0.00027)	Loss_const 0.00013 (0.00021)	Accuracy 0.806 (0.775)	Accuracy_ema 0.625 (0.531)
+2023-07-03 14:32:25,581 Test: [0/3]	Time 3.044 (3.044)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0000 (0.0000)	Accuracy 0.729 (0.729)	Accuracy_ema 0.745 (0.745)
+2023-07-03 14:32:26,439 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 14:32:26,497 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 14:32:26,541 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 14:32:26,541 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 14:32:26,541 | pose_hrnet_part | 0.414 | 0.776 | 0.407 | 0.243 | 0.441 | 0.475 | 0.793 | 0.480 | 0.327 | 0.486 |
+2023-07-03 14:32:26,541 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 14:32:26,541 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 14:32:26,541 | pose_hrnet_part | 0.424 | 0.772 | 0.438 | 0.241 | 0.454 | 0.483 | 0.787 | 0.507 | 0.336 | 0.495 |
+2023-07-03 14:32:26,542 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 14:32:32,279 Epoch: [13][0/701]	Time 3.858s (3.858s)	Speed 8.3 samples/s	Data 2.184s (2.184s)	Loss_sup 0.00030 (0.00030)	Loss_const 0.00016 (0.00016)	Accuracy 0.747 (0.747)	Accuracy_ema 0.554 (0.554)
+2023-07-03 14:34:43,821 Epoch: [13][100/701]	Time 1.201s (1.341s)	Speed 26.6 samples/s	Data 0.000s (0.022s)	Loss_sup 0.00025 (0.00028)	Loss_const 0.00021 (0.00020)	Accuracy 0.795 (0.771)	Accuracy_ema 0.646 (0.535)
+2023-07-03 14:36:57,763 Epoch: [13][200/701]	Time 1.375s (1.340s)	Speed 23.3 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00017 (0.00027)	Loss_const 0.00016 (0.00020)	Accuracy 0.833 (0.774)	Accuracy_ema 0.600 (0.534)
+2023-07-03 14:39:11,746 Epoch: [13][300/701]	Time 1.454s (1.340s)	Speed 22.0 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00040 (0.00027)	Loss_const 0.00021 (0.00020)	Accuracy 0.688 (0.774)	Accuracy_ema 0.469 (0.531)
+2023-07-03 14:41:24,961 Epoch: [13][400/701]	Time 1.201s (1.338s)	Speed 26.7 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00021 (0.00027)	Loss_const 0.00021 (0.00020)	Accuracy 0.791 (0.774)	Accuracy_ema 0.459 (0.529)
+2023-07-03 14:43:39,187 Epoch: [13][500/701]	Time 1.215s (1.339s)	Speed 26.3 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00029 (0.00027)	Loss_const 0.00029 (0.00020)	Accuracy 0.733 (0.773)	Accuracy_ema 0.549 (0.528)
+2023-07-03 14:45:53,992 Epoch: [13][600/701]	Time 1.369s (1.340s)	Speed 23.4 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00030 (0.00027)	Loss_const 0.00017 (0.00020)	Accuracy 0.753 (0.774)	Accuracy_ema 0.446 (0.528)
+2023-07-03 14:48:07,048 Epoch: [13][700/701]	Time 1.177s (1.339s)	Speed 27.2 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00025 (0.00027)	Loss_const 0.00025 (0.00020)	Accuracy 0.778 (0.775)	Accuracy_ema 0.441 (0.528)
+2023-07-03 14:48:12,211 Test: [0/3]	Time 2.881 (2.881)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0000 (0.0000)	Accuracy 0.740 (0.740)	Accuracy_ema 0.747 (0.747)
+2023-07-03 14:48:13,535 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 14:48:13,630 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 14:48:13,676 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 14:48:13,676 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 14:48:13,676 | pose_hrnet_part | 0.420 | 0.761 | 0.417 | 0.233 | 0.447 | 0.481 | 0.780 | 0.487 | 0.400 | 0.487 |
+2023-07-03 14:48:13,676 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 14:48:13,676 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 14:48:13,676 | pose_hrnet_part | 0.420 | 0.770 | 0.433 | 0.221 | 0.450 | 0.481 | 0.780 | 0.500 | 0.327 | 0.493 |
+2023-07-03 14:48:13,677 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 14:48:18,591 Epoch: [14][0/701]	Time 3.848s (3.848s)	Speed 8.3 samples/s	Data 2.320s (2.320s)	Loss_sup 0.00025 (0.00025)	Loss_const 0.00014 (0.00014)	Accuracy 0.750 (0.750)	Accuracy_ema 0.569 (0.569)
+2023-07-03 14:50:32,948 Epoch: [14][100/701]	Time 1.229s (1.368s)	Speed 26.0 samples/s	Data 0.000s (0.023s)	Loss_sup 0.00043 (0.00028)	Loss_const 0.00022 (0.00019)	Accuracy 0.689 (0.769)	Accuracy_ema 0.486 (0.528)
+2023-07-03 14:52:45,600 Epoch: [14][200/701]	Time 1.421s (1.348s)	Speed 22.5 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00026 (0.00028)	Loss_const 0.00016 (0.00019)	Accuracy 0.760 (0.772)	Accuracy_ema 0.528 (0.527)
+2023-07-03 14:54:56,175 Epoch: [14][300/701]	Time 1.227s (1.334s)	Speed 26.1 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00049 (0.00027)	Loss_const 0.00025 (0.00019)	Accuracy 0.683 (0.776)	Accuracy_ema 0.507 (0.528)
+2023-07-03 14:57:09,401 Epoch: [14][400/701]	Time 1.295s (1.333s)	Speed 24.7 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00027 (0.00027)	Loss_const 0.00023 (0.00019)	Accuracy 0.756 (0.775)	Accuracy_ema 0.404 (0.528)
+2023-07-03 14:59:23,544 Epoch: [14][500/701]	Time 1.381s (1.335s)	Speed 23.2 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00021 (0.00027)	Loss_const 0.00016 (0.00019)	Accuracy 0.809 (0.775)	Accuracy_ema 0.659 (0.528)
+2023-07-03 15:01:38,274 Epoch: [14][600/701]	Time 1.343s (1.337s)	Speed 23.8 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00024 (0.00027)	Loss_const 0.00017 (0.00019)	Accuracy 0.799 (0.774)	Accuracy_ema 0.538 (0.528)
+2023-07-03 15:03:50,626 Epoch: [14][700/701]	Time 1.155s (1.335s)	Speed 27.7 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00025 (0.00027)	Loss_const 0.00017 (0.00019)	Accuracy 0.814 (0.775)	Accuracy_ema 0.667 (0.530)
+2023-07-03 15:03:56,288 Test: [0/3]	Time 3.037 (3.037)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0001 (0.0001)	Accuracy 0.734 (0.734)	Accuracy_ema 0.747 (0.747)
+2023-07-03 15:03:57,577 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 15:03:57,635 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 15:03:57,681 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 15:03:57,681 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 15:03:57,681 | pose_hrnet_part | 0.420 | 0.789 | 0.428 | 0.242 | 0.440 | 0.473 | 0.800 | 0.487 | 0.364 | 0.482 |
+2023-07-03 15:03:57,681 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 15:03:57,681 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 15:03:57,681 | pose_hrnet_part | 0.424 | 0.769 | 0.432 | 0.236 | 0.449 | 0.482 | 0.780 | 0.493 | 0.364 | 0.491 |
+2023-07-03 15:03:57,682 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 15:04:02,826 Epoch: [15][0/701]	Time 4.065s (4.065s)	Speed 7.9 samples/s	Data 2.594s (2.594s)	Loss_sup 0.00040 (0.00040)	Loss_const 0.00020 (0.00020)	Accuracy 0.715 (0.715)	Accuracy_ema 0.516 (0.516)
+2023-07-03 15:06:15,632 Epoch: [15][100/701]	Time 1.471s (1.355s)	Speed 21.8 samples/s	Data 0.000s (0.026s)	Loss_sup 0.00021 (0.00027)	Loss_const 0.00010 (0.00019)	Accuracy 0.791 (0.775)	Accuracy_ema 0.580 (0.528)
+2023-07-03 15:08:25,791 Epoch: [15][200/701]	Time 1.387s (1.329s)	Speed 23.1 samples/s	Data 0.000s (0.013s)	Loss_sup 0.00019 (0.00027)	Loss_const 0.00015 (0.00019)	Accuracy 0.819 (0.775)	Accuracy_ema 0.554 (0.526)
+2023-07-03 15:10:36,106 Epoch: [15][300/701]	Time 1.264s (1.320s)	Speed 25.3 samples/s	Data 0.000s (0.009s)	Loss_sup 0.00019 (0.00027)	Loss_const 0.00018 (0.00018)	Accuracy 0.826 (0.777)	Accuracy_ema 0.526 (0.526)
+2023-07-03 15:12:47,934 Epoch: [15][400/701]	Time 1.359s (1.320s)	Speed 23.5 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00041 (0.00027)	Loss_const 0.00024 (0.00018)	Accuracy 0.685 (0.777)	Accuracy_ema 0.560 (0.529)
+2023-07-03 15:14:58,660 Epoch: [15][500/701]	Time 1.263s (1.317s)	Speed 25.3 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00029 (0.00027)	Loss_const 0.00019 (0.00018)	Accuracy 0.784 (0.776)	Accuracy_ema 0.530 (0.529)
+2023-07-03 15:17:13,332 Epoch: [15][600/701]	Time 1.197s (1.322s)	Speed 26.7 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00032 (0.00027)	Loss_const 0.00017 (0.00019)	Accuracy 0.760 (0.776)	Accuracy_ema 0.490 (0.529)
+2023-07-03 15:19:25,955 Epoch: [15][700/701]	Time 1.504s (1.323s)	Speed 21.3 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00036 (0.00027)	Loss_const 0.00020 (0.00018)	Accuracy 0.722 (0.776)	Accuracy_ema 0.521 (0.529)
+2023-07-03 15:19:31,511 Test: [0/3]	Time 3.057 (3.057)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.740 (0.740)	Accuracy_ema 0.743 (0.743)
+2023-07-03 15:19:32,700 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 15:19:32,759 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 15:19:32,806 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 15:19:32,806 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 15:19:32,806 | pose_hrnet_part | 0.405 | 0.763 | 0.392 | 0.251 | 0.437 | 0.477 | 0.787 | 0.480 | 0.373 | 0.485 |
+2023-07-03 15:19:32,806 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 15:19:32,806 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 15:19:32,806 | pose_hrnet_part | 0.424 | 0.769 | 0.437 | 0.238 | 0.448 | 0.481 | 0.787 | 0.500 | 0.345 | 0.492 |
+2023-07-03 15:19:32,807 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 15:19:38,749 Epoch: [16][0/701]	Time 3.838s (3.838s)	Speed 8.3 samples/s	Data 2.181s (2.181s)	Loss_sup 0.00020 (0.00020)	Loss_const 0.00014 (0.00014)	Accuracy 0.818 (0.818)	Accuracy_ema 0.563 (0.563)
+2023-07-03 15:21:52,073 Epoch: [16][100/701]	Time 1.209s (1.358s)	Speed 26.5 samples/s	Data 0.000s (0.022s)	Loss_sup 0.00025 (0.00028)	Loss_const 0.00015 (0.00019)	Accuracy 0.809 (0.772)	Accuracy_ema 0.472 (0.533)
+2023-07-03 15:24:05,887 Epoch: [16][200/701]	Time 1.414s (1.348s)	Speed 22.6 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00021 (0.00027)	Loss_const 0.00017 (0.00018)	Accuracy 0.812 (0.776)	Accuracy_ema 0.488 (0.531)
+2023-07-03 15:26:18,899 Epoch: [16][300/701]	Time 1.308s (1.342s)	Speed 24.5 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00016 (0.00027)	Loss_const 0.00019 (0.00018)	Accuracy 0.831 (0.774)	Accuracy_ema 0.621 (0.531)
+2023-07-03 15:28:32,937 Epoch: [16][400/701]	Time 1.115s (1.342s)	Speed 28.7 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00019 (0.00027)	Loss_const 0.00019 (0.00018)	Accuracy 0.825 (0.775)	Accuracy_ema 0.601 (0.532)
+2023-07-03 15:30:45,830 Epoch: [16][500/701]	Time 1.430s (1.339s)	Speed 22.4 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00022 (0.00027)	Loss_const 0.00021 (0.00018)	Accuracy 0.785 (0.774)	Accuracy_ema 0.556 (0.531)
+2023-07-03 15:33:02,640 Epoch: [16][600/701]	Time 1.340s (1.344s)	Speed 23.9 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00027 (0.00027)	Loss_const 0.00023 (0.00018)	Accuracy 0.795 (0.775)	Accuracy_ema 0.642 (0.533)
+2023-07-03 15:35:25,044 Epoch: [16][700/701]	Time 1.459s (1.355s)	Speed 21.9 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00024 (0.00027)	Loss_const 0.00018 (0.00018)	Accuracy 0.816 (0.775)	Accuracy_ema 0.462 (0.533)
+2023-07-03 15:35:30,885 Test: [0/3]	Time 3.203 (3.203)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0000 (0.0000)	Accuracy 0.755 (0.755)	Accuracy_ema 0.741 (0.741)
+2023-07-03 15:35:32,216 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 15:35:32,275 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 15:35:32,321 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 15:35:32,321 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 15:35:32,321 | pose_hrnet_part | 0.410 | 0.777 | 0.423 | 0.226 | 0.449 | 0.491 | 0.800 | 0.527 | 0.364 | 0.501 |
+2023-07-03 15:35:32,321 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 15:35:32,321 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 15:35:32,321 | pose_hrnet_part | 0.419 | 0.778 | 0.430 | 0.226 | 0.445 | 0.482 | 0.793 | 0.500 | 0.355 | 0.492 |
+2023-07-03 15:35:32,322 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 15:35:37,628 Epoch: [17][0/701]	Time 4.175s (4.175s)	Speed 7.7 samples/s	Data 2.365s (2.365s)	Loss_sup 0.00030 (0.00030)	Loss_const 0.00020 (0.00020)	Accuracy 0.756 (0.756)	Accuracy_ema 0.468 (0.468)
+2023-07-03 15:37:54,169 Epoch: [17][100/701]	Time 1.222s (1.393s)	Speed 26.2 samples/s	Data 0.000s (0.024s)	Loss_sup 0.00053 (0.00028)	Loss_const 0.00020 (0.00018)	Accuracy 0.666 (0.774)	Accuracy_ema 0.469 (0.527)
+2023-07-03 15:40:16,888 Epoch: [17][200/701]	Time 1.567s (1.410s)	Speed 20.4 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00033 (0.00027)	Loss_const 0.00018 (0.00017)	Accuracy 0.740 (0.780)	Accuracy_ema 0.587 (0.535)
+2023-07-03 15:42:40,670 Epoch: [17][300/701]	Time 1.353s (1.419s)	Speed 23.6 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00032 (0.00027)	Loss_const 0.00020 (0.00017)	Accuracy 0.750 (0.781)	Accuracy_ema 0.503 (0.534)
+2023-07-03 15:45:03,874 Epoch: [17][400/701]	Time 1.432s (1.422s)	Speed 22.3 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00024 (0.00027)	Loss_const 0.00019 (0.00017)	Accuracy 0.795 (0.779)	Accuracy_ema 0.628 (0.533)
+2023-07-03 15:47:27,708 Epoch: [17][500/701]	Time 1.508s (1.426s)	Speed 21.2 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00021 (0.00027)	Loss_const 0.00014 (0.00017)	Accuracy 0.809 (0.778)	Accuracy_ema 0.500 (0.534)
+2023-07-03 15:49:51,457 Epoch: [17][600/701]	Time 1.392s (1.428s)	Speed 23.0 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00020 (0.00027)	Loss_const 0.00017 (0.00017)	Accuracy 0.811 (0.778)	Accuracy_ema 0.479 (0.535)
+2023-07-03 15:52:08,173 Epoch: [17][700/701]	Time 1.368s (1.419s)	Speed 23.4 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00043 (0.00027)	Loss_const 0.00018 (0.00018)	Accuracy 0.680 (0.777)	Accuracy_ema 0.368 (0.534)
+2023-07-03 15:52:13,842 Test: [0/3]	Time 3.005 (3.005)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0000 (0.0000)	Accuracy 0.743 (0.743)	Accuracy_ema 0.745 (0.745)
+2023-07-03 15:52:15,064 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 15:52:15,124 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 15:52:15,170 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 15:52:15,170 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 15:52:15,170 | pose_hrnet_part | 0.421 | 0.780 | 0.428 | 0.278 | 0.452 | 0.485 | 0.800 | 0.493 | 0.345 | 0.496 |
+2023-07-03 15:52:15,170 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 15:52:15,170 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 15:52:15,170 | pose_hrnet_part | 0.418 | 0.769 | 0.416 | 0.253 | 0.445 | 0.482 | 0.787 | 0.487 | 0.355 | 0.492 |
+2023-07-03 15:52:15,171 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 15:52:20,683 Epoch: [18][0/701]	Time 4.207s (4.207s)	Speed 7.6 samples/s	Data 2.451s (2.451s)	Loss_sup 0.00042 (0.00042)	Loss_const 0.00024 (0.00024)	Accuracy 0.686 (0.686)	Accuracy_ema 0.456 (0.456)
+2023-07-03 15:54:29,963 Epoch: [18][100/701]	Time 1.242s (1.322s)	Speed 25.8 samples/s	Data 0.000s (0.025s)	Loss_sup 0.00027 (0.00027)	Loss_const 0.00016 (0.00016)	Accuracy 0.763 (0.779)	Accuracy_ema 0.446 (0.529)
+2023-07-03 15:56:43,293 Epoch: [18][200/701]	Time 1.528s (1.327s)	Speed 20.9 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00022 (0.00026)	Loss_const 0.00014 (0.00017)	Accuracy 0.794 (0.782)	Accuracy_ema 0.585 (0.540)
+2023-07-03 15:58:57,325 Epoch: [18][300/701]	Time 1.297s (1.332s)	Speed 24.7 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00021 (0.00026)	Loss_const 0.00012 (0.00017)	Accuracy 0.824 (0.781)	Accuracy_ema 0.587 (0.536)
+2023-07-03 16:01:10,143 Epoch: [18][400/701]	Time 1.318s (1.331s)	Speed 24.3 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00038 (0.00027)	Loss_const 0.00017 (0.00017)	Accuracy 0.721 (0.779)	Accuracy_ema 0.568 (0.533)
+2023-07-03 16:03:26,536 Epoch: [18][500/701]	Time 1.408s (1.337s)	Speed 22.7 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00038 (0.00027)	Loss_const 0.00018 (0.00017)	Accuracy 0.710 (0.777)	Accuracy_ema 0.423 (0.531)
+2023-07-03 16:05:42,537 Epoch: [18][600/701]	Time 1.462s (1.341s)	Speed 21.9 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00020 (0.00027)	Loss_const 0.00014 (0.00017)	Accuracy 0.831 (0.776)	Accuracy_ema 0.617 (0.531)
+2023-07-03 16:07:56,970 Epoch: [18][700/701]	Time 1.207s (1.342s)	Speed 26.5 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00024 (0.00027)	Loss_const 0.00022 (0.00017)	Accuracy 0.801 (0.776)	Accuracy_ema 0.525 (0.530)
+2023-07-03 16:08:02,274 Test: [0/3]	Time 2.939 (2.939)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.736 (0.736)	Accuracy_ema 0.750 (0.750)
+2023-07-03 16:08:03,627 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 16:08:03,686 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 16:08:03,729 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 16:08:03,729 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 16:08:03,729 | pose_hrnet_part | 0.418 | 0.788 | 0.421 | 0.271 | 0.442 | 0.475 | 0.807 | 0.493 | 0.355 | 0.484 |
+2023-07-03 16:08:03,729 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 16:08:03,729 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 16:08:03,729 | pose_hrnet_part | 0.417 | 0.784 | 0.427 | 0.232 | 0.444 | 0.485 | 0.807 | 0.500 | 0.345 | 0.496 |
+2023-07-03 16:08:03,730 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 16:08:08,804 Epoch: [19][0/701]	Time 3.850s (3.850s)	Speed 8.3 samples/s	Data 2.216s (2.216s)	Loss_sup 0.00020 (0.00020)	Loss_const 0.00017 (0.00017)	Accuracy 0.818 (0.818)	Accuracy_ema 0.437 (0.437)
+2023-07-03 16:10:22,976 Epoch: [19][100/701]	Time 1.409s (1.367s)	Speed 22.7 samples/s	Data 0.000s (0.022s)	Loss_sup 0.00029 (0.00027)	Loss_const 0.00015 (0.00017)	Accuracy 0.788 (0.780)	Accuracy_ema 0.604 (0.529)
+2023-07-03 16:12:37,897 Epoch: [19][200/701]	Time 1.219s (1.358s)	Speed 26.3 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00047 (0.00027)	Loss_const 0.00025 (0.00017)	Accuracy 0.657 (0.778)	Accuracy_ema 0.420 (0.532)
+2023-07-03 16:14:51,265 Epoch: [19][300/701]	Time 1.223s (1.350s)	Speed 26.2 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00023 (0.00027)	Loss_const 0.00012 (0.00017)	Accuracy 0.771 (0.778)	Accuracy_ema 0.549 (0.531)
+2023-07-03 16:17:06,380 Epoch: [19][400/701]	Time 1.529s (1.350s)	Speed 20.9 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00023 (0.00027)	Loss_const 0.00020 (0.00017)	Accuracy 0.788 (0.777)	Accuracy_ema 0.594 (0.532)
+2023-07-03 16:19:20,679 Epoch: [19][500/701]	Time 1.334s (1.349s)	Speed 24.0 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00016 (0.00027)	Loss_const 0.00012 (0.00017)	Accuracy 0.847 (0.777)	Accuracy_ema 0.673 (0.533)
+2023-07-03 16:21:29,748 Epoch: [19][600/701]	Time 1.319s (1.339s)	Speed 24.3 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00018 (0.00027)	Loss_const 0.00013 (0.00017)	Accuracy 0.826 (0.777)	Accuracy_ema 0.481 (0.532)
+2023-07-03 16:23:41,961 Epoch: [19][700/701]	Time 1.317s (1.337s)	Speed 24.3 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00020 (0.00027)	Loss_const 0.00014 (0.00017)	Accuracy 0.816 (0.778)	Accuracy_ema 0.499 (0.532)
+2023-07-03 16:23:47,601 Test: [0/3]	Time 3.119 (3.119)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.733 (0.733)	Accuracy_ema 0.745 (0.745)
+2023-07-03 16:23:48,900 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 16:23:48,961 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 16:23:49,007 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 16:23:49,007 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 16:23:49,007 | pose_hrnet_part | 0.393 | 0.745 | 0.379 | 0.181 | 0.434 | 0.467 | 0.760 | 0.480 | 0.300 | 0.480 |
+2023-07-03 16:23:49,007 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 16:23:49,007 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 16:23:49,007 | pose_hrnet_part | 0.412 | 0.780 | 0.418 | 0.219 | 0.447 | 0.485 | 0.800 | 0.500 | 0.318 | 0.499 |
+2023-07-03 16:23:49,008 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 16:23:54,443 Epoch: [20][0/701]	Time 4.204s (4.204s)	Speed 7.6 samples/s	Data 2.478s (2.478s)	Loss_sup 0.00037 (0.00037)	Loss_const 0.00019 (0.00019)	Accuracy 0.752 (0.752)	Accuracy_ema 0.620 (0.620)
+2023-07-03 16:26:06,333 Epoch: [20][100/701]	Time 1.198s (1.347s)	Speed 26.7 samples/s	Data 0.000s (0.025s)	Loss_sup 0.00033 (0.00028)	Loss_const 0.00017 (0.00016)	Accuracy 0.753 (0.774)	Accuracy_ema 0.533 (0.525)
+2023-07-03 16:28:20,023 Epoch: [20][200/701]	Time 1.173s (1.342s)	Speed 27.3 samples/s	Data 0.000s (0.013s)	Loss_sup 0.00017 (0.00027)	Loss_const 0.00012 (0.00016)	Accuracy 0.840 (0.777)	Accuracy_ema 0.500 (0.532)
+2023-07-03 16:30:34,548 Epoch: [20][300/701]	Time 1.274s (1.343s)	Speed 25.1 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00018 (0.00027)	Loss_const 0.00015 (0.00016)	Accuracy 0.843 (0.776)	Accuracy_ema 0.616 (0.535)
+2023-07-03 16:32:49,483 Epoch: [20][400/701]	Time 1.367s (1.345s)	Speed 23.4 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00036 (0.00027)	Loss_const 0.00025 (0.00016)	Accuracy 0.742 (0.776)	Accuracy_ema 0.551 (0.534)
+2023-07-03 16:35:02,914 Epoch: [20][500/701]	Time 1.438s (1.343s)	Speed 22.2 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00031 (0.00027)	Loss_const 0.00015 (0.00016)	Accuracy 0.750 (0.777)	Accuracy_ema 0.560 (0.531)
+2023-07-03 16:37:17,347 Epoch: [20][600/701]	Time 1.334s (1.343s)	Speed 24.0 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00023 (0.00027)	Loss_const 0.00009 (0.00016)	Accuracy 0.811 (0.778)	Accuracy_ema 0.517 (0.532)
+2023-07-03 16:39:40,674 Epoch: [20][700/701]	Time 1.337s (1.356s)	Speed 23.9 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00033 (0.00027)	Loss_const 0.00013 (0.00016)	Accuracy 0.777 (0.777)	Accuracy_ema 0.655 (0.531)
+2023-07-03 16:39:46,467 Test: [0/3]	Time 3.326 (3.326)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.734 (0.734)	Accuracy_ema 0.734 (0.734)
+2023-07-03 16:39:47,750 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 16:39:47,810 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 16:39:47,856 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 16:39:47,857 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 16:39:47,857 | pose_hrnet_part | 0.409 | 0.766 | 0.420 | 0.194 | 0.442 | 0.473 | 0.780 | 0.487 | 0.300 | 0.487 |
+2023-07-03 16:39:47,857 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 16:39:47,857 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 16:39:47,857 | pose_hrnet_part | 0.412 | 0.768 | 0.411 | 0.235 | 0.443 | 0.484 | 0.793 | 0.493 | 0.318 | 0.497 |
+2023-07-03 16:39:47,858 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 16:39:52,837 Epoch: [21][0/701]	Time 3.984s (3.984s)	Speed 8.0 samples/s	Data 2.248s (2.248s)	Loss_sup 0.00033 (0.00033)	Loss_const 0.00017 (0.00017)	Accuracy 0.710 (0.710)	Accuracy_ema 0.549 (0.549)
+2023-07-03 16:42:14,107 Epoch: [21][100/701]	Time 1.501s (1.438s)	Speed 21.3 samples/s	Data 0.000s (0.023s)	Loss_sup 0.00024 (0.00027)	Loss_const 0.00013 (0.00016)	Accuracy 0.774 (0.775)	Accuracy_ema 0.514 (0.523)
+2023-07-03 16:44:36,441 Epoch: [21][200/701]	Time 1.385s (1.431s)	Speed 23.1 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00041 (0.00027)	Loss_const 0.00015 (0.00016)	Accuracy 0.678 (0.775)	Accuracy_ema 0.427 (0.525)
+2023-07-03 16:46:59,830 Epoch: [21][300/701]	Time 1.478s (1.432s)	Speed 21.7 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00034 (0.00027)	Loss_const 0.00014 (0.00016)	Accuracy 0.742 (0.776)	Accuracy_ema 0.498 (0.526)
+2023-07-03 16:49:21,947 Epoch: [21][400/701]	Time 1.371s (1.429s)	Speed 23.3 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00013 (0.00027)	Loss_const 0.00014 (0.00016)	Accuracy 0.853 (0.777)	Accuracy_ema 0.544 (0.525)
+2023-07-03 16:51:44,147 Epoch: [21][500/701]	Time 1.376s (1.428s)	Speed 23.3 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00036 (0.00027)	Loss_const 0.00015 (0.00016)	Accuracy 0.724 (0.777)	Accuracy_ema 0.468 (0.525)
+2023-07-03 16:54:05,961 Epoch: [21][600/701]	Time 1.667s (1.426s)	Speed 19.2 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00036 (0.00027)	Loss_const 0.00022 (0.00016)	Accuracy 0.732 (0.777)	Accuracy_ema 0.475 (0.526)
+2023-07-03 16:56:25,460 Epoch: [21][700/701]	Time 1.249s (1.422s)	Speed 25.6 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00027 (0.00027)	Loss_const 0.00021 (0.00016)	Accuracy 0.771 (0.777)	Accuracy_ema 0.549 (0.526)
+2023-07-03 16:56:31,201 Test: [0/3]	Time 3.170 (3.170)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0000 (0.0000)	Accuracy 0.736 (0.736)	Accuracy_ema 0.733 (0.733)
+2023-07-03 16:56:32,499 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 16:56:32,573 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 16:56:32,622 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 16:56:32,623 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 16:56:32,623 | pose_hrnet_part | 0.423 | 0.773 | 0.442 | 0.274 | 0.452 | 0.491 | 0.793 | 0.527 | 0.336 | 0.504 |
+2023-07-03 16:56:32,623 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 16:56:32,623 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 16:56:32,623 | pose_hrnet_part | 0.416 | 0.779 | 0.413 | 0.228 | 0.448 | 0.486 | 0.800 | 0.493 | 0.318 | 0.499 |
+2023-07-03 16:56:32,624 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 16:56:37,937 Epoch: [22][0/701]	Time 4.026s (4.026s)	Speed 7.9 samples/s	Data 2.380s (2.380s)	Loss_sup 0.00031 (0.00031)	Loss_const 0.00015 (0.00015)	Accuracy 0.774 (0.774)	Accuracy_ema 0.488 (0.488)
+2023-07-03 16:58:47,020 Epoch: [22][100/701]	Time 1.362s (1.318s)	Speed 23.5 samples/s	Data 0.000s (0.024s)	Loss_sup 0.00023 (0.00027)	Loss_const 0.00010 (0.00015)	Accuracy 0.799 (0.778)	Accuracy_ema 0.556 (0.528)
+2023-07-03 17:00:58,039 Epoch: [22][200/701]	Time 1.198s (1.314s)	Speed 26.7 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00016 (0.00027)	Loss_const 0.00011 (0.00015)	Accuracy 0.823 (0.778)	Accuracy_ema 0.528 (0.529)
+2023-07-03 17:03:13,154 Epoch: [22][300/701]	Time 1.505s (1.326s)	Speed 21.3 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00025 (0.00027)	Loss_const 0.00018 (0.00016)	Accuracy 0.791 (0.778)	Accuracy_ema 0.575 (0.527)
+2023-07-03 17:05:32,619 Epoch: [22][400/701]	Time 1.379s (1.343s)	Speed 23.2 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00020 (0.00027)	Loss_const 0.00012 (0.00015)	Accuracy 0.809 (0.779)	Accuracy_ema 0.585 (0.526)
+2023-07-03 17:07:53,813 Epoch: [22][500/701]	Time 1.329s (1.357s)	Speed 24.1 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00036 (0.00027)	Loss_const 0.00020 (0.00015)	Accuracy 0.752 (0.780)	Accuracy_ema 0.437 (0.528)
+2023-07-03 17:10:17,542 Epoch: [22][600/701]	Time 1.461s (1.370s)	Speed 21.9 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00028 (0.00027)	Loss_const 0.00013 (0.00015)	Accuracy 0.766 (0.779)	Accuracy_ema 0.574 (0.528)
+2023-07-03 17:12:39,851 Epoch: [22][700/701]	Time 1.483s (1.378s)	Speed 21.6 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00034 (0.00027)	Loss_const 0.00022 (0.00016)	Accuracy 0.733 (0.778)	Accuracy_ema 0.462 (0.528)
+2023-07-03 17:12:45,425 Test: [0/3]	Time 3.178 (3.178)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0000 (0.0000)	Accuracy 0.750 (0.750)	Accuracy_ema 0.738 (0.738)
+2023-07-03 17:12:46,674 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 17:12:46,736 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 17:12:46,940 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 17:12:46,940 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 17:12:46,940 | pose_hrnet_part | 0.424 | 0.783 | 0.429 | 0.240 | 0.457 | 0.494 | 0.807 | 0.507 | 0.327 | 0.507 |
+2023-07-03 17:12:46,940 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 17:12:46,940 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 17:12:46,940 | pose_hrnet_part | 0.420 | 0.780 | 0.420 | 0.222 | 0.455 | 0.493 | 0.807 | 0.507 | 0.327 | 0.506 |
+2023-07-03 17:12:46,941 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 17:12:52,152 Epoch: [23][0/701]	Time 4.159s (4.159s)	Speed 7.7 samples/s	Data 2.374s (2.374s)	Loss_sup 0.00034 (0.00034)	Loss_const 0.00015 (0.00015)	Accuracy 0.737 (0.737)	Accuracy_ema 0.503 (0.503)
+2023-07-03 17:15:14,031 Epoch: [23][100/701]	Time 1.527s (1.446s)	Speed 21.0 samples/s	Data 0.000s (0.024s)	Loss_sup 0.00016 (0.00026)	Loss_const 0.00014 (0.00015)	Accuracy 0.854 (0.784)	Accuracy_ema 0.562 (0.532)
+2023-07-03 17:17:36,813 Epoch: [23][200/701]	Time 1.339s (1.437s)	Speed 23.9 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00030 (0.00026)	Loss_const 0.00017 (0.00015)	Accuracy 0.754 (0.780)	Accuracy_ema 0.560 (0.529)
+2023-07-03 17:20:00,879 Epoch: [23][300/701]	Time 1.361s (1.438s)	Speed 23.5 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00041 (0.00026)	Loss_const 0.00021 (0.00015)	Accuracy 0.712 (0.780)	Accuracy_ema 0.545 (0.526)
+2023-07-03 17:22:14,187 Epoch: [23][400/701]	Time 1.422s (1.412s)	Speed 22.5 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00020 (0.00026)	Loss_const 0.00011 (0.00015)	Accuracy 0.790 (0.780)	Accuracy_ema 0.535 (0.528)
+2023-07-03 17:24:28,093 Epoch: [23][500/701]	Time 1.229s (1.397s)	Speed 26.0 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00022 (0.00027)	Loss_const 0.00014 (0.00015)	Accuracy 0.815 (0.779)	Accuracy_ema 0.542 (0.528)
+2023-07-03 17:26:43,654 Epoch: [23][600/701]	Time 1.401s (1.390s)	Speed 22.8 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00029 (0.00027)	Loss_const 0.00013 (0.00015)	Accuracy 0.780 (0.778)	Accuracy_ema 0.636 (0.528)
+2023-07-03 17:28:54,330 Epoch: [23][700/701]	Time 1.410s (1.379s)	Speed 22.7 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00029 (0.00027)	Loss_const 0.00015 (0.00016)	Accuracy 0.781 (0.777)	Accuracy_ema 0.547 (0.528)
+2023-07-03 17:28:59,661 Test: [0/3]	Time 2.784 (2.784)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.738 (0.738)	Accuracy_ema 0.736 (0.736)
+2023-07-03 17:29:00,851 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 17:29:00,914 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 17:29:00,961 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 17:29:00,961 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 17:29:00,961 | pose_hrnet_part | 0.412 | 0.767 | 0.422 | 0.198 | 0.447 | 0.486 | 0.793 | 0.507 | 0.336 | 0.498 |
+2023-07-03 17:29:00,961 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 17:29:00,961 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 17:29:00,961 | pose_hrnet_part | 0.412 | 0.774 | 0.418 | 0.204 | 0.448 | 0.487 | 0.800 | 0.500 | 0.318 | 0.501 |
+2023-07-03 17:29:00,962 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 17:29:06,347 Epoch: [24][0/701]	Time 4.131s (4.131s)	Speed 7.7 samples/s	Data 2.205s (2.205s)	Loss_sup 0.00023 (0.00023)	Loss_const 0.00011 (0.00011)	Accuracy 0.808 (0.808)	Accuracy_ema 0.568 (0.568)
+2023-07-03 17:31:19,462 Epoch: [24][100/701]	Time 1.352s (1.359s)	Speed 23.7 samples/s	Data 0.000s (0.022s)	Loss_sup 0.00020 (0.00027)	Loss_const 0.00016 (0.00016)	Accuracy 0.777 (0.778)	Accuracy_ema 0.652 (0.518)
+2023-07-03 17:33:31,322 Epoch: [24][200/701]	Time 1.417s (1.339s)	Speed 22.6 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00036 (0.00027)	Loss_const 0.00013 (0.00015)	Accuracy 0.689 (0.776)	Accuracy_ema 0.420 (0.520)
+2023-07-03 17:35:41,889 Epoch: [24][300/701]	Time 1.263s (1.328s)	Speed 25.3 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00024 (0.00026)	Loss_const 0.00018 (0.00015)	Accuracy 0.814 (0.781)	Accuracy_ema 0.533 (0.526)
+2023-07-03 17:37:52,994 Epoch: [24][400/701]	Time 1.419s (1.324s)	Speed 22.5 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00031 (0.00026)	Loss_const 0.00017 (0.00015)	Accuracy 0.781 (0.781)	Accuracy_ema 0.514 (0.528)
+2023-07-03 17:40:02,576 Epoch: [24][500/701]	Time 1.221s (1.318s)	Speed 26.2 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00028 (0.00027)	Loss_const 0.00017 (0.00015)	Accuracy 0.755 (0.779)	Accuracy_ema 0.455 (0.528)
+2023-07-03 17:42:12,602 Epoch: [24][600/701]	Time 1.229s (1.315s)	Speed 26.0 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00031 (0.00027)	Loss_const 0.00021 (0.00015)	Accuracy 0.778 (0.779)	Accuracy_ema 0.628 (0.527)
+2023-07-03 17:44:22,843 Epoch: [24][700/701]	Time 1.234s (1.313s)	Speed 25.9 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00019 (0.00027)	Loss_const 0.00014 (0.00016)	Accuracy 0.823 (0.778)	Accuracy_ema 0.478 (0.527)
+2023-07-03 17:44:28,990 Test: [0/3]	Time 2.996 (2.996)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.731 (0.731)	Accuracy_ema 0.738 (0.738)
+2023-07-03 17:44:30,150 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 17:44:30,210 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 17:44:30,259 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 17:44:30,259 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 17:44:30,259 | pose_hrnet_part | 0.422 | 0.781 | 0.423 | 0.189 | 0.455 | 0.487 | 0.807 | 0.507 | 0.318 | 0.500 |
+2023-07-03 17:44:30,259 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 17:44:30,259 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 17:44:30,259 | pose_hrnet_part | 0.421 | 0.773 | 0.434 | 0.221 | 0.453 | 0.491 | 0.800 | 0.513 | 0.318 | 0.504 |
+2023-07-03 17:44:30,260 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 17:44:35,454 Epoch: [25][0/701]	Time 4.244s (4.244s)	Speed 7.5 samples/s	Data 2.289s (2.289s)	Loss_sup 0.00030 (0.00030)	Loss_const 0.00013 (0.00013)	Accuracy 0.761 (0.761)	Accuracy_ema 0.402 (0.402)
+2023-07-03 17:46:50,074 Epoch: [25][100/701]	Time 1.143s (1.375s)	Speed 28.0 samples/s	Data 0.000s (0.023s)	Loss_sup 0.00029 (0.00026)	Loss_const 0.00017 (0.00015)	Accuracy 0.770 (0.779)	Accuracy_ema 0.540 (0.528)
+2023-07-03 17:49:01,480 Epoch: [25][200/701]	Time 1.316s (1.345s)	Speed 24.3 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00031 (0.00027)	Loss_const 0.00021 (0.00015)	Accuracy 0.754 (0.777)	Accuracy_ema 0.557 (0.529)
+2023-07-03 17:51:10,301 Epoch: [25][300/701]	Time 1.389s (1.326s)	Speed 23.0 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00017 (0.00027)	Loss_const 0.00010 (0.00015)	Accuracy 0.802 (0.778)	Accuracy_ema 0.545 (0.533)
+2023-07-03 17:53:21,618 Epoch: [25][400/701]	Time 1.471s (1.323s)	Speed 21.8 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00024 (0.00027)	Loss_const 0.00020 (0.00015)	Accuracy 0.784 (0.778)	Accuracy_ema 0.530 (0.534)
+2023-07-03 17:55:33,175 Epoch: [25][500/701]	Time 1.385s (1.321s)	Speed 23.1 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00018 (0.00027)	Loss_const 0.00011 (0.00015)	Accuracy 0.837 (0.778)	Accuracy_ema 0.486 (0.533)
+2023-07-03 17:57:45,087 Epoch: [25][600/701]	Time 1.364s (1.321s)	Speed 23.5 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00029 (0.00027)	Loss_const 0.00011 (0.00015)	Accuracy 0.772 (0.779)	Accuracy_ema 0.547 (0.532)
+2023-07-03 17:59:56,905 Epoch: [25][700/701]	Time 1.244s (1.321s)	Speed 25.7 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00019 (0.00027)	Loss_const 0.00010 (0.00015)	Accuracy 0.836 (0.779)	Accuracy_ema 0.619 (0.532)
+2023-07-03 18:00:02,590 Test: [0/3]	Time 3.036 (3.036)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.740 (0.740)	Accuracy_ema 0.740 (0.740)
+2023-07-03 18:00:03,901 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 18:00:03,963 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 18:00:04,010 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 18:00:04,010 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 18:00:04,010 | pose_hrnet_part | 0.404 | 0.770 | 0.392 | 0.205 | 0.445 | 0.489 | 0.800 | 0.500 | 0.318 | 0.502 |
+2023-07-03 18:00:04,010 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 18:00:04,010 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 18:00:04,010 | pose_hrnet_part | 0.422 | 0.770 | 0.429 | 0.207 | 0.459 | 0.497 | 0.800 | 0.520 | 0.318 | 0.512 |
+2023-07-03 18:00:04,011 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 18:00:09,101 Epoch: [26][0/701]	Time 4.021s (4.021s)	Speed 8.0 samples/s	Data 2.321s (2.321s)	Loss_sup 0.00029 (0.00029)	Loss_const 0.00009 (0.00009)	Accuracy 0.768 (0.768)	Accuracy_ema 0.533 (0.533)
+2023-07-03 18:02:22,779 Epoch: [26][100/701]	Time 1.521s (1.363s)	Speed 21.0 samples/s	Data 0.000s (0.023s)	Loss_sup 0.00029 (0.00028)	Loss_const 0.00015 (0.00014)	Accuracy 0.759 (0.773)	Accuracy_ema 0.489 (0.525)
+2023-07-03 18:04:34,443 Epoch: [26][200/701]	Time 1.418s (1.340s)	Speed 22.6 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00038 (0.00027)	Loss_const 0.00016 (0.00014)	Accuracy 0.740 (0.776)	Accuracy_ema 0.448 (0.524)
+2023-07-03 18:06:44,475 Epoch: [26][300/701]	Time 1.269s (1.327s)	Speed 25.2 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00038 (0.00027)	Loss_const 0.00013 (0.00014)	Accuracy 0.750 (0.778)	Accuracy_ema 0.512 (0.524)
+2023-07-03 18:08:55,493 Epoch: [26][400/701]	Time 1.383s (1.323s)	Speed 23.1 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00028 (0.00027)	Loss_const 0.00017 (0.00015)	Accuracy 0.767 (0.778)	Accuracy_ema 0.523 (0.528)
+2023-07-03 18:11:07,629 Epoch: [26][500/701]	Time 1.555s (1.322s)	Speed 20.6 samples/s	Data 0.001s (0.005s)	Loss_sup 0.00028 (0.00027)	Loss_const 0.00021 (0.00015)	Accuracy 0.752 (0.778)	Accuracy_ema 0.482 (0.530)
+2023-07-03 18:13:23,100 Epoch: [26][600/701]	Time 1.341s (1.328s)	Speed 23.9 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00029 (0.00027)	Loss_const 0.00018 (0.00015)	Accuracy 0.763 (0.779)	Accuracy_ema 0.488 (0.529)
+2023-07-03 18:15:34,341 Epoch: [26][700/701]	Time 1.258s (1.326s)	Speed 25.4 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00024 (0.00027)	Loss_const 0.00012 (0.00015)	Accuracy 0.795 (0.779)	Accuracy_ema 0.627 (0.528)
+2023-07-03 18:15:39,961 Test: [0/3]	Time 3.093 (3.093)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.738 (0.738)	Accuracy_ema 0.736 (0.736)
+2023-07-03 18:15:41,352 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 18:15:41,414 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 18:15:41,465 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 18:15:41,465 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 18:15:41,465 | pose_hrnet_part | 0.408 | 0.764 | 0.389 | 0.200 | 0.440 | 0.482 | 0.793 | 0.487 | 0.300 | 0.496 |
+2023-07-03 18:15:41,465 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 18:15:41,465 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 18:15:41,465 | pose_hrnet_part | 0.413 | 0.761 | 0.421 | 0.211 | 0.452 | 0.491 | 0.793 | 0.527 | 0.318 | 0.505 |
+2023-07-03 18:15:41,466 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 18:15:46,435 Epoch: [27][0/701]	Time 3.707s (3.707s)	Speed 8.6 samples/s	Data 2.143s (2.143s)	Loss_sup 0.00024 (0.00024)	Loss_const 0.00013 (0.00013)	Accuracy 0.784 (0.784)	Accuracy_ema 0.502 (0.502)
+2023-07-03 18:17:58,464 Epoch: [27][100/701]	Time 1.266s (1.344s)	Speed 25.3 samples/s	Data 0.000s (0.021s)	Loss_sup 0.00014 (0.00027)	Loss_const 0.00014 (0.00014)	Accuracy 0.853 (0.778)	Accuracy_ema 0.528 (0.531)
+2023-07-03 18:20:09,671 Epoch: [27][200/701]	Time 1.353s (1.328s)	Speed 23.6 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00035 (0.00026)	Loss_const 0.00014 (0.00014)	Accuracy 0.734 (0.780)	Accuracy_ema 0.558 (0.525)
+2023-07-03 18:22:21,440 Epoch: [27][300/701]	Time 1.216s (1.325s)	Speed 26.3 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00031 (0.00027)	Loss_const 0.00015 (0.00014)	Accuracy 0.794 (0.780)	Accuracy_ema 0.418 (0.527)
+2023-07-03 18:24:35,057 Epoch: [27][400/701]	Time 1.450s (1.328s)	Speed 22.1 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00044 (0.00027)	Loss_const 0.00012 (0.00014)	Accuracy 0.700 (0.781)	Accuracy_ema 0.536 (0.528)
+2023-07-03 18:26:48,506 Epoch: [27][500/701]	Time 1.197s (1.329s)	Speed 26.7 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00037 (0.00027)	Loss_const 0.00010 (0.00014)	Accuracy 0.733 (0.780)	Accuracy_ema 0.500 (0.527)
+2023-07-03 18:29:02,921 Epoch: [27][600/701]	Time 1.370s (1.331s)	Speed 23.4 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00031 (0.00027)	Loss_const 0.00012 (0.00014)	Accuracy 0.762 (0.780)	Accuracy_ema 0.430 (0.527)
+2023-07-03 18:31:15,482 Epoch: [27][700/701]	Time 1.143s (1.331s)	Speed 28.0 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00036 (0.00027)	Loss_const 0.00013 (0.00014)	Accuracy 0.734 (0.779)	Accuracy_ema 0.493 (0.528)
+2023-07-03 18:31:21,078 Test: [0/3]	Time 3.021 (3.021)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.736 (0.736)	Accuracy_ema 0.736 (0.736)
+2023-07-03 18:31:22,236 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 18:31:22,293 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 18:31:22,482 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 18:31:22,483 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 18:31:22,483 | pose_hrnet_part | 0.421 | 0.771 | 0.429 | 0.247 | 0.452 | 0.491 | 0.800 | 0.513 | 0.336 | 0.504 |
+2023-07-03 18:31:22,483 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 18:31:22,483 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 18:31:22,483 | pose_hrnet_part | 0.418 | 0.771 | 0.441 | 0.221 | 0.453 | 0.495 | 0.807 | 0.533 | 0.318 | 0.509 |
+2023-07-03 18:31:22,484 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 18:31:27,659 Epoch: [28][0/701]	Time 3.936s (3.936s)	Speed 8.1 samples/s	Data 2.413s (2.413s)	Loss_sup 0.00034 (0.00034)	Loss_const 0.00013 (0.00013)	Accuracy 0.750 (0.750)	Accuracy_ema 0.517 (0.517)
+2023-07-03 18:33:35,904 Epoch: [28][100/701]	Time 1.447s (1.309s)	Speed 22.1 samples/s	Data 0.000s (0.024s)	Loss_sup 0.00032 (0.00027)	Loss_const 0.00011 (0.00013)	Accuracy 0.780 (0.777)	Accuracy_ema 0.482 (0.526)
+2023-07-03 18:35:48,674 Epoch: [28][200/701]	Time 1.246s (1.318s)	Speed 25.7 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00020 (0.00027)	Loss_const 0.00013 (0.00013)	Accuracy 0.795 (0.781)	Accuracy_ema 0.470 (0.532)
+2023-07-03 18:38:00,371 Epoch: [28][300/701]	Time 1.336s (1.318s)	Speed 24.0 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00033 (0.00027)	Loss_const 0.00011 (0.00014)	Accuracy 0.766 (0.779)	Accuracy_ema 0.623 (0.533)
+2023-07-03 18:40:12,700 Epoch: [28][400/701]	Time 1.419s (1.319s)	Speed 22.6 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00031 (0.00027)	Loss_const 0.00014 (0.00014)	Accuracy 0.771 (0.780)	Accuracy_ema 0.566 (0.533)
+2023-07-03 18:42:24,960 Epoch: [28][500/701]	Time 1.372s (1.320s)	Speed 23.3 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00017 (0.00027)	Loss_const 0.00017 (0.00014)	Accuracy 0.815 (0.779)	Accuracy_ema 0.572 (0.533)
+2023-07-03 18:44:36,329 Epoch: [28][600/701]	Time 1.294s (1.319s)	Speed 24.7 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00024 (0.00027)	Loss_const 0.00011 (0.00014)	Accuracy 0.786 (0.780)	Accuracy_ema 0.625 (0.533)
+2023-07-03 18:46:46,934 Epoch: [28][700/701]	Time 1.237s (1.317s)	Speed 25.9 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00036 (0.00027)	Loss_const 0.00009 (0.00014)	Accuracy 0.738 (0.781)	Accuracy_ema 0.557 (0.533)
+2023-07-03 18:46:52,331 Test: [0/3]	Time 3.249 (3.249)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.745 (0.745)	Accuracy_ema 0.736 (0.736)
+2023-07-03 18:46:53,472 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 18:46:53,530 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 18:46:53,574 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 18:46:53,574 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 18:46:53,574 | pose_hrnet_part | 0.416 | 0.770 | 0.425 | 0.236 | 0.452 | 0.487 | 0.807 | 0.520 | 0.364 | 0.497 |
+2023-07-03 18:46:53,574 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 18:46:53,574 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 18:46:53,574 | pose_hrnet_part | 0.420 | 0.766 | 0.435 | 0.232 | 0.455 | 0.497 | 0.800 | 0.527 | 0.318 | 0.511 |
+2023-07-03 18:46:53,575 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 18:46:59,067 Epoch: [29][0/701]	Time 4.255s (4.255s)	Speed 7.5 samples/s	Data 2.590s (2.590s)	Loss_sup 0.00017 (0.00017)	Loss_const 0.00011 (0.00011)	Accuracy 0.812 (0.812)	Accuracy_ema 0.603 (0.603)
+2023-07-03 18:49:10,373 Epoch: [29][100/701]	Time 1.256s (1.342s)	Speed 25.5 samples/s	Data 0.000s (0.026s)	Loss_sup 0.00018 (0.00026)	Loss_const 0.00012 (0.00014)	Accuracy 0.823 (0.783)	Accuracy_ema 0.611 (0.536)
+2023-07-03 18:51:21,101 Epoch: [29][200/701]	Time 1.305s (1.325s)	Speed 24.5 samples/s	Data 0.000s (0.013s)	Loss_sup 0.00029 (0.00027)	Loss_const 0.00012 (0.00014)	Accuracy 0.748 (0.780)	Accuracy_ema 0.614 (0.532)
+2023-07-03 18:53:31,325 Epoch: [29][300/701]	Time 1.308s (1.317s)	Speed 24.5 samples/s	Data 0.000s (0.009s)	Loss_sup 0.00027 (0.00027)	Loss_const 0.00011 (0.00014)	Accuracy 0.787 (0.780)	Accuracy_ema 0.570 (0.530)
+2023-07-03 18:55:43,265 Epoch: [29][400/701]	Time 1.251s (1.318s)	Speed 25.6 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00027 (0.00027)	Loss_const 0.00012 (0.00014)	Accuracy 0.756 (0.781)	Accuracy_ema 0.494 (0.529)
+2023-07-03 18:57:55,436 Epoch: [29][500/701]	Time 1.296s (1.319s)	Speed 24.7 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00033 (0.00027)	Loss_const 0.00017 (0.00014)	Accuracy 0.741 (0.780)	Accuracy_ema 0.444 (0.528)
+2023-07-03 19:00:06,230 Epoch: [29][600/701]	Time 1.385s (1.317s)	Speed 23.1 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00034 (0.00027)	Loss_const 0.00016 (0.00014)	Accuracy 0.727 (0.780)	Accuracy_ema 0.549 (0.529)
+2023-07-03 19:02:17,601 Epoch: [29][700/701]	Time 1.180s (1.316s)	Speed 27.1 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00015 (0.00027)	Loss_const 0.00011 (0.00014)	Accuracy 0.816 (0.780)	Accuracy_ema 0.585 (0.529)
+2023-07-03 19:02:22,773 Test: [0/3]	Time 2.937 (2.937)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.752 (0.752)	Accuracy_ema 0.740 (0.740)
+2023-07-03 19:02:24,118 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 19:02:24,178 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 19:02:24,222 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 19:02:24,223 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 19:02:24,223 | pose_hrnet_part | 0.428 | 0.771 | 0.460 | 0.237 | 0.461 | 0.503 | 0.807 | 0.540 | 0.345 | 0.515 |
+2023-07-03 19:02:24,223 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 19:02:24,223 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 19:02:24,223 | pose_hrnet_part | 0.420 | 0.756 | 0.435 | 0.211 | 0.455 | 0.497 | 0.793 | 0.527 | 0.318 | 0.511 |
+2023-07-03 19:02:24,223 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 19:02:29,142 Epoch: [30][0/701]	Time 3.675s (3.675s)	Speed 8.7 samples/s	Data 2.147s (2.147s)	Loss_sup 0.00025 (0.00025)	Loss_const 0.00011 (0.00011)	Accuracy 0.776 (0.776)	Accuracy_ema 0.587 (0.587)
+2023-07-03 19:04:39,191 Epoch: [30][100/701]	Time 1.225s (1.324s)	Speed 26.1 samples/s	Data 0.000s (0.021s)	Loss_sup 0.00017 (0.00026)	Loss_const 0.00013 (0.00013)	Accuracy 0.826 (0.782)	Accuracy_ema 0.632 (0.528)
+2023-07-03 19:06:50,382 Epoch: [30][200/701]	Time 1.296s (1.318s)	Speed 24.7 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00030 (0.00026)	Loss_const 0.00012 (0.00013)	Accuracy 0.751 (0.784)	Accuracy_ema 0.510 (0.530)
+2023-07-03 19:09:02,448 Epoch: [30][300/701]	Time 1.449s (1.319s)	Speed 22.1 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00018 (0.00026)	Loss_const 0.00010 (0.00013)	Accuracy 0.809 (0.783)	Accuracy_ema 0.576 (0.528)
+2023-07-03 19:11:13,755 Epoch: [30][400/701]	Time 1.231s (1.317s)	Speed 26.0 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00033 (0.00026)	Loss_const 0.00016 (0.00013)	Accuracy 0.737 (0.784)	Accuracy_ema 0.460 (0.530)
+2023-07-03 19:13:25,605 Epoch: [30][500/701]	Time 1.249s (1.318s)	Speed 25.6 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00023 (0.00026)	Loss_const 0.00014 (0.00013)	Accuracy 0.801 (0.781)	Accuracy_ema 0.370 (0.531)
+2023-07-03 19:15:28,790 Epoch: [30][600/701]	Time 1.209s (1.303s)	Speed 26.5 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00028 (0.00026)	Loss_const 0.00013 (0.00013)	Accuracy 0.760 (0.782)	Accuracy_ema 0.441 (0.532)
+2023-07-03 19:17:23,203 Epoch: [30][700/701]	Time 1.128s (1.281s)	Speed 28.4 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00046 (0.00027)	Loss_const 0.00023 (0.00014)	Accuracy 0.685 (0.780)	Accuracy_ema 0.464 (0.531)
+2023-07-03 19:17:28,239 Test: [0/3]	Time 2.875 (2.875)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.724 (0.724)	Accuracy_ema 0.738 (0.738)
+2023-07-03 19:17:29,213 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 19:17:29,289 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 19:17:29,335 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 19:17:29,335 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 19:17:29,335 | pose_hrnet_part | 0.426 | 0.776 | 0.446 | 0.234 | 0.455 | 0.491 | 0.793 | 0.520 | 0.327 | 0.504 |
+2023-07-03 19:17:29,335 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 19:17:29,335 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 19:17:29,335 | pose_hrnet_part | 0.415 | 0.761 | 0.441 | 0.232 | 0.451 | 0.497 | 0.800 | 0.533 | 0.318 | 0.511 |
+2023-07-03 19:17:29,336 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 19:17:34,261 Epoch: [31][0/701]	Time 3.714s (3.714s)	Speed 8.6 samples/s	Data 2.150s (2.150s)	Loss_sup 0.00021 (0.00021)	Loss_const 0.00011 (0.00011)	Accuracy 0.826 (0.826)	Accuracy_ema 0.505 (0.505)
+2023-07-03 19:19:28,722 Epoch: [31][100/701]	Time 1.422s (1.170s)	Speed 22.5 samples/s	Data 0.000s (0.022s)	Loss_sup 0.00031 (0.00026)	Loss_const 0.00017 (0.00013)	Accuracy 0.729 (0.783)	Accuracy_ema 0.507 (0.536)
+2023-07-03 19:21:21,010 Epoch: [31][200/701]	Time 1.033s (1.147s)	Speed 31.0 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00036 (0.00026)	Loss_const 0.00012 (0.00013)	Accuracy 0.722 (0.782)	Accuracy_ema 0.521 (0.536)
+2023-07-03 19:23:12,879 Epoch: [31][300/701]	Time 1.191s (1.137s)	Speed 26.9 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00018 (0.00027)	Loss_const 0.00009 (0.00013)	Accuracy 0.854 (0.780)	Accuracy_ema 0.576 (0.533)
+2023-07-03 19:25:04,770 Epoch: [31][400/701]	Time 1.033s (1.133s)	Speed 31.0 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00036 (0.00027)	Loss_const 0.00010 (0.00013)	Accuracy 0.739 (0.779)	Accuracy_ema 0.488 (0.530)
+2023-07-03 19:26:57,076 Epoch: [31][500/701]	Time 1.179s (1.131s)	Speed 27.1 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00027 (0.00027)	Loss_const 0.00011 (0.00013)	Accuracy 0.762 (0.781)	Accuracy_ema 0.513 (0.532)
+2023-07-03 19:28:49,786 Epoch: [31][600/701]	Time 1.033s (1.130s)	Speed 31.0 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00027 (0.00026)	Loss_const 0.00016 (0.00013)	Accuracy 0.771 (0.781)	Accuracy_ema 0.521 (0.533)
+2023-07-03 19:30:43,492 Epoch: [31][700/701]	Time 1.041s (1.131s)	Speed 30.8 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00024 (0.00026)	Loss_const 0.00011 (0.00013)	Accuracy 0.785 (0.781)	Accuracy_ema 0.583 (0.534)
+2023-07-03 19:30:48,825 Test: [0/3]	Time 2.902 (2.902)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.734 (0.734)	Accuracy_ema 0.740 (0.740)
+2023-07-03 19:30:49,942 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 19:30:50,046 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 19:30:50,092 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 19:30:50,092 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 19:30:50,092 | pose_hrnet_part | 0.391 | 0.755 | 0.407 | 0.211 | 0.430 | 0.473 | 0.793 | 0.507 | 0.309 | 0.486 |
+2023-07-03 19:30:50,092 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 19:30:50,092 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 19:30:50,092 | pose_hrnet_part | 0.419 | 0.761 | 0.446 | 0.210 | 0.454 | 0.498 | 0.800 | 0.533 | 0.318 | 0.512 |
+2023-07-03 19:30:50,093 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 19:30:54,974 Epoch: [32][0/701]	Time 3.865s (3.865s)	Speed 8.3 samples/s	Data 2.433s (2.433s)	Loss_sup 0.00029 (0.00029)	Loss_const 0.00013 (0.00013)	Accuracy 0.770 (0.770)	Accuracy_ema 0.552 (0.552)
+2023-07-03 19:32:44,822 Epoch: [32][100/701]	Time 1.167s (1.126s)	Speed 27.4 samples/s	Data 0.000s (0.024s)	Loss_sup 0.00038 (0.00026)	Loss_const 0.00009 (0.00013)	Accuracy 0.747 (0.784)	Accuracy_ema 0.396 (0.532)
+2023-07-03 19:34:31,754 Epoch: [32][200/701]	Time 0.994s (1.098s)	Speed 32.2 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00033 (0.00026)	Loss_const 0.00016 (0.00013)	Accuracy 0.773 (0.784)	Accuracy_ema 0.527 (0.537)
+2023-07-03 19:36:18,353 Epoch: [32][300/701]	Time 1.186s (1.087s)	Speed 27.0 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00017 (0.00027)	Loss_const 0.00011 (0.00013)	Accuracy 0.850 (0.783)	Accuracy_ema 0.516 (0.531)
+2023-07-03 19:38:04,712 Epoch: [32][400/701]	Time 1.138s (1.081s)	Speed 28.1 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00028 (0.00027)	Loss_const 0.00012 (0.00013)	Accuracy 0.780 (0.782)	Accuracy_ema 0.561 (0.532)
+2023-07-03 19:39:50,670 Epoch: [32][500/701]	Time 0.972s (1.077s)	Speed 32.9 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00054 (0.00027)	Loss_const 0.00019 (0.00013)	Accuracy 0.664 (0.781)	Accuracy_ema 0.398 (0.532)
+2023-07-03 19:41:37,357 Epoch: [32][600/701]	Time 1.134s (1.075s)	Speed 28.2 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00034 (0.00027)	Loss_const 0.00012 (0.00013)	Accuracy 0.734 (0.781)	Accuracy_ema 0.498 (0.534)
+2023-07-03 19:43:25,334 Epoch: [32][700/701]	Time 1.091s (1.076s)	Speed 29.3 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00017 (0.00027)	Loss_const 0.00012 (0.00013)	Accuracy 0.830 (0.782)	Accuracy_ema 0.472 (0.533)
+2023-07-03 19:43:30,257 Test: [0/3]	Time 2.819 (2.819)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.748 (0.748)	Accuracy_ema 0.741 (0.741)
+2023-07-03 19:43:31,186 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 19:43:31,245 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 19:43:31,289 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 19:43:31,289 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 19:43:31,290 | pose_hrnet_part | 0.420 | 0.787 | 0.442 | 0.207 | 0.458 | 0.496 | 0.813 | 0.533 | 0.327 | 0.509 |
+2023-07-03 19:43:31,290 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 19:43:31,290 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 19:43:31,290 | pose_hrnet_part | 0.422 | 0.780 | 0.452 | 0.212 | 0.458 | 0.498 | 0.820 | 0.533 | 0.327 | 0.512 |
+2023-07-03 19:43:31,290 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 19:43:36,876 Epoch: [33][0/701]	Time 4.358s (4.358s)	Speed 7.3 samples/s	Data 2.721s (2.721s)	Loss_sup 0.00046 (0.00046)	Loss_const 0.00008 (0.00008)	Accuracy 0.671 (0.671)	Accuracy_ema 0.447 (0.447)
+2023-07-03 19:45:28,656 Epoch: [33][100/701]	Time 1.195s (1.150s)	Speed 26.8 samples/s	Data 0.000s (0.027s)	Loss_sup 0.00026 (0.00028)	Loss_const 0.00020 (0.00013)	Accuracy 0.763 (0.777)	Accuracy_ema 0.491 (0.536)
+2023-07-03 19:47:21,464 Epoch: [33][200/701]	Time 1.239s (1.139s)	Speed 25.8 samples/s	Data 0.000s (0.014s)	Loss_sup 0.00017 (0.00027)	Loss_const 0.00008 (0.00013)	Accuracy 0.826 (0.781)	Accuracy_ema 0.568 (0.536)
+2023-07-03 19:49:13,312 Epoch: [33][300/701]	Time 1.058s (1.132s)	Speed 30.2 samples/s	Data 0.000s (0.009s)	Loss_sup 0.00021 (0.00027)	Loss_const 0.00009 (0.00013)	Accuracy 0.808 (0.781)	Accuracy_ema 0.633 (0.536)
+2023-07-03 19:51:05,532 Epoch: [33][400/701]	Time 1.318s (1.130s)	Speed 24.3 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00024 (0.00027)	Loss_const 0.00019 (0.00013)	Accuracy 0.778 (0.780)	Accuracy_ema 0.493 (0.537)
+2023-07-03 19:52:56,852 Epoch: [33][500/701]	Time 1.075s (1.126s)	Speed 29.8 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00021 (0.00026)	Loss_const 0.00013 (0.00013)	Accuracy 0.832 (0.781)	Accuracy_ema 0.496 (0.535)
+2023-07-03 19:54:48,952 Epoch: [33][600/701]	Time 1.295s (1.126s)	Speed 24.7 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00022 (0.00026)	Loss_const 0.00013 (0.00013)	Accuracy 0.803 (0.782)	Accuracy_ema 0.561 (0.534)
+2023-07-03 19:56:40,821 Epoch: [33][700/701]	Time 1.145s (1.125s)	Speed 27.9 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00025 (0.00026)	Loss_const 0.00019 (0.00013)	Accuracy 0.773 (0.781)	Accuracy_ema 0.535 (0.533)
+2023-07-03 19:56:46,750 Test: [0/3]	Time 2.770 (2.770)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.740 (0.740)	Accuracy_ema 0.736 (0.736)
+2023-07-03 19:56:47,664 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 19:56:47,721 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 19:56:47,945 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 19:56:47,946 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 19:56:47,946 | pose_hrnet_part | 0.425 | 0.781 | 0.454 | 0.199 | 0.457 | 0.493 | 0.807 | 0.520 | 0.336 | 0.505 |
+2023-07-03 19:56:47,946 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 19:56:47,946 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 19:56:47,946 | pose_hrnet_part | 0.418 | 0.768 | 0.449 | 0.202 | 0.456 | 0.493 | 0.807 | 0.533 | 0.327 | 0.506 |
+2023-07-03 19:56:47,947 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 19:56:52,834 Epoch: [34][0/701]	Time 3.981s (3.981s)	Speed 8.0 samples/s	Data 2.422s (2.422s)	Loss_sup 0.00018 (0.00018)	Loss_const 0.00009 (0.00009)	Accuracy 0.799 (0.799)	Accuracy_ema 0.455 (0.455)
+2023-07-03 19:58:42,411 Epoch: [34][100/701]	Time 1.146s (1.124s)	Speed 27.9 samples/s	Data 0.000s (0.024s)	Loss_sup 0.00025 (0.00026)	Loss_const 0.00016 (0.00013)	Accuracy 0.773 (0.781)	Accuracy_ema 0.532 (0.528)
+2023-07-03 20:00:32,922 Epoch: [34][200/701]	Time 0.994s (1.115s)	Speed 32.2 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00022 (0.00027)	Loss_const 0.00014 (0.00013)	Accuracy 0.812 (0.777)	Accuracy_ema 0.538 (0.527)
+2023-07-03 20:02:21,329 Epoch: [34][300/701]	Time 0.944s (1.105s)	Speed 33.9 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00019 (0.00026)	Loss_const 0.00014 (0.00013)	Accuracy 0.808 (0.780)	Accuracy_ema 0.484 (0.534)
+2023-07-03 20:04:08,901 Epoch: [34][400/701]	Time 1.167s (1.097s)	Speed 27.4 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00029 (0.00026)	Loss_const 0.00014 (0.00013)	Accuracy 0.744 (0.780)	Accuracy_ema 0.579 (0.533)
+2023-07-03 20:05:56,019 Epoch: [34][500/701]	Time 0.999s (1.092s)	Speed 32.0 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00014 (0.00026)	Loss_const 0.00016 (0.00013)	Accuracy 0.847 (0.781)	Accuracy_ema 0.558 (0.534)
+2023-07-03 20:07:43,242 Epoch: [34][600/701]	Time 1.039s (1.089s)	Speed 30.8 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00033 (0.00026)	Loss_const 0.00013 (0.00013)	Accuracy 0.728 (0.780)	Accuracy_ema 0.547 (0.533)
+2023-07-03 20:09:30,108 Epoch: [34][700/701]	Time 1.045s (1.086s)	Speed 30.6 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00026 (0.00026)	Loss_const 0.00010 (0.00013)	Accuracy 0.772 (0.780)	Accuracy_ema 0.506 (0.535)
+2023-07-03 20:09:35,584 Test: [0/3]	Time 2.904 (2.904)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.736 (0.736)	Accuracy_ema 0.740 (0.740)
+2023-07-03 20:09:36,563 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 20:09:36,623 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 20:09:36,668 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 20:09:36,668 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 20:09:36,668 | pose_hrnet_part | 0.415 | 0.761 | 0.442 | 0.163 | 0.454 | 0.493 | 0.800 | 0.527 | 0.318 | 0.507 |
+2023-07-03 20:09:36,668 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 20:09:36,668 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 20:09:36,668 | pose_hrnet_part | 0.417 | 0.777 | 0.439 | 0.212 | 0.455 | 0.494 | 0.820 | 0.527 | 0.336 | 0.506 |
+2023-07-03 20:09:36,669 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 20:09:41,563 Epoch: [35][0/701]	Time 3.869s (3.869s)	Speed 8.3 samples/s	Data 2.228s (2.228s)	Loss_sup 0.00028 (0.00028)	Loss_const 0.00012 (0.00012)	Accuracy 0.794 (0.794)	Accuracy_ema 0.458 (0.458)
+2023-07-03 20:11:33,875 Epoch: [35][100/701]	Time 0.956s (1.150s)	Speed 33.5 samples/s	Data 0.000s (0.022s)	Loss_sup 0.00023 (0.00026)	Loss_const 0.00008 (0.00012)	Accuracy 0.795 (0.781)	Accuracy_ema 0.482 (0.533)
+2023-07-03 20:13:26,029 Epoch: [35][200/701]	Time 1.286s (1.136s)	Speed 24.9 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00019 (0.00026)	Loss_const 0.00011 (0.00012)	Accuracy 0.830 (0.782)	Accuracy_ema 0.639 (0.534)
+2023-07-03 20:15:18,302 Epoch: [35][300/701]	Time 1.057s (1.132s)	Speed 30.3 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00038 (0.00026)	Loss_const 0.00013 (0.00012)	Accuracy 0.734 (0.783)	Accuracy_ema 0.579 (0.533)
+2023-07-03 20:17:07,145 Epoch: [35][400/701]	Time 1.149s (1.121s)	Speed 27.8 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00025 (0.00026)	Loss_const 0.00014 (0.00012)	Accuracy 0.798 (0.783)	Accuracy_ema 0.530 (0.535)
+2023-07-03 20:18:56,175 Epoch: [35][500/701]	Time 1.158s (1.115s)	Speed 27.6 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00023 (0.00026)	Loss_const 0.00012 (0.00012)	Accuracy 0.778 (0.782)	Accuracy_ema 0.427 (0.533)
+2023-07-03 20:20:45,841 Epoch: [35][600/701]	Time 1.001s (1.112s)	Speed 32.0 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00009 (0.00026)	Loss_const 0.00009 (0.00012)	Accuracy 0.868 (0.782)	Accuracy_ema 0.651 (0.534)
+2023-07-03 20:22:33,780 Epoch: [35][700/701]	Time 1.052s (1.107s)	Speed 30.4 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00038 (0.00026)	Loss_const 0.00012 (0.00012)	Accuracy 0.745 (0.782)	Accuracy_ema 0.504 (0.533)
+2023-07-03 20:22:38,955 Test: [0/3]	Time 2.891 (2.891)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0001 (0.0001)	Accuracy 0.743 (0.743)	Accuracy_ema 0.738 (0.738)
+2023-07-03 20:22:39,882 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 20:22:39,941 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 20:22:40,007 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 20:22:40,008 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 20:22:40,008 | pose_hrnet_part | 0.421 | 0.782 | 0.430 | 0.239 | 0.456 | 0.493 | 0.820 | 0.513 | 0.355 | 0.504 |
+2023-07-03 20:22:40,008 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 20:22:40,008 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 20:22:40,008 | pose_hrnet_part | 0.410 | 0.771 | 0.432 | 0.203 | 0.445 | 0.487 | 0.813 | 0.513 | 0.327 | 0.500 |
+2023-07-03 20:22:40,009 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 20:22:45,765 Epoch: [36][0/701]	Time 4.525s (4.525s)	Speed 7.1 samples/s	Data 2.906s (2.906s)	Loss_sup 0.00029 (0.00029)	Loss_const 0.00016 (0.00016)	Accuracy 0.787 (0.787)	Accuracy_ema 0.532 (0.532)
+2023-07-03 20:24:34,852 Epoch: [36][100/701]	Time 0.981s (1.125s)	Speed 32.6 samples/s	Data 0.000s (0.029s)	Loss_sup 0.00016 (0.00026)	Loss_const 0.00009 (0.00013)	Accuracy 0.840 (0.785)	Accuracy_ema 0.587 (0.527)
+2023-07-03 20:26:23,382 Epoch: [36][200/701]	Time 1.026s (1.105s)	Speed 31.2 samples/s	Data 0.000s (0.015s)	Loss_sup 0.00038 (0.00027)	Loss_const 0.00021 (0.00013)	Accuracy 0.727 (0.782)	Accuracy_ema 0.524 (0.526)
+2023-07-03 20:28:12,353 Epoch: [36][300/701]	Time 1.236s (1.100s)	Speed 25.9 samples/s	Data 0.000s (0.010s)	Loss_sup 0.00028 (0.00026)	Loss_const 0.00016 (0.00013)	Accuracy 0.766 (0.781)	Accuracy_ema 0.469 (0.525)
+2023-07-03 20:30:01,189 Epoch: [36][400/701]	Time 0.965s (1.097s)	Speed 33.2 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00040 (0.00027)	Loss_const 0.00018 (0.00013)	Accuracy 0.694 (0.781)	Accuracy_ema 0.455 (0.525)
+2023-07-03 20:31:50,174 Epoch: [36][500/701]	Time 1.030s (1.096s)	Speed 31.1 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00029 (0.00027)	Loss_const 0.00018 (0.00013)	Accuracy 0.771 (0.781)	Accuracy_ema 0.576 (0.528)
+2023-07-03 20:33:39,236 Epoch: [36][600/701]	Time 1.105s (1.095s)	Speed 29.0 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00032 (0.00027)	Loss_const 0.00012 (0.00013)	Accuracy 0.735 (0.781)	Accuracy_ema 0.627 (0.528)
+2023-07-03 20:35:26,648 Epoch: [36][700/701]	Time 0.967s (1.092s)	Speed 33.1 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00029 (0.00026)	Loss_const 0.00012 (0.00013)	Accuracy 0.787 (0.782)	Accuracy_ema 0.559 (0.531)
+2023-07-03 20:35:31,884 Test: [0/3]	Time 2.796 (2.796)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.736 (0.736)	Accuracy_ema 0.743 (0.743)
+2023-07-03 20:35:32,850 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 20:35:32,907 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 20:35:33,091 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 20:35:33,091 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 20:35:33,091 | pose_hrnet_part | 0.426 | 0.775 | 0.439 | 0.250 | 0.456 | 0.490 | 0.807 | 0.513 | 0.336 | 0.502 |
+2023-07-03 20:35:33,091 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 20:35:33,091 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 20:35:33,091 | pose_hrnet_part | 0.412 | 0.770 | 0.434 | 0.205 | 0.446 | 0.493 | 0.813 | 0.520 | 0.327 | 0.506 |
+2023-07-03 20:35:33,092 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 20:35:37,879 Epoch: [37][0/701]	Time 3.701s (3.701s)	Speed 8.6 samples/s	Data 2.165s (2.165s)	Loss_sup 0.00026 (0.00026)	Loss_const 0.00010 (0.00010)	Accuracy 0.755 (0.755)	Accuracy_ema 0.651 (0.651)
+2023-07-03 20:37:30,000 Epoch: [37][100/701]	Time 1.265s (1.147s)	Speed 25.3 samples/s	Data 0.000s (0.022s)	Loss_sup 0.00020 (0.00026)	Loss_const 0.00007 (0.00012)	Accuracy 0.805 (0.786)	Accuracy_ema 0.502 (0.531)
+2023-07-03 20:39:21,879 Epoch: [37][200/701]	Time 1.170s (1.133s)	Speed 27.4 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00020 (0.00026)	Loss_const 0.00013 (0.00012)	Accuracy 0.791 (0.783)	Accuracy_ema 0.479 (0.530)
+2023-07-03 20:41:09,886 Epoch: [37][300/701]	Time 1.029s (1.115s)	Speed 31.1 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00015 (0.00026)	Loss_const 0.00012 (0.00012)	Accuracy 0.861 (0.785)	Accuracy_ema 0.683 (0.534)
+2023-07-03 20:42:57,903 Epoch: [37][400/701]	Time 1.146s (1.107s)	Speed 27.9 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00021 (0.00026)	Loss_const 0.00011 (0.00012)	Accuracy 0.846 (0.784)	Accuracy_ema 0.505 (0.533)
+2023-07-03 20:44:45,043 Epoch: [37][500/701]	Time 1.024s (1.100s)	Speed 31.2 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00026 (0.00026)	Loss_const 0.00019 (0.00012)	Accuracy 0.791 (0.783)	Accuracy_ema 0.627 (0.533)
+2023-07-03 20:46:32,027 Epoch: [37][600/701]	Time 1.145s (1.095s)	Speed 27.9 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00040 (0.00026)	Loss_const 0.00018 (0.00012)	Accuracy 0.698 (0.782)	Accuracy_ema 0.448 (0.534)
+2023-07-03 20:48:19,142 Epoch: [37][700/701]	Time 1.046s (1.091s)	Speed 30.6 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00035 (0.00026)	Loss_const 0.00012 (0.00012)	Accuracy 0.718 (0.782)	Accuracy_ema 0.429 (0.534)
+2023-07-03 20:48:24,379 Test: [0/3]	Time 2.922 (2.922)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.727 (0.727)	Accuracy_ema 0.738 (0.738)
+2023-07-03 20:48:25,335 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 20:48:25,394 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 20:48:25,439 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 20:48:25,440 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 20:48:25,440 | pose_hrnet_part | 0.402 | 0.772 | 0.414 | 0.226 | 0.449 | 0.493 | 0.800 | 0.520 | 0.318 | 0.506 |
+2023-07-03 20:48:25,440 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 20:48:25,440 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 20:48:25,440 | pose_hrnet_part | 0.416 | 0.779 | 0.433 | 0.228 | 0.449 | 0.494 | 0.813 | 0.520 | 0.327 | 0.507 |
+2023-07-03 20:48:25,441 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 20:48:30,578 Epoch: [38][0/701]	Time 4.153s (4.153s)	Speed 7.7 samples/s	Data 2.430s (2.430s)	Loss_sup 0.00022 (0.00022)	Loss_const 0.00013 (0.00013)	Accuracy 0.826 (0.826)	Accuracy_ema 0.634 (0.634)
+2023-07-03 20:50:22,364 Epoch: [38][100/701]	Time 1.069s (1.148s)	Speed 29.9 samples/s	Data 0.000s (0.024s)	Loss_sup 0.00019 (0.00026)	Loss_const 0.00014 (0.00012)	Accuracy 0.816 (0.782)	Accuracy_ema 0.582 (0.534)
+2023-07-03 20:52:12,246 Epoch: [38][200/701]	Time 1.130s (1.123s)	Speed 28.3 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00049 (0.00027)	Loss_const 0.00018 (0.00012)	Accuracy 0.692 (0.778)	Accuracy_ema 0.496 (0.529)
+2023-07-03 20:54:01,777 Epoch: [38][300/701]	Time 1.034s (1.114s)	Speed 30.9 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00017 (0.00027)	Loss_const 0.00009 (0.00012)	Accuracy 0.843 (0.779)	Accuracy_ema 0.491 (0.529)
+2023-07-03 20:55:49,804 Epoch: [38][400/701]	Time 1.202s (1.106s)	Speed 26.6 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00027 (0.00027)	Loss_const 0.00009 (0.00012)	Accuracy 0.781 (0.780)	Accuracy_ema 0.521 (0.531)
+2023-07-03 20:57:38,429 Epoch: [38][500/701]	Time 1.042s (1.102s)	Speed 30.7 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00011 (0.00027)	Loss_const 0.00008 (0.00012)	Accuracy 0.899 (0.780)	Accuracy_ema 0.625 (0.532)
+2023-07-03 20:59:26,008 Epoch: [38][600/701]	Time 1.039s (1.097s)	Speed 30.8 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00026 (0.00026)	Loss_const 0.00017 (0.00012)	Accuracy 0.753 (0.781)	Accuracy_ema 0.446 (0.533)
+2023-07-03 21:01:14,281 Epoch: [38][700/701]	Time 1.095s (1.095s)	Speed 29.2 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00013 (0.00026)	Loss_const 0.00013 (0.00012)	Accuracy 0.850 (0.782)	Accuracy_ema 0.540 (0.532)
+2023-07-03 21:01:19,489 Test: [0/3]	Time 2.881 (2.881)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.731 (0.731)	Accuracy_ema 0.740 (0.740)
+2023-07-03 21:01:20,343 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 21:01:20,400 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 21:01:20,443 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 21:01:20,443 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 21:01:20,443 | pose_hrnet_part | 0.394 | 0.750 | 0.385 | 0.224 | 0.436 | 0.483 | 0.800 | 0.487 | 0.309 | 0.497 |
+2023-07-03 21:01:20,443 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 21:01:20,443 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 21:01:20,443 | pose_hrnet_part | 0.413 | 0.778 | 0.425 | 0.236 | 0.448 | 0.491 | 0.813 | 0.513 | 0.327 | 0.504 |
+2023-07-03 21:01:20,444 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 21:01:25,513 Epoch: [39][0/701]	Time 3.983s (3.983s)	Speed 8.0 samples/s	Data 2.430s (2.430s)	Loss_sup 0.00027 (0.00027)	Loss_const 0.00016 (0.00016)	Accuracy 0.774 (0.774)	Accuracy_ema 0.417 (0.417)
+2023-07-03 21:03:14,699 Epoch: [39][100/701]	Time 0.947s (1.120s)	Speed 33.8 samples/s	Data 0.000s (0.024s)	Loss_sup 0.00020 (0.00026)	Loss_const 0.00017 (0.00012)	Accuracy 0.826 (0.782)	Accuracy_ema 0.528 (0.531)
+2023-07-03 21:05:06,772 Epoch: [39][200/701]	Time 1.161s (1.121s)	Speed 27.6 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00033 (0.00026)	Loss_const 0.00011 (0.00012)	Accuracy 0.781 (0.784)	Accuracy_ema 0.500 (0.530)
+2023-07-03 21:06:59,484 Epoch: [39][300/701]	Time 1.109s (1.123s)	Speed 28.8 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00060 (0.00026)	Loss_const 0.00015 (0.00012)	Accuracy 0.624 (0.783)	Accuracy_ema 0.464 (0.530)
+2023-07-03 21:08:50,673 Epoch: [39][400/701]	Time 1.026s (1.120s)	Speed 31.2 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00014 (0.00026)	Loss_const 0.00010 (0.00012)	Accuracy 0.830 (0.784)	Accuracy_ema 0.476 (0.529)
+2023-07-03 21:10:40,936 Epoch: [39][500/701]	Time 1.243s (1.117s)	Speed 25.8 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00028 (0.00026)	Loss_const 0.00008 (0.00012)	Accuracy 0.750 (0.783)	Accuracy_ema 0.615 (0.530)
+2023-07-03 21:12:29,672 Epoch: [39][600/701]	Time 1.163s (1.112s)	Speed 27.5 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00015 (0.00026)	Loss_const 0.00010 (0.00012)	Accuracy 0.854 (0.783)	Accuracy_ema 0.479 (0.530)
+2023-07-03 21:14:17,666 Epoch: [39][700/701]	Time 0.894s (1.107s)	Speed 35.8 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00016 (0.00026)	Loss_const 0.00010 (0.00012)	Accuracy 0.798 (0.783)	Accuracy_ema 0.359 (0.529)
+2023-07-03 21:14:22,938 Test: [0/3]	Time 2.786 (2.786)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.734 (0.734)	Accuracy_ema 0.741 (0.741)
+2023-07-03 21:14:24,066 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 21:14:24,126 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 21:14:24,172 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 21:14:24,172 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 21:14:24,172 | pose_hrnet_part | 0.417 | 0.768 | 0.439 | 0.247 | 0.453 | 0.494 | 0.800 | 0.520 | 0.318 | 0.508 |
+2023-07-03 21:14:24,172 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 21:14:24,172 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 21:14:24,172 | pose_hrnet_part | 0.410 | 0.773 | 0.432 | 0.226 | 0.446 | 0.492 | 0.813 | 0.520 | 0.327 | 0.505 |
+2023-07-03 21:14:24,173 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 21:14:28,586 Epoch: [40][0/701]	Time 3.376s (3.376s)	Speed 9.5 samples/s	Data 1.909s (1.909s)	Loss_sup 0.00043 (0.00043)	Loss_const 0.00008 (0.00008)	Accuracy 0.748 (0.748)	Accuracy_ema 0.534 (0.534)
+2023-07-03 21:16:19,450 Epoch: [40][100/701]	Time 1.175s (1.131s)	Speed 27.2 samples/s	Data 0.000s (0.019s)	Loss_sup 0.00034 (0.00026)	Loss_const 0.00014 (0.00012)	Accuracy 0.728 (0.783)	Accuracy_ema 0.441 (0.535)
+2023-07-03 21:18:11,965 Epoch: [40][200/701]	Time 0.981s (1.128s)	Speed 32.6 samples/s	Data 0.000s (0.010s)	Loss_sup 0.00030 (0.00026)	Loss_const 0.00012 (0.00012)	Accuracy 0.789 (0.785)	Accuracy_ema 0.561 (0.539)
+2023-07-03 21:20:02,763 Epoch: [40][300/701]	Time 1.179s (1.121s)	Speed 27.1 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00014 (0.00026)	Loss_const 0.00008 (0.00012)	Accuracy 0.833 (0.784)	Accuracy_ema 0.571 (0.540)
+2023-07-03 21:21:51,488 Epoch: [40][400/701]	Time 0.991s (1.113s)	Speed 32.3 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00039 (0.00026)	Loss_const 0.00013 (0.00012)	Accuracy 0.705 (0.784)	Accuracy_ema 0.331 (0.536)
+2023-07-03 21:23:39,695 Epoch: [40][500/701]	Time 0.991s (1.107s)	Speed 32.3 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00017 (0.00026)	Loss_const 0.00013 (0.00012)	Accuracy 0.842 (0.785)	Accuracy_ema 0.637 (0.536)
+2023-07-03 21:25:28,075 Epoch: [40][600/701]	Time 1.147s (1.103s)	Speed 27.9 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00028 (0.00026)	Loss_const 0.00014 (0.00012)	Accuracy 0.789 (0.784)	Accuracy_ema 0.418 (0.535)
+2023-07-03 21:27:15,697 Epoch: [40][700/701]	Time 1.031s (1.099s)	Speed 31.0 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00018 (0.00026)	Loss_const 0.00011 (0.00012)	Accuracy 0.816 (0.784)	Accuracy_ema 0.404 (0.535)
+2023-07-03 21:27:20,671 Test: [0/3]	Time 2.709 (2.709)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0001 (0.0001)	Accuracy 0.734 (0.734)	Accuracy_ema 0.736 (0.736)
+2023-07-03 21:27:21,589 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 21:27:21,647 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 21:27:21,689 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 21:27:21,689 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 21:27:21,689 | pose_hrnet_part | 0.409 | 0.758 | 0.423 | 0.219 | 0.449 | 0.487 | 0.807 | 0.513 | 0.318 | 0.500 |
+2023-07-03 21:27:21,689 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 21:27:21,689 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 21:27:21,689 | pose_hrnet_part | 0.408 | 0.754 | 0.420 | 0.238 | 0.445 | 0.492 | 0.807 | 0.513 | 0.327 | 0.505 |
+2023-07-03 21:27:21,690 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 21:27:26,313 Epoch: [41][0/701]	Time 3.651s (3.651s)	Speed 8.8 samples/s	Data 2.037s (2.037s)	Loss_sup 0.00036 (0.00036)	Loss_const 0.00010 (0.00010)	Accuracy 0.739 (0.739)	Accuracy_ema 0.498 (0.498)
+2023-07-03 21:29:14,451 Epoch: [41][100/701]	Time 0.970s (1.107s)	Speed 33.0 samples/s	Data 0.000s (0.020s)	Loss_sup 0.00022 (0.00025)	Loss_const 0.00013 (0.00012)	Accuracy 0.816 (0.783)	Accuracy_ema 0.497 (0.528)
+2023-07-03 21:31:04,337 Epoch: [41][200/701]	Time 1.141s (1.103s)	Speed 28.1 samples/s	Data 0.000s (0.010s)	Loss_sup 0.00022 (0.00026)	Loss_const 0.00010 (0.00012)	Accuracy 0.802 (0.780)	Accuracy_ema 0.535 (0.524)
+2023-07-03 21:32:52,567 Epoch: [41][300/701]	Time 1.004s (1.096s)	Speed 31.9 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00017 (0.00026)	Loss_const 0.00010 (0.00012)	Accuracy 0.840 (0.781)	Accuracy_ema 0.592 (0.530)
+2023-07-03 21:34:39,931 Epoch: [41][400/701]	Time 1.042s (1.090s)	Speed 30.7 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00024 (0.00026)	Loss_const 0.00012 (0.00012)	Accuracy 0.802 (0.782)	Accuracy_ema 0.510 (0.533)
+2023-07-03 21:36:27,931 Epoch: [41][500/701]	Time 1.177s (1.088s)	Speed 27.2 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00041 (0.00026)	Loss_const 0.00011 (0.00012)	Accuracy 0.700 (0.782)	Accuracy_ema 0.504 (0.535)
+2023-07-03 21:38:17,477 Epoch: [41][600/701]	Time 1.179s (1.090s)	Speed 27.1 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00015 (0.00026)	Loss_const 0.00009 (0.00012)	Accuracy 0.843 (0.782)	Accuracy_ema 0.543 (0.534)
+2023-07-03 21:40:03,917 Epoch: [41][700/701]	Time 0.942s (1.086s)	Speed 34.0 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00024 (0.00026)	Loss_const 0.00016 (0.00012)	Accuracy 0.798 (0.783)	Accuracy_ema 0.516 (0.534)
+2023-07-03 21:40:09,096 Test: [0/3]	Time 2.802 (2.802)	Loss_sup 0.0008 (0.0008)	Loss_const 0.0000 (0.0000)	Accuracy 0.748 (0.748)	Accuracy_ema 0.736 (0.736)
+2023-07-03 21:40:10,202 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 21:40:10,261 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 21:40:10,305 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 21:40:10,305 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 21:40:10,305 | pose_hrnet_part | 0.412 | 0.770 | 0.429 | 0.234 | 0.451 | 0.495 | 0.813 | 0.527 | 0.318 | 0.509 |
+2023-07-03 21:40:10,305 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 21:40:10,305 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 21:40:10,305 | pose_hrnet_part | 0.405 | 0.754 | 0.416 | 0.229 | 0.442 | 0.493 | 0.807 | 0.513 | 0.318 | 0.506 |
+2023-07-03 21:40:10,306 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 21:40:15,304 Epoch: [42][0/701]	Time 3.789s (3.789s)	Speed 8.4 samples/s	Data 2.312s (2.312s)	Loss_sup 0.00027 (0.00027)	Loss_const 0.00014 (0.00014)	Accuracy 0.774 (0.774)	Accuracy_ema 0.564 (0.564)
+2023-07-03 21:42:07,279 Epoch: [42][100/701]	Time 1.216s (1.146s)	Speed 26.3 samples/s	Data 0.000s (0.023s)	Loss_sup 0.00023 (0.00027)	Loss_const 0.00012 (0.00012)	Accuracy 0.812 (0.782)	Accuracy_ema 0.579 (0.534)
+2023-07-03 21:43:57,528 Epoch: [42][200/701]	Time 0.950s (1.124s)	Speed 33.7 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00024 (0.00026)	Loss_const 0.00010 (0.00012)	Accuracy 0.781 (0.782)	Accuracy_ema 0.579 (0.531)
+2023-07-03 21:45:46,762 Epoch: [42][300/701]	Time 1.242s (1.114s)	Speed 25.8 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00016 (0.00026)	Loss_const 0.00009 (0.00012)	Accuracy 0.826 (0.785)	Accuracy_ema 0.559 (0.533)
+2023-07-03 21:47:35,335 Epoch: [42][400/701]	Time 1.035s (1.107s)	Speed 30.9 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00032 (0.00026)	Loss_const 0.00009 (0.00011)	Accuracy 0.760 (0.785)	Accuracy_ema 0.569 (0.533)
+2023-07-03 21:49:24,198 Epoch: [42][500/701]	Time 1.159s (1.103s)	Speed 27.6 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00045 (0.00026)	Loss_const 0.00011 (0.00011)	Accuracy 0.693 (0.783)	Accuracy_ema 0.443 (0.532)
+2023-07-03 21:51:12,772 Epoch: [42][600/701]	Time 1.012s (1.100s)	Speed 31.6 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00027 (0.00026)	Loss_const 0.00014 (0.00011)	Accuracy 0.770 (0.784)	Accuracy_ema 0.484 (0.531)
+2023-07-03 21:52:59,402 Epoch: [42][700/701]	Time 0.904s (1.095s)	Speed 35.4 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00025 (0.00026)	Loss_const 0.00017 (0.00011)	Accuracy 0.763 (0.785)	Accuracy_ema 0.488 (0.532)
+2023-07-03 21:53:04,446 Test: [0/3]	Time 2.730 (2.730)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.740 (0.740)	Accuracy_ema 0.738 (0.738)
+2023-07-03 21:53:05,444 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 21:53:05,501 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 21:53:05,543 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 21:53:05,543 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 21:53:05,543 | pose_hrnet_part | 0.426 | 0.775 | 0.444 | 0.239 | 0.462 | 0.497 | 0.800 | 0.527 | 0.309 | 0.512 |
+2023-07-03 21:53:05,543 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 21:53:05,543 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 21:53:05,543 | pose_hrnet_part | 0.408 | 0.759 | 0.428 | 0.227 | 0.446 | 0.491 | 0.813 | 0.520 | 0.318 | 0.504 |
+2023-07-03 21:53:05,544 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 21:53:10,216 Epoch: [43][0/701]	Time 3.469s (3.469s)	Speed 9.2 samples/s	Data 2.086s (2.086s)	Loss_sup 0.00028 (0.00028)	Loss_const 0.00012 (0.00012)	Accuracy 0.752 (0.752)	Accuracy_ema 0.458 (0.458)
+2023-07-03 21:55:00,106 Epoch: [43][100/701]	Time 1.198s (1.122s)	Speed 26.7 samples/s	Data 0.000s (0.021s)	Loss_sup 0.00028 (0.00026)	Loss_const 0.00010 (0.00011)	Accuracy 0.787 (0.785)	Accuracy_ema 0.482 (0.529)
+2023-07-03 21:56:48,741 Epoch: [43][200/701]	Time 1.011s (1.104s)	Speed 31.6 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00020 (0.00026)	Loss_const 0.00010 (0.00011)	Accuracy 0.812 (0.782)	Accuracy_ema 0.552 (0.528)
+2023-07-03 21:58:38,036 Epoch: [43][300/701]	Time 1.071s (1.101s)	Speed 29.9 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00039 (0.00026)	Loss_const 0.00015 (0.00011)	Accuracy 0.698 (0.782)	Accuracy_ema 0.491 (0.532)
+2023-07-03 22:00:27,436 Epoch: [43][400/701]	Time 1.005s (1.099s)	Speed 31.8 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00024 (0.00026)	Loss_const 0.00015 (0.00011)	Accuracy 0.794 (0.783)	Accuracy_ema 0.554 (0.536)
+2023-07-03 22:02:15,936 Epoch: [43][500/701]	Time 1.034s (1.096s)	Speed 30.9 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00018 (0.00026)	Loss_const 0.00011 (0.00012)	Accuracy 0.829 (0.785)	Accuracy_ema 0.488 (0.535)
+2023-07-03 22:04:05,929 Epoch: [43][600/701]	Time 1.000s (1.097s)	Speed 32.0 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00021 (0.00026)	Loss_const 0.00016 (0.00012)	Accuracy 0.805 (0.784)	Accuracy_ema 0.531 (0.532)
+2023-07-03 22:05:53,980 Epoch: [43][700/701]	Time 1.088s (1.094s)	Speed 29.4 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00038 (0.00026)	Loss_const 0.00013 (0.00012)	Accuracy 0.745 (0.784)	Accuracy_ema 0.560 (0.533)
+2023-07-03 22:05:58,820 Test: [0/3]	Time 2.700 (2.700)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.741 (0.741)	Accuracy_ema 0.740 (0.740)
+2023-07-03 22:05:59,747 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 22:05:59,804 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 22:05:59,846 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 22:05:59,846 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 22:05:59,846 | pose_hrnet_part | 0.432 | 0.789 | 0.459 | 0.248 | 0.461 | 0.497 | 0.813 | 0.520 | 0.336 | 0.509 |
+2023-07-03 22:05:59,846 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 22:05:59,846 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 22:05:59,846 | pose_hrnet_part | 0.412 | 0.752 | 0.435 | 0.230 | 0.449 | 0.497 | 0.807 | 0.533 | 0.327 | 0.511 |
+2023-07-03 22:05:59,847 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 22:06:04,553 Epoch: [44][0/701]	Time 3.703s (3.703s)	Speed 8.6 samples/s	Data 2.065s (2.065s)	Loss_sup 0.00038 (0.00038)	Loss_const 0.00010 (0.00010)	Accuracy 0.739 (0.739)	Accuracy_ema 0.512 (0.512)
+2023-07-03 22:07:55,131 Epoch: [44][100/701]	Time 1.005s (1.131s)	Speed 31.8 samples/s	Data 0.000s (0.021s)	Loss_sup 0.00040 (0.00026)	Loss_const 0.00019 (0.00012)	Accuracy 0.742 (0.785)	Accuracy_ema 0.429 (0.526)
+2023-07-03 22:09:46,665 Epoch: [44][200/701]	Time 1.140s (1.123s)	Speed 28.1 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00015 (0.00026)	Loss_const 0.00010 (0.00012)	Accuracy 0.878 (0.783)	Accuracy_ema 0.615 (0.532)
+2023-07-03 22:11:37,496 Epoch: [44][300/701]	Time 1.125s (1.118s)	Speed 28.4 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00038 (0.00026)	Loss_const 0.00008 (0.00012)	Accuracy 0.736 (0.782)	Accuracy_ema 0.516 (0.529)
+2023-07-03 22:13:27,680 Epoch: [44][400/701]	Time 1.063s (1.114s)	Speed 30.1 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00044 (0.00027)	Loss_const 0.00014 (0.00012)	Accuracy 0.729 (0.780)	Accuracy_ema 0.373 (0.530)
+2023-07-03 22:15:20,207 Epoch: [44][500/701]	Time 1.033s (1.116s)	Speed 31.0 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00012 (0.00026)	Loss_const 0.00012 (0.00012)	Accuracy 0.851 (0.781)	Accuracy_ema 0.705 (0.530)
+2023-07-03 22:17:12,679 Epoch: [44][600/701]	Time 1.263s (1.118s)	Speed 25.3 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00027 (0.00026)	Loss_const 0.00015 (0.00012)	Accuracy 0.788 (0.783)	Accuracy_ema 0.538 (0.530)
+2023-07-03 22:18:59,734 Epoch: [44][700/701]	Time 1.072s (1.111s)	Speed 29.8 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00017 (0.00026)	Loss_const 0.00013 (0.00012)	Accuracy 0.829 (0.783)	Accuracy_ema 0.559 (0.530)
+2023-07-03 22:19:05,581 Test: [0/3]	Time 3.043 (3.043)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.733 (0.733)	Accuracy_ema 0.734 (0.734)
+2023-07-03 22:19:06,563 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 22:19:06,623 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 22:19:06,668 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 22:19:06,668 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 22:19:06,668 | pose_hrnet_part | 0.414 | 0.770 | 0.421 | 0.238 | 0.451 | 0.487 | 0.793 | 0.513 | 0.318 | 0.501 |
+2023-07-03 22:19:06,668 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 22:19:06,668 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 22:19:06,668 | pose_hrnet_part | 0.407 | 0.754 | 0.432 | 0.221 | 0.446 | 0.494 | 0.807 | 0.533 | 0.327 | 0.507 |
+2023-07-03 22:19:06,669 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 22:19:11,705 Epoch: [45][0/701]	Time 3.963s (3.963s)	Speed 8.1 samples/s	Data 2.285s (2.285s)	Loss_sup 0.00017 (0.00017)	Loss_const 0.00009 (0.00009)	Accuracy 0.829 (0.829)	Accuracy_ema 0.571 (0.571)
+2023-07-03 22:21:01,873 Epoch: [45][100/701]	Time 0.939s (1.130s)	Speed 34.1 samples/s	Data 0.000s (0.023s)	Loss_sup 0.00033 (0.00025)	Loss_const 0.00014 (0.00011)	Accuracy 0.772 (0.790)	Accuracy_ema 0.523 (0.527)
+2023-07-03 22:22:51,326 Epoch: [45][200/701]	Time 1.202s (1.112s)	Speed 26.6 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00043 (0.00026)	Loss_const 0.00012 (0.00011)	Accuracy 0.697 (0.787)	Accuracy_ema 0.379 (0.526)
+2023-07-03 22:24:39,774 Epoch: [45][300/701]	Time 1.014s (1.103s)	Speed 31.6 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00022 (0.00026)	Loss_const 0.00007 (0.00011)	Accuracy 0.780 (0.786)	Accuracy_ema 0.524 (0.529)
+2023-07-03 22:26:29,346 Epoch: [45][400/701]	Time 1.059s (1.101s)	Speed 30.2 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00014 (0.00026)	Loss_const 0.00010 (0.00011)	Accuracy 0.861 (0.784)	Accuracy_ema 0.521 (0.529)
+2023-07-03 22:28:17,421 Epoch: [45][500/701]	Time 0.969s (1.097s)	Speed 33.0 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00020 (0.00026)	Loss_const 0.00015 (0.00011)	Accuracy 0.829 (0.783)	Accuracy_ema 0.660 (0.529)
+2023-07-03 22:30:06,858 Epoch: [45][600/701]	Time 1.102s (1.097s)	Speed 29.0 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00031 (0.00026)	Loss_const 0.00014 (0.00011)	Accuracy 0.753 (0.784)	Accuracy_ema 0.567 (0.531)
+2023-07-03 22:31:54,240 Epoch: [45][700/701]	Time 1.031s (1.093s)	Speed 31.0 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00014 (0.00026)	Loss_const 0.00008 (0.00011)	Accuracy 0.844 (0.784)	Accuracy_ema 0.510 (0.532)
+2023-07-03 22:31:59,018 Test: [0/3]	Time 2.633 (2.633)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0001 (0.0001)	Accuracy 0.733 (0.733)	Accuracy_ema 0.734 (0.734)
+2023-07-03 22:31:59,868 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 22:31:59,925 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 22:31:59,967 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 22:31:59,967 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 22:31:59,967 | pose_hrnet_part | 0.398 | 0.777 | 0.384 | 0.223 | 0.436 | 0.488 | 0.813 | 0.500 | 0.327 | 0.501 |
+2023-07-03 22:31:59,967 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 22:31:59,968 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 22:31:59,968 | pose_hrnet_part | 0.409 | 0.758 | 0.424 | 0.224 | 0.448 | 0.495 | 0.807 | 0.527 | 0.318 | 0.509 |
+2023-07-03 22:31:59,968 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 22:32:05,061 Epoch: [46][0/701]	Time 3.875s (3.875s)	Speed 8.3 samples/s	Data 2.213s (2.213s)	Loss_sup 0.00016 (0.00016)	Loss_const 0.00007 (0.00007)	Accuracy 0.826 (0.826)	Accuracy_ema 0.603 (0.603)
+2023-07-03 22:33:53,799 Epoch: [46][100/701]	Time 1.057s (1.115s)	Speed 30.3 samples/s	Data 0.000s (0.022s)	Loss_sup 0.00031 (0.00026)	Loss_const 0.00008 (0.00011)	Accuracy 0.777 (0.788)	Accuracy_ema 0.477 (0.541)
+2023-07-03 22:35:41,426 Epoch: [46][200/701]	Time 1.211s (1.096s)	Speed 26.4 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00017 (0.00026)	Loss_const 0.00009 (0.00011)	Accuracy 0.812 (0.786)	Accuracy_ema 0.486 (0.540)
+2023-07-03 22:37:29,844 Epoch: [46][300/701]	Time 1.061s (1.092s)	Speed 30.2 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00013 (0.00026)	Loss_const 0.00010 (0.00011)	Accuracy 0.864 (0.784)	Accuracy_ema 0.657 (0.536)
+2023-07-03 22:39:19,976 Epoch: [46][400/701]	Time 1.206s (1.094s)	Speed 26.5 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00031 (0.00026)	Loss_const 0.00008 (0.00011)	Accuracy 0.787 (0.784)	Accuracy_ema 0.560 (0.537)
+2023-07-03 22:41:12,173 Epoch: [46][500/701]	Time 1.248s (1.100s)	Speed 25.6 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00028 (0.00026)	Loss_const 0.00011 (0.00011)	Accuracy 0.752 (0.784)	Accuracy_ema 0.521 (0.536)
+2023-07-03 22:43:01,695 Epoch: [46][600/701]	Time 1.001s (1.099s)	Speed 32.0 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00014 (0.00026)	Loss_const 0.00009 (0.00011)	Accuracy 0.850 (0.785)	Accuracy_ema 0.516 (0.537)
+2023-07-03 22:44:48,454 Epoch: [46][700/701]	Time 0.928s (1.095s)	Speed 34.5 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00024 (0.00026)	Loss_const 0.00014 (0.00011)	Accuracy 0.784 (0.784)	Accuracy_ema 0.589 (0.536)
+2023-07-03 22:44:54,226 Test: [0/3]	Time 3.073 (3.073)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.734 (0.734)	Accuracy_ema 0.733 (0.733)
+2023-07-03 22:44:55,159 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 22:44:55,216 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 22:44:55,260 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 22:44:55,261 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 22:44:55,261 | pose_hrnet_part | 0.411 | 0.781 | 0.415 | 0.243 | 0.450 | 0.494 | 0.820 | 0.513 | 0.336 | 0.506 |
+2023-07-03 22:44:55,261 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 22:44:55,261 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 22:44:55,261 | pose_hrnet_part | 0.412 | 0.771 | 0.431 | 0.229 | 0.448 | 0.497 | 0.813 | 0.533 | 0.318 | 0.512 |
+2023-07-03 22:44:55,261 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 22:44:59,977 Epoch: [47][0/701]	Time 3.831s (3.831s)	Speed 8.4 samples/s	Data 2.368s (2.368s)	Loss_sup 0.00020 (0.00020)	Loss_const 0.00012 (0.00012)	Accuracy 0.815 (0.815)	Accuracy_ema 0.509 (0.509)
+2023-07-03 22:46:49,596 Epoch: [47][100/701]	Time 1.127s (1.123s)	Speed 28.4 samples/s	Data 0.000s (0.024s)	Loss_sup 0.00016 (0.00027)	Loss_const 0.00010 (0.00011)	Accuracy 0.840 (0.780)	Accuracy_ema 0.604 (0.530)
+2023-07-03 22:48:38,623 Epoch: [47][200/701]	Time 0.936s (1.107s)	Speed 34.2 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00025 (0.00026)	Loss_const 0.00017 (0.00011)	Accuracy 0.766 (0.784)	Accuracy_ema 0.497 (0.529)
+2023-07-03 22:50:27,305 Epoch: [47][300/701]	Time 1.136s (1.100s)	Speed 28.2 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00056 (0.00026)	Loss_const 0.00014 (0.00011)	Accuracy 0.675 (0.784)	Accuracy_ema 0.473 (0.528)
+2023-07-03 22:52:18,369 Epoch: [47][400/701]	Time 1.100s (1.103s)	Speed 29.1 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00038 (0.00026)	Loss_const 0.00014 (0.00011)	Accuracy 0.715 (0.783)	Accuracy_ema 0.486 (0.528)
+2023-07-03 22:54:09,820 Epoch: [47][500/701]	Time 1.141s (1.105s)	Speed 28.0 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00018 (0.00026)	Loss_const 0.00008 (0.00011)	Accuracy 0.816 (0.783)	Accuracy_ema 0.663 (0.531)
+2023-07-03 22:55:58,518 Epoch: [47][600/701]	Time 1.150s (1.102s)	Speed 27.8 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00025 (0.00026)	Loss_const 0.00013 (0.00011)	Accuracy 0.791 (0.783)	Accuracy_ema 0.477 (0.528)
+2023-07-03 22:57:48,845 Epoch: [47][700/701]	Time 1.035s (1.102s)	Speed 30.9 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00029 (0.00026)	Loss_const 0.00017 (0.00011)	Accuracy 0.748 (0.784)	Accuracy_ema 0.558 (0.530)
+2023-07-03 22:57:53,903 Test: [0/3]	Time 2.859 (2.859)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.736 (0.736)	Accuracy_ema 0.731 (0.731)
+2023-07-03 22:57:54,850 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 22:57:54,908 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 22:57:54,954 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 22:57:54,954 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 22:57:54,954 | pose_hrnet_part | 0.399 | 0.773 | 0.376 | 0.239 | 0.439 | 0.493 | 0.820 | 0.493 | 0.318 | 0.506 |
+2023-07-03 22:57:54,954 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 22:57:54,954 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 22:57:54,954 | pose_hrnet_part | 0.409 | 0.768 | 0.429 | 0.223 | 0.449 | 0.499 | 0.813 | 0.547 | 0.327 | 0.513 |
+2023-07-03 22:57:54,955 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 22:58:00,382 Epoch: [48][0/701]	Time 4.176s (4.176s)	Speed 7.7 samples/s	Data 2.442s (2.442s)	Loss_sup 0.00036 (0.00036)	Loss_const 0.00011 (0.00011)	Accuracy 0.756 (0.756)	Accuracy_ema 0.582 (0.582)
+2023-07-03 22:59:51,211 Epoch: [48][100/701]	Time 1.236s (1.139s)	Speed 25.9 samples/s	Data 0.000s (0.024s)	Loss_sup 0.00022 (0.00026)	Loss_const 0.00013 (0.00012)	Accuracy 0.794 (0.783)	Accuracy_ema 0.509 (0.534)
+2023-07-03 23:01:43,346 Epoch: [48][200/701]	Time 0.997s (1.130s)	Speed 32.1 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00013 (0.00025)	Loss_const 0.00008 (0.00011)	Accuracy 0.881 (0.787)	Accuracy_ema 0.612 (0.535)
+2023-07-03 23:03:35,841 Epoch: [48][300/701]	Time 1.077s (1.128s)	Speed 29.7 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00048 (0.00025)	Loss_const 0.00023 (0.00011)	Accuracy 0.691 (0.786)	Accuracy_ema 0.414 (0.533)
+2023-07-03 23:05:29,959 Epoch: [48][400/701]	Time 1.040s (1.132s)	Speed 30.8 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00037 (0.00025)	Loss_const 0.00016 (0.00011)	Accuracy 0.740 (0.786)	Accuracy_ema 0.516 (0.533)
+2023-07-03 23:07:23,486 Epoch: [48][500/701]	Time 1.271s (1.132s)	Speed 25.2 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00028 (0.00026)	Loss_const 0.00011 (0.00011)	Accuracy 0.769 (0.785)	Accuracy_ema 0.479 (0.533)
+2023-07-03 23:09:16,538 Epoch: [48][600/701]	Time 1.177s (1.132s)	Speed 27.2 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00019 (0.00026)	Loss_const 0.00011 (0.00011)	Accuracy 0.819 (0.785)	Accuracy_ema 0.516 (0.532)
+2023-07-03 23:11:21,952 Epoch: [48][700/701]	Time 1.157s (1.149s)	Speed 27.7 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00025 (0.00026)	Loss_const 0.00008 (0.00011)	Accuracy 0.811 (0.785)	Accuracy_ema 0.596 (0.532)
+2023-07-03 23:11:27,667 Test: [0/3]	Time 3.126 (3.126)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.717 (0.717)	Accuracy_ema 0.734 (0.734)
+2023-07-03 23:11:28,831 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 23:11:28,887 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 23:11:28,931 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 23:11:28,932 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 23:11:28,932 | pose_hrnet_part | 0.403 | 0.771 | 0.402 | 0.216 | 0.436 | 0.476 | 0.800 | 0.493 | 0.300 | 0.490 |
+2023-07-03 23:11:28,932 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 23:11:28,932 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 23:11:28,932 | pose_hrnet_part | 0.407 | 0.774 | 0.408 | 0.215 | 0.447 | 0.497 | 0.820 | 0.513 | 0.318 | 0.511 |
+2023-07-03 23:11:28,933 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 23:11:34,429 Epoch: [49][0/701]	Time 4.085s (4.085s)	Speed 7.8 samples/s	Data 2.370s (2.370s)	Loss_sup 0.00020 (0.00020)	Loss_const 0.00010 (0.00010)	Accuracy 0.822 (0.822)	Accuracy_ema 0.540 (0.540)
+2023-07-03 23:13:47,483 Epoch: [49][100/701]	Time 1.391s (1.358s)	Speed 23.0 samples/s	Data 0.000s (0.024s)	Loss_sup 0.00023 (0.00026)	Loss_const 0.00009 (0.00011)	Accuracy 0.788 (0.785)	Accuracy_ema 0.552 (0.537)
+2023-07-03 23:16:00,386 Epoch: [49][200/701]	Time 1.220s (1.343s)	Speed 26.2 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00016 (0.00026)	Loss_const 0.00010 (0.00011)	Accuracy 0.830 (0.784)	Accuracy_ema 0.564 (0.538)
+2023-07-03 23:18:13,106 Epoch: [49][300/701]	Time 1.243s (1.338s)	Speed 25.7 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00017 (0.00025)	Loss_const 0.00011 (0.00011)	Accuracy 0.816 (0.788)	Accuracy_ema 0.676 (0.536)
+2023-07-03 23:20:25,622 Epoch: [49][400/701]	Time 1.428s (1.335s)	Speed 22.4 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00039 (0.00025)	Loss_const 0.00009 (0.00011)	Accuracy 0.701 (0.788)	Accuracy_ema 0.495 (0.537)
+2023-07-03 23:22:39,986 Epoch: [49][500/701]	Time 1.027s (1.337s)	Speed 31.2 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00025 (0.00026)	Loss_const 0.00014 (0.00011)	Accuracy 0.792 (0.786)	Accuracy_ema 0.552 (0.536)
+2023-07-03 23:24:52,203 Epoch: [49][600/701]	Time 1.297s (1.334s)	Speed 24.7 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00020 (0.00026)	Loss_const 0.00013 (0.00011)	Accuracy 0.823 (0.785)	Accuracy_ema 0.549 (0.535)
+2023-07-03 23:27:04,368 Epoch: [49][700/701]	Time 1.330s (1.332s)	Speed 24.1 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00019 (0.00026)	Loss_const 0.00013 (0.00011)	Accuracy 0.809 (0.785)	Accuracy_ema 0.559 (0.535)
+2023-07-03 23:27:10,010 Test: [0/3]	Time 2.937 (2.937)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.733 (0.733)	Accuracy_ema 0.740 (0.740)
+2023-07-03 23:27:11,195 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 23:27:11,256 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 23:27:11,303 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 23:27:11,303 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 23:27:11,303 | pose_hrnet_part | 0.400 | 0.763 | 0.407 | 0.234 | 0.439 | 0.486 | 0.800 | 0.507 | 0.309 | 0.500 |
+2023-07-03 23:27:11,303 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 23:27:11,304 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 23:27:11,304 | pose_hrnet_part | 0.399 | 0.762 | 0.411 | 0.211 | 0.440 | 0.493 | 0.813 | 0.527 | 0.309 | 0.508 |
+2023-07-03 23:27:11,305 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 23:27:16,857 Epoch: [50][0/701]	Time 4.303s (4.303s)	Speed 7.4 samples/s	Data 2.408s (2.408s)	Loss_sup 0.00035 (0.00035)	Loss_const 0.00014 (0.00014)	Accuracy 0.749 (0.749)	Accuracy_ema 0.525 (0.525)
+2023-07-03 23:29:29,244 Epoch: [50][100/701]	Time 1.295s (1.353s)	Speed 24.7 samples/s	Data 0.000s (0.024s)	Loss_sup 0.00019 (0.00026)	Loss_const 0.00011 (0.00011)	Accuracy 0.811 (0.785)	Accuracy_ema 0.566 (0.535)
+2023-07-03 23:31:36,892 Epoch: [50][200/701]	Time 1.345s (1.315s)	Speed 23.8 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00019 (0.00026)	Loss_const 0.00007 (0.00011)	Accuracy 0.823 (0.785)	Accuracy_ema 0.561 (0.534)
+2023-07-03 23:33:44,709 Epoch: [50][300/701]	Time 1.191s (1.303s)	Speed 26.9 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00024 (0.00026)	Loss_const 0.00009 (0.00011)	Accuracy 0.812 (0.787)	Accuracy_ema 0.641 (0.533)
+2023-07-03 23:35:53,193 Epoch: [50][400/701]	Time 1.208s (1.298s)	Speed 26.5 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00019 (0.00026)	Loss_const 0.00012 (0.00011)	Accuracy 0.815 (0.786)	Accuracy_ema 0.613 (0.531)
+2023-07-03 23:38:01,402 Epoch: [50][500/701]	Time 1.167s (1.295s)	Speed 27.4 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00031 (0.00026)	Loss_const 0.00015 (0.00011)	Accuracy 0.758 (0.785)	Accuracy_ema 0.576 (0.531)
+2023-07-03 23:40:10,354 Epoch: [50][600/701]	Time 1.233s (1.294s)	Speed 26.0 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00024 (0.00026)	Loss_const 0.00010 (0.00011)	Accuracy 0.778 (0.785)	Accuracy_ema 0.597 (0.532)
+2023-07-03 23:42:19,490 Epoch: [50][700/701]	Time 1.191s (1.294s)	Speed 26.9 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00021 (0.00026)	Loss_const 0.00015 (0.00011)	Accuracy 0.795 (0.785)	Accuracy_ema 0.483 (0.532)
+2023-07-03 23:42:25,004 Test: [0/3]	Time 3.274 (3.274)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.734 (0.734)	Accuracy_ema 0.738 (0.738)
+2023-07-03 23:42:26,158 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 23:42:26,218 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 23:42:26,264 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 23:42:26,264 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 23:42:26,265 | pose_hrnet_part | 0.394 | 0.759 | 0.400 | 0.214 | 0.438 | 0.491 | 0.820 | 0.513 | 0.327 | 0.504 |
+2023-07-03 23:42:26,265 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 23:42:26,265 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 23:42:26,265 | pose_hrnet_part | 0.402 | 0.768 | 0.402 | 0.221 | 0.443 | 0.496 | 0.813 | 0.513 | 0.309 | 0.511 |
+2023-07-03 23:42:26,265 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 23:42:31,419 Epoch: [51][0/701]	Time 3.892s (3.892s)	Speed 8.2 samples/s	Data 2.312s (2.312s)	Loss_sup 0.00044 (0.00044)	Loss_const 0.00010 (0.00010)	Accuracy 0.727 (0.727)	Accuracy_ema 0.586 (0.586)
+2023-07-03 23:44:41,463 Epoch: [51][100/701]	Time 1.226s (1.326s)	Speed 26.1 samples/s	Data 0.000s (0.023s)	Loss_sup 0.00029 (0.00025)	Loss_const 0.00010 (0.00010)	Accuracy 0.756 (0.790)	Accuracy_ema 0.443 (0.543)
+2023-07-03 23:46:53,255 Epoch: [51][200/701]	Time 1.447s (1.322s)	Speed 22.1 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00010 (0.00025)	Loss_const 0.00008 (0.00010)	Accuracy 0.903 (0.790)	Accuracy_ema 0.537 (0.540)
+2023-07-03 23:49:06,655 Epoch: [51][300/701]	Time 1.547s (1.326s)	Speed 20.7 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00020 (0.00026)	Loss_const 0.00010 (0.00010)	Accuracy 0.816 (0.786)	Accuracy_ema 0.497 (0.535)
+2023-07-03 23:51:19,059 Epoch: [51][400/701]	Time 1.174s (1.326s)	Speed 27.3 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00022 (0.00026)	Loss_const 0.00008 (0.00010)	Accuracy 0.812 (0.786)	Accuracy_ema 0.443 (0.535)
+2023-07-03 23:53:29,483 Epoch: [51][500/701]	Time 1.534s (1.321s)	Speed 20.9 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00017 (0.00026)	Loss_const 0.00007 (0.00010)	Accuracy 0.808 (0.786)	Accuracy_ema 0.603 (0.536)
+2023-07-03 23:55:45,688 Epoch: [51][600/701]	Time 1.337s (1.328s)	Speed 23.9 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00027 (0.00026)	Loss_const 0.00014 (0.00010)	Accuracy 0.780 (0.786)	Accuracy_ema 0.587 (0.536)
+2023-07-03 23:57:57,839 Epoch: [51][700/701]	Time 1.216s (1.327s)	Speed 26.3 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00026 (0.00026)	Loss_const 0.00013 (0.00010)	Accuracy 0.777 (0.785)	Accuracy_ema 0.518 (0.535)
+2023-07-03 23:58:03,522 Test: [0/3]	Time 3.134 (3.134)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.734 (0.734)	Accuracy_ema 0.736 (0.736)
+2023-07-03 23:58:04,857 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 23:58:04,918 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-03 23:58:04,964 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 23:58:04,964 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 23:58:04,964 | pose_hrnet_part | 0.394 | 0.764 | 0.399 | 0.237 | 0.435 | 0.493 | 0.813 | 0.520 | 0.327 | 0.506 |
+2023-07-03 23:58:04,964 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 23:58:04,964 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 23:58:04,964 | pose_hrnet_part | 0.399 | 0.754 | 0.398 | 0.226 | 0.439 | 0.493 | 0.807 | 0.507 | 0.318 | 0.506 |
+2023-07-03 23:58:04,965 => saving checkpoint to output/output_part5_updatev2
+2023-07-03 23:58:09,967 Epoch: [52][0/701]	Time 4.026s (4.026s)	Speed 7.9 samples/s	Data 2.237s (2.237s)	Loss_sup 0.00014 (0.00014)	Loss_const 0.00011 (0.00011)	Accuracy 0.847 (0.847)	Accuracy_ema 0.625 (0.625)
+2023-07-04 00:00:24,254 Epoch: [52][100/701]	Time 1.235s (1.369s)	Speed 25.9 samples/s	Data 0.000s (0.022s)	Loss_sup 0.00018 (0.00025)	Loss_const 0.00006 (0.00011)	Accuracy 0.829 (0.789)	Accuracy_ema 0.579 (0.532)
+2023-07-04 00:02:37,089 Epoch: [52][200/701]	Time 1.240s (1.349s)	Speed 25.8 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00023 (0.00026)	Loss_const 0.00009 (0.00010)	Accuracy 0.792 (0.785)	Accuracy_ema 0.508 (0.535)
+2023-07-04 00:04:48,571 Epoch: [52][300/701]	Time 1.218s (1.338s)	Speed 26.3 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00011 (0.00025)	Loss_const 0.00008 (0.00010)	Accuracy 0.857 (0.786)	Accuracy_ema 0.670 (0.538)
+2023-07-04 00:07:00,251 Epoch: [52][400/701]	Time 1.246s (1.332s)	Speed 25.7 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00032 (0.00025)	Loss_const 0.00011 (0.00010)	Accuracy 0.753 (0.787)	Accuracy_ema 0.542 (0.537)
+2023-07-04 00:09:13,240 Epoch: [52][500/701]	Time 1.460s (1.332s)	Speed 21.9 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00033 (0.00025)	Loss_const 0.00011 (0.00011)	Accuracy 0.748 (0.787)	Accuracy_ema 0.535 (0.536)
+2023-07-04 00:11:28,076 Epoch: [52][600/701]	Time 1.490s (1.335s)	Speed 21.5 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00029 (0.00025)	Loss_const 0.00011 (0.00011)	Accuracy 0.771 (0.785)	Accuracy_ema 0.469 (0.534)
+2023-07-04 00:13:40,220 Epoch: [52][700/701]	Time 1.166s (1.333s)	Speed 27.5 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00021 (0.00026)	Loss_const 0.00010 (0.00011)	Accuracy 0.787 (0.785)	Accuracy_ema 0.545 (0.533)
+2023-07-04 00:13:45,760 Test: [0/3]	Time 3.087 (3.087)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.731 (0.731)	Accuracy_ema 0.738 (0.738)
+2023-07-04 00:13:47,041 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 00:13:47,100 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 00:13:47,143 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 00:13:47,144 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 00:13:47,144 | pose_hrnet_part | 0.410 | 0.760 | 0.423 | 0.246 | 0.443 | 0.485 | 0.813 | 0.507 | 0.318 | 0.499 |
+2023-07-04 00:13:47,144 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 00:13:47,144 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 00:13:47,144 | pose_hrnet_part | 0.399 | 0.761 | 0.395 | 0.212 | 0.443 | 0.493 | 0.820 | 0.507 | 0.318 | 0.507 |
+2023-07-04 00:13:47,145 => saving checkpoint to output/output_part5_updatev2
+2023-07-04 00:13:52,245 Epoch: [53][0/701]	Time 3.870s (3.870s)	Speed 8.3 samples/s	Data 2.276s (2.276s)	Loss_sup 0.00046 (0.00046)	Loss_const 0.00011 (0.00011)	Accuracy 0.696 (0.696)	Accuracy_ema 0.504 (0.504)
+2023-07-04 00:16:06,307 Epoch: [53][100/701]	Time 1.419s (1.366s)	Speed 22.6 samples/s	Data 0.000s (0.023s)	Loss_sup 0.00018 (0.00026)	Loss_const 0.00014 (0.00010)	Accuracy 0.829 (0.785)	Accuracy_ema 0.574 (0.531)
+2023-07-04 00:18:19,815 Epoch: [53][200/701]	Time 1.270s (1.350s)	Speed 25.2 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00030 (0.00026)	Loss_const 0.00007 (0.00010)	Accuracy 0.774 (0.782)	Accuracy_ema 0.479 (0.530)
+2023-07-04 00:20:31,998 Epoch: [53][300/701]	Time 1.324s (1.341s)	Speed 24.2 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00035 (0.00026)	Loss_const 0.00008 (0.00010)	Accuracy 0.762 (0.781)	Accuracy_ema 0.470 (0.530)
+2023-07-04 00:22:44,219 Epoch: [53][400/701]	Time 1.351s (1.336s)	Speed 23.7 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00022 (0.00026)	Loss_const 0.00012 (0.00010)	Accuracy 0.808 (0.783)	Accuracy_ema 0.557 (0.533)
+2023-07-04 00:24:56,791 Epoch: [53][500/701]	Time 1.309s (1.334s)	Speed 24.5 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00028 (0.00026)	Loss_const 0.00009 (0.00010)	Accuracy 0.762 (0.784)	Accuracy_ema 0.472 (0.534)
+2023-07-04 00:27:09,283 Epoch: [53][600/701]	Time 1.196s (1.333s)	Speed 26.7 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00015 (0.00025)	Loss_const 0.00009 (0.00010)	Accuracy 0.847 (0.785)	Accuracy_ema 0.652 (0.533)
+2023-07-04 00:29:21,382 Epoch: [53][700/701]	Time 1.470s (1.331s)	Speed 21.8 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00044 (0.00025)	Loss_const 0.00012 (0.00010)	Accuracy 0.728 (0.785)	Accuracy_ema 0.477 (0.536)
+2023-07-04 00:29:27,706 Test: [0/3]	Time 3.225 (3.225)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.724 (0.724)	Accuracy_ema 0.729 (0.729)
+2023-07-04 00:29:28,921 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 00:29:28,983 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 00:29:29,031 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 00:29:29,031 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 00:29:29,031 | pose_hrnet_part | 0.406 | 0.765 | 0.426 | 0.214 | 0.450 | 0.492 | 0.807 | 0.533 | 0.318 | 0.506 |
+2023-07-04 00:29:29,031 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 00:29:29,031 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 00:29:29,031 | pose_hrnet_part | 0.402 | 0.765 | 0.416 | 0.219 | 0.442 | 0.492 | 0.813 | 0.520 | 0.318 | 0.506 |
+2023-07-04 00:29:29,033 => saving checkpoint to output/output_part5_updatev2
+2023-07-04 00:29:34,295 Epoch: [54][0/701]	Time 3.985s (3.985s)	Speed 8.0 samples/s	Data 2.076s (2.076s)	Loss_sup 0.00030 (0.00030)	Loss_const 0.00010 (0.00010)	Accuracy 0.772 (0.772)	Accuracy_ema 0.539 (0.539)
+2023-07-04 00:31:46,514 Epoch: [54][100/701]	Time 1.399s (1.349s)	Speed 22.9 samples/s	Data 0.000s (0.021s)	Loss_sup 0.00051 (0.00024)	Loss_const 0.00009 (0.00010)	Accuracy 0.685 (0.796)	Accuracy_ema 0.424 (0.546)
+2023-07-04 00:33:57,305 Epoch: [54][200/701]	Time 1.048s (1.328s)	Speed 30.5 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00019 (0.00025)	Loss_const 0.00013 (0.00010)	Accuracy 0.837 (0.791)	Accuracy_ema 0.538 (0.538)
+2023-07-04 00:36:11,412 Epoch: [54][300/701]	Time 1.337s (1.333s)	Speed 23.9 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00040 (0.00025)	Loss_const 0.00009 (0.00010)	Accuracy 0.707 (0.790)	Accuracy_ema 0.526 (0.535)
+2023-07-04 00:38:26,328 Epoch: [54][400/701]	Time 1.536s (1.337s)	Speed 20.8 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00022 (0.00025)	Loss_const 0.00011 (0.00010)	Accuracy 0.798 (0.787)	Accuracy_ema 0.549 (0.535)
+2023-07-04 00:40:40,456 Epoch: [54][500/701]	Time 1.262s (1.338s)	Speed 25.4 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00019 (0.00026)	Loss_const 0.00009 (0.00010)	Accuracy 0.836 (0.786)	Accuracy_ema 0.617 (0.536)
+2023-07-04 00:42:54,848 Epoch: [54][600/701]	Time 1.349s (1.339s)	Speed 23.7 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00045 (0.00025)	Loss_const 0.00008 (0.00010)	Accuracy 0.733 (0.787)	Accuracy_ema 0.451 (0.535)
+2023-07-04 00:45:07,849 Epoch: [54][700/701]	Time 1.167s (1.337s)	Speed 27.4 samples/s	Data 0.000s (0.003s)	Loss_sup 0.00035 (0.00026)	Loss_const 0.00011 (0.00010)	Accuracy 0.776 (0.786)	Accuracy_ema 0.527 (0.535)
+2023-07-04 00:45:13,647 Test: [0/3]	Time 3.226 (3.226)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.733 (0.733)	Accuracy_ema 0.729 (0.729)
+2023-07-04 00:45:14,804 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 00:45:14,863 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 00:45:14,908 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 00:45:14,908 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 00:45:14,908 | pose_hrnet_part | 0.404 | 0.758 | 0.381 | 0.205 | 0.446 | 0.489 | 0.800 | 0.487 | 0.318 | 0.502 |
+2023-07-04 00:45:14,908 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 00:45:14,908 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 00:45:14,908 | pose_hrnet_part | 0.404 | 0.766 | 0.409 | 0.207 | 0.444 | 0.491 | 0.813 | 0.507 | 0.309 | 0.505 |
+2023-07-04 00:45:14,909 => saving checkpoint to output/output_part5_updatev2
+2023-07-04 00:45:20,269 Epoch: [55][0/701]	Time 4.154s (4.154s)	Speed 7.7 samples/s	Data 2.332s (2.332s)	Loss_sup 0.00013 (0.00013)	Loss_const 0.00010 (0.00010)	Accuracy 0.874 (0.874)	Accuracy_ema 0.477 (0.477)
+2023-07-04 00:47:31,470 Epoch: [55][100/701]	Time 1.407s (1.340s)	Speed 22.7 samples/s	Data 0.000s (0.023s)	Loss_sup 0.00022 (0.00026)	Loss_const 0.00012 (0.00010)	Accuracy 0.808 (0.785)	Accuracy_ema 0.504 (0.531)
+2023-07-04 00:49:42,500 Epoch: [55][200/701]	Time 1.242s (1.325s)	Speed 25.8 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00022 (0.00025)	Loss_const 0.00010 (0.00010)	Accuracy 0.791 (0.789)	Accuracy_ema 0.575 (0.540)
+2023-07-04 00:51:54,696 Epoch: [55][300/701]	Time 1.308s (1.324s)	Speed 24.5 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00020 (0.00025)	Loss_const 0.00010 (0.00010)	Accuracy 0.815 (0.787)	Accuracy_ema 0.581 (0.538)
+2023-07-04 00:54:08,748 Epoch: [55][400/701]	Time 1.229s (1.328s)	Speed 26.0 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00019 (0.00025)	Loss_const 0.00012 (0.00010)	Accuracy 0.825 (0.788)	Accuracy_ema 0.671 (0.540)
+2023-07-04 00:56:18,845 Epoch: [55][500/701]	Time 1.245s (1.323s)	Speed 25.7 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00043 (0.00025)	Loss_const 0.00019 (0.00010)	Accuracy 0.705 (0.789)	Accuracy_ema 0.540 (0.539)
+2023-07-04 00:58:31,018 Epoch: [55][600/701]	Time 1.446s (1.323s)	Speed 22.1 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00014 (0.00025)	Loss_const 0.00011 (0.00010)	Accuracy 0.832 (0.788)	Accuracy_ema 0.590 (0.537)
+2023-07-04 01:00:42,125 Epoch: [55][700/701]	Time 1.159s (1.321s)	Speed 27.6 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00025 (0.00025)	Loss_const 0.00015 (0.00010)	Accuracy 0.801 (0.787)	Accuracy_ema 0.477 (0.536)
+2023-07-04 01:00:47,520 Test: [0/3]	Time 2.958 (2.958)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.722 (0.722)	Accuracy_ema 0.731 (0.731)
+2023-07-04 01:00:48,697 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 01:00:48,758 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 01:00:48,803 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 01:00:48,804 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 01:00:48,804 | pose_hrnet_part | 0.392 | 0.753 | 0.380 | 0.225 | 0.432 | 0.483 | 0.800 | 0.493 | 0.309 | 0.497 |
+2023-07-04 01:00:48,804 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 01:00:48,804 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 01:00:48,804 | pose_hrnet_part | 0.401 | 0.768 | 0.395 | 0.210 | 0.442 | 0.491 | 0.820 | 0.493 | 0.309 | 0.505 |
+2023-07-04 01:00:48,805 => saving checkpoint to output/output_part5_updatev2
+2023-07-04 01:00:54,131 Epoch: [56][0/701]	Time 4.237s (4.237s)	Speed 7.6 samples/s	Data 2.535s (2.535s)	Loss_sup 0.00023 (0.00023)	Loss_const 0.00012 (0.00012)	Accuracy 0.797 (0.797)	Accuracy_ema 0.510 (0.510)
+2023-07-04 01:03:06,083 Epoch: [56][100/701]	Time 1.233s (1.348s)	Speed 25.9 samples/s	Data 0.000s (0.025s)	Loss_sup 0.00035 (0.00025)	Loss_const 0.00010 (0.00010)	Accuracy 0.733 (0.788)	Accuracy_ema 0.472 (0.544)
+2023-07-04 01:05:18,917 Epoch: [56][200/701]	Time 1.386s (1.338s)	Speed 23.1 samples/s	Data 0.000s (0.013s)	Loss_sup 0.00027 (0.00025)	Loss_const 0.00014 (0.00010)	Accuracy 0.798 (0.785)	Accuracy_ema 0.528 (0.539)
+2023-07-04 01:07:31,591 Epoch: [56][300/701]	Time 1.248s (1.335s)	Speed 25.6 samples/s	Data 0.000s (0.009s)	Loss_sup 0.00017 (0.00025)	Loss_const 0.00008 (0.00010)	Accuracy 0.839 (0.787)	Accuracy_ema 0.584 (0.537)
+2023-07-04 01:09:44,644 Epoch: [56][400/701]	Time 1.239s (1.334s)	Speed 25.8 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00022 (0.00025)	Loss_const 0.00008 (0.00010)	Accuracy 0.808 (0.787)	Accuracy_ema 0.627 (0.537)
+2023-07-04 01:11:57,655 Epoch: [56][500/701]	Time 1.275s (1.333s)	Speed 25.1 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00049 (0.00025)	Loss_const 0.00019 (0.00010)	Accuracy 0.680 (0.786)	Accuracy_ema 0.421 (0.535)
+2023-07-04 01:14:07,762 Epoch: [56][600/701]	Time 1.422s (1.328s)	Speed 22.5 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00022 (0.00025)	Loss_const 0.00012 (0.00010)	Accuracy 0.819 (0.785)	Accuracy_ema 0.603 (0.535)
+2023-07-04 01:16:15,249 Epoch: [56][700/701]	Time 1.261s (1.320s)	Speed 25.4 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00022 (0.00025)	Loss_const 0.00008 (0.00010)	Accuracy 0.790 (0.785)	Accuracy_ema 0.433 (0.535)
+2023-07-04 01:16:21,220 Test: [0/3]	Time 3.167 (3.167)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.727 (0.727)	Accuracy_ema 0.734 (0.734)
+2023-07-04 01:16:22,178 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 01:16:22,276 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 01:16:22,493 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 01:16:22,494 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 01:16:22,494 | pose_hrnet_part | 0.407 | 0.760 | 0.399 | 0.207 | 0.443 | 0.485 | 0.800 | 0.493 | 0.309 | 0.499 |
+2023-07-04 01:16:22,494 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 01:16:22,494 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 01:16:22,494 | pose_hrnet_part | 0.405 | 0.761 | 0.404 | 0.214 | 0.446 | 0.494 | 0.813 | 0.507 | 0.309 | 0.509 |
+2023-07-04 01:16:22,495 => saving checkpoint to output/output_part5_updatev2
+2023-07-04 01:16:28,151 Epoch: [57][0/701]	Time 4.497s (4.497s)	Speed 7.1 samples/s	Data 2.626s (2.626s)	Loss_sup 0.00041 (0.00041)	Loss_const 0.00008 (0.00008)	Accuracy 0.721 (0.721)	Accuracy_ema 0.453 (0.453)
+2023-07-04 01:18:42,003 Epoch: [57][100/701]	Time 1.392s (1.370s)	Speed 23.0 samples/s	Data 0.000s (0.026s)	Loss_sup 0.00037 (0.00023)	Loss_const 0.00011 (0.00010)	Accuracy 0.730 (0.800)	Accuracy_ema 0.485 (0.548)
+2023-07-04 01:20:54,084 Epoch: [57][200/701]	Time 1.381s (1.345s)	Speed 23.2 samples/s	Data 0.000s (0.013s)	Loss_sup 0.00032 (0.00024)	Loss_const 0.00007 (0.00010)	Accuracy 0.780 (0.792)	Accuracy_ema 0.619 (0.540)
+2023-07-04 01:23:06,232 Epoch: [57][300/701]	Time 1.458s (1.337s)	Speed 21.9 samples/s	Data 0.000s (0.009s)	Loss_sup 0.00015 (0.00025)	Loss_const 0.00011 (0.00010)	Accuracy 0.853 (0.788)	Accuracy_ema 0.504 (0.536)
+2023-07-04 01:25:17,789 Epoch: [57][400/701]	Time 1.178s (1.332s)	Speed 27.2 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00035 (0.00025)	Loss_const 0.00010 (0.00010)	Accuracy 0.760 (0.787)	Accuracy_ema 0.431 (0.536)
+2023-07-04 01:27:29,673 Epoch: [57][500/701]	Time 1.289s (1.329s)	Speed 24.8 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00011 (0.00025)	Loss_const 0.00010 (0.00010)	Accuracy 0.872 (0.787)	Accuracy_ema 0.615 (0.536)
+2023-07-04 01:29:42,005 Epoch: [57][600/701]	Time 1.487s (1.328s)	Speed 21.5 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00025 (0.00025)	Loss_const 0.00009 (0.00010)	Accuracy 0.799 (0.787)	Accuracy_ema 0.521 (0.537)
+2023-07-04 01:31:53,885 Epoch: [57][700/701]	Time 1.216s (1.327s)	Speed 26.3 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00023 (0.00025)	Loss_const 0.00007 (0.00010)	Accuracy 0.857 (0.787)	Accuracy_ema 0.704 (0.537)
+2023-07-04 01:31:59,426 Test: [0/3]	Time 3.087 (3.087)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.736 (0.736)	Accuracy_ema 0.733 (0.733)
+2023-07-04 01:32:00,665 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 01:32:00,726 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 01:32:00,770 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 01:32:00,770 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 01:32:00,770 | pose_hrnet_part | 0.432 | 0.778 | 0.455 | 0.236 | 0.467 | 0.497 | 0.820 | 0.527 | 0.318 | 0.511 |
+2023-07-04 01:32:00,770 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 01:32:00,770 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 01:32:00,770 | pose_hrnet_part | 0.400 | 0.763 | 0.394 | 0.190 | 0.442 | 0.489 | 0.820 | 0.493 | 0.300 | 0.504 |
+2023-07-04 01:32:00,771 => saving checkpoint to output/output_part5_updatev2
+2023-07-04 01:32:06,142 Epoch: [58][0/701]	Time 4.172s (4.172s)	Speed 7.7 samples/s	Data 2.559s (2.559s)	Loss_sup 0.00021 (0.00021)	Loss_const 0.00014 (0.00014)	Accuracy 0.808 (0.808)	Accuracy_ema 0.533 (0.533)
+2023-07-04 01:34:17,648 Epoch: [58][100/701]	Time 1.359s (1.343s)	Speed 23.6 samples/s	Data 0.000s (0.026s)	Loss_sup 0.00016 (0.00026)	Loss_const 0.00009 (0.00010)	Accuracy 0.819 (0.783)	Accuracy_ema 0.500 (0.522)
+2023-07-04 01:36:31,528 Epoch: [58][200/701]	Time 1.302s (1.341s)	Speed 24.6 samples/s	Data 0.000s (0.013s)	Loss_sup 0.00019 (0.00026)	Loss_const 0.00010 (0.00010)	Accuracy 0.791 (0.785)	Accuracy_ema 0.599 (0.532)
+2023-07-04 01:38:42,421 Epoch: [58][300/701]	Time 1.248s (1.330s)	Speed 25.6 samples/s	Data 0.000s (0.009s)	Loss_sup 0.00017 (0.00025)	Loss_const 0.00008 (0.00010)	Accuracy 0.808 (0.786)	Accuracy_ema 0.571 (0.533)
+2023-07-04 01:40:57,028 Epoch: [58][400/701]	Time 1.407s (1.334s)	Speed 22.8 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00017 (0.00025)	Loss_const 0.00015 (0.00010)	Accuracy 0.844 (0.789)	Accuracy_ema 0.667 (0.536)
+2023-07-04 01:43:10,570 Epoch: [58][500/701]	Time 1.329s (1.335s)	Speed 24.1 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00035 (0.00025)	Loss_const 0.00012 (0.00010)	Accuracy 0.761 (0.788)	Accuracy_ema 0.506 (0.536)
+2023-07-04 01:45:23,524 Epoch: [58][600/701]	Time 1.259s (1.334s)	Speed 25.4 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00024 (0.00025)	Loss_const 0.00007 (0.00010)	Accuracy 0.787 (0.787)	Accuracy_ema 0.578 (0.536)
+2023-07-04 01:47:43,602 Epoch: [58][700/701]	Time 1.467s (1.343s)	Speed 21.8 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00022 (0.00025)	Loss_const 0.00011 (0.00010)	Accuracy 0.757 (0.786)	Accuracy_ema 0.517 (0.535)
+2023-07-04 01:47:49,332 Test: [0/3]	Time 3.222 (3.222)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.724 (0.724)	Accuracy_ema 0.729 (0.729)
+2023-07-04 01:47:50,559 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 01:47:50,626 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 01:47:50,672 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 01:47:50,672 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 01:47:50,672 | pose_hrnet_part | 0.393 | 0.757 | 0.377 | 0.204 | 0.431 | 0.479 | 0.807 | 0.487 | 0.300 | 0.494 |
+2023-07-04 01:47:50,672 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 01:47:50,672 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 01:47:50,672 | pose_hrnet_part | 0.400 | 0.763 | 0.373 | 0.198 | 0.442 | 0.489 | 0.820 | 0.487 | 0.309 | 0.504 |
+2023-07-04 01:47:50,673 => saving checkpoint to output/output_part5_updatev2
+2023-07-04 01:47:56,096 Epoch: [59][0/701]	Time 4.174s (4.174s)	Speed 7.7 samples/s	Data 2.268s (2.268s)	Loss_sup 0.00049 (0.00049)	Loss_const 0.00010 (0.00010)	Accuracy 0.682 (0.682)	Accuracy_ema 0.441 (0.441)
+2023-07-04 01:50:16,248 Epoch: [59][100/701]	Time 1.382s (1.429s)	Speed 23.1 samples/s	Data 0.000s (0.023s)	Loss_sup 0.00016 (0.00024)	Loss_const 0.00010 (0.00010)	Accuracy 0.830 (0.790)	Accuracy_ema 0.509 (0.530)
+2023-07-04 01:52:38,651 Epoch: [59][200/701]	Time 1.531s (1.427s)	Speed 20.9 samples/s	Data 0.000s (0.012s)	Loss_sup 0.00022 (0.00025)	Loss_const 0.00010 (0.00010)	Accuracy 0.787 (0.788)	Accuracy_ema 0.394 (0.526)
+2023-07-04 01:55:01,359 Epoch: [59][300/701]	Time 1.493s (1.427s)	Speed 21.4 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00013 (0.00025)	Loss_const 0.00010 (0.00010)	Accuracy 0.815 (0.789)	Accuracy_ema 0.484 (0.529)
+2023-07-04 01:57:23,473 Epoch: [59][400/701]	Time 1.392s (1.425s)	Speed 23.0 samples/s	Data 0.000s (0.006s)	Loss_sup 0.00011 (0.00025)	Loss_const 0.00009 (0.00010)	Accuracy 0.847 (0.787)	Accuracy_ema 0.620 (0.528)
+2023-07-04 01:59:44,358 Epoch: [59][500/701]	Time 1.318s (1.422s)	Speed 24.3 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00059 (0.00025)	Loss_const 0.00010 (0.00010)	Accuracy 0.654 (0.787)	Accuracy_ema 0.406 (0.531)
+2023-07-04 02:02:04,539 Epoch: [59][600/701]	Time 1.447s (1.419s)	Speed 22.1 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00015 (0.00025)	Loss_const 0.00008 (0.00010)	Accuracy 0.832 (0.788)	Accuracy_ema 0.481 (0.532)
+2023-07-04 02:04:27,844 Epoch: [59][700/701]	Time 1.441s (1.421s)	Speed 22.2 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00040 (0.00025)	Loss_const 0.00009 (0.00010)	Accuracy 0.752 (0.787)	Accuracy_ema 0.496 (0.531)
+2023-07-04 02:04:33,386 Test: [0/3]	Time 3.069 (3.069)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.733 (0.733)	Accuracy_ema 0.731 (0.731)
+2023-07-04 02:04:34,575 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 02:04:34,635 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 02:04:34,832 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 02:04:34,833 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 02:04:34,833 | pose_hrnet_part | 0.408 | 0.784 | 0.404 | 0.214 | 0.443 | 0.489 | 0.820 | 0.507 | 0.327 | 0.501 |
+2023-07-04 02:04:34,833 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 02:04:34,833 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 02:04:34,833 | pose_hrnet_part | 0.400 | 0.764 | 0.378 | 0.197 | 0.441 | 0.488 | 0.813 | 0.487 | 0.309 | 0.502 |
+2023-07-04 02:04:34,834 => saving checkpoint to output/output_part5_updatev2
+2023-07-04 02:04:40,399 Epoch: [60][0/701]	Time 4.371s (4.371s)	Speed 7.3 samples/s	Data 2.613s (2.613s)	Loss_sup 0.00024 (0.00024)	Loss_const 0.00007 (0.00007)	Accuracy 0.782 (0.782)	Accuracy_ema 0.577 (0.577)
+2023-07-04 02:06:54,449 Epoch: [60][100/701]	Time 1.409s (1.371s)	Speed 22.7 samples/s	Data 0.000s (0.026s)	Loss_sup 0.00030 (0.00026)	Loss_const 0.00009 (0.00010)	Accuracy 0.757 (0.784)	Accuracy_ema 0.569 (0.530)
+2023-07-04 02:09:07,770 Epoch: [60][200/701]	Time 1.418s (1.352s)	Speed 22.6 samples/s	Data 0.000s (0.013s)	Loss_sup 0.00033 (0.00025)	Loss_const 0.00012 (0.00009)	Accuracy 0.734 (0.787)	Accuracy_ema 0.496 (0.529)
+2023-07-04 02:11:22,396 Epoch: [60][300/701]	Time 1.228s (1.350s)	Speed 26.1 samples/s	Data 0.000s (0.009s)	Loss_sup 0.00031 (0.00025)	Loss_const 0.00013 (0.00010)	Accuracy 0.759 (0.788)	Accuracy_ema 0.570 (0.533)
+2023-07-04 02:13:37,362 Epoch: [60][400/701]	Time 1.276s (1.350s)	Speed 25.1 samples/s	Data 0.000s (0.007s)	Loss_sup 0.00021 (0.00025)	Loss_const 0.00008 (0.00010)	Accuracy 0.784 (0.789)	Accuracy_ema 0.547 (0.535)
+2023-07-04 02:15:51,448 Epoch: [60][500/701]	Time 1.404s (1.348s)	Speed 22.8 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00031 (0.00025)	Loss_const 0.00009 (0.00010)	Accuracy 0.760 (0.789)	Accuracy_ema 0.465 (0.536)
+2023-07-04 02:18:05,853 Epoch: [60][600/701]	Time 1.214s (1.347s)	Speed 26.4 samples/s	Data 0.000s (0.005s)	Loss_sup 0.00039 (0.00025)	Loss_const 0.00009 (0.00010)	Accuracy 0.732 (0.788)	Accuracy_ema 0.432 (0.535)
+2023-07-04 02:20:18,971 Epoch: [60][700/701]	Time 1.150s (1.345s)	Speed 27.8 samples/s	Data 0.000s (0.004s)	Loss_sup 0.00028 (0.00025)	Loss_const 0.00013 (0.00010)	Accuracy 0.753 (0.788)	Accuracy_ema 0.474 (0.534)
+2023-07-04 02:20:24,680 Test: [0/3]	Time 3.322 (3.322)	Loss_sup 0.0009 (0.0009)	Loss_const 0.0000 (0.0000)	Accuracy 0.738 (0.738)	Accuracy_ema 0.729 (0.729)
+2023-07-04 02:20:25,791 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 02:20:25,852 => writing results json to output/output_part5_updatev2/results/keypoints_val_results_0.json
+2023-07-04 02:20:25,899 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 02:20:25,899 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 02:20:25,899 | pose_hrnet_part | 0.405 | 0.761 | 0.416 | 0.225 | 0.442 | 0.489 | 0.800 | 0.513 | 0.300 | 0.504 |
+2023-07-04 02:20:25,899 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-04 02:20:25,899 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-04 02:20:25,899 | pose_hrnet_part | 0.401 | 0.756 | 0.383 | 0.197 | 0.438 | 0.488 | 0.807 | 0.487 | 0.309 | 0.502 |
+2023-07-04 02:20:25,900 => saving checkpoint to output/output_part5_updatev2
+2023-07-04 02:20:30,823 Epoch: [61][0/701]	Time 3.935s (3.935s)	Speed 8.1 samples/s	Data 2.181s (2.181s)	Loss_sup 0.00013 (0.00013)	Loss_const 0.00008 (0.00008)	Accuracy 0.822 (0.822)	Accuracy_ema 0.516 (0.516)
+2023-07-04 02:22:44,280 Epoch: [61][100/701]	Time 1.307s (1.360s)	Speed 24.5 samples/s	Data 0.000s (0.022s)	Loss_sup 0.00023 (0.00026)	Loss_const 0.00008 (0.00010)	Accuracy 0.816 (0.784)	Accuracy_ema 0.620 (0.536)
+2023-07-04 02:25:06,337 Epoch: [61][200/701]	Time 1.407s (1.390s)	Speed 22.7 samples/s	Data 0.000s (0.011s)	Loss_sup 0.00036 (0.00026)	Loss_const 0.00014 (0.00010)	Accuracy 0.725 (0.785)	Accuracy_ema 0.435 (0.536)
+2023-07-04 02:27:27,594 Epoch: [61][300/701]	Time 1.523s (1.398s)	Speed 21.0 samples/s	Data 0.000s (0.008s)	Loss_sup 0.00014 (0.00025)	Loss_const 0.00010 (0.00010)	Accuracy 0.836 (0.787)	Accuracy_ema 0.596 (0.533)

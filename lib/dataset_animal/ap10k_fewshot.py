@@ -142,8 +142,8 @@ class AnimalAP10KDataset(Kpt2dSviewRgbImgTopDownDataset):
         self.num_joints = dataset_info.keypoint_num
         self.flip_pairs = dataset_info.flip_pairs
         self.parent_ids = None
-        self.upper_body_ids = dataset_info.upper_body_ids
-        self.lower_body_ids = dataset_info.lower_body_ids
+        self.upper_body_ids = None
+        self.lower_body_ids = None
         self.joints_weight = np.array(dataset_info.joint_weights,
                                       dtype=np.float32).reshape((self.num_joints, 1))
 

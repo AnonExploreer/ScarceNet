@@ -342,9 +342,11 @@ class Kpt2dSviewRgbImgTopDownDataset(Dataset, metaclass=ABCMeta):
 
         else:
             joints = self.pseudol_data.get(idx)
-            joints_vis = np.repeat(joints[:, 2:3], 3, axis=1)
+            joints_vis = results['joints_3d_visible']
             use_label = False
 
+        if joints is None:
+            print(idx, results['image_file'])
         c = results['center']
         s = results['scale']
         score = results['bbox_score'] if 'bbox_score' in results else 1
@@ -359,14 +361,6 @@ class Kpt2dSviewRgbImgTopDownDataset(Dataset, metaclass=ABCMeta):
         data_numpy_v2 = np.copy(data_numpy)
         flip_v2 = False
         if self.is_train:
-            if (np.sum(joints_vis[:, 0]) > self.num_joints_half_body
-                    and np.random.rand() < self.prob_half_body):
-                c_half_body, s_half_body = self.half_body_transform(
-                    joints, joints_vis
-                )
-
-                if c_half_body is not None and s_half_body is not None:
-                    c, s = c_half_body, s_half_body
             c_ema = np.copy(c)
             s_ema = s
 
@@ -380,6 +374,7 @@ class Kpt2dSviewRgbImgTopDownDataset(Dataset, metaclass=ABCMeta):
                 if random.random() <= 0.6 else 0
             if self.flip and random.random() <= 0.5:
                 data_numpy = data_numpy[:, ::-1, :]
+                
                 joints, joints_vis = fliplr_joints(
                     joints, joints_vis, data_numpy.shape[1], self.flip_pairs)
                 c[0] = data_numpy.shape[1] - c[0] - 1

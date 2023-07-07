@@ -1,0 +1,1594 @@
+2023-07-03 04:53:39,754 Namespace(animalpose=True, cfg='experiments/ap10k/hrnet/w32_256x192_adam_lr1e-3.yaml', dataDir='', evaluate=False, fewshot=False, logDir='', modelDir='', opts=['OUTPUT_DIR', 'output_animal_hrnet5_part', 'DATASET.DATASET', 'animalweb_fewshot', 'MODEL.NAME', 'pose_hrnet_part', 'LABEL_PER_CLASS', '5'], pretrained='', prevModelDir='', resume='')
+2023-07-03 04:53:39,754 AUTO_RESUME: True
+CUDNN:
+  BENCHMARK: True
+  DETERMINISTIC: False
+  ENABLED: True
+DATASET:
+  COLOR_RGB: True
+  DATASET: animalweb_fewshot
+  DATA_FORMAT: jpg
+  FLIP: True
+  HYBRID_JOINTS_TYPE: 
+  NUM_JOINTS_HALF_BODY: 0
+  PROB_HALF_BODY: 0.0
+  ROOT: 
+  ROT_FACTOR: 0
+  SCALE_FACTOR: 0.0
+  SELECT_DATA: False
+  SUPERCATEGORY: ['animal_face']
+  TEST_SET: test
+  TRAIN_SET: train
+  VAL_SET: val
+DATA_DIR: 
+DEBUG:
+  DEBUG: True
+  SAVE_BATCH_IMAGES_GT: True
+  SAVE_BATCH_IMAGES_PRED: True
+  SAVE_HEATMAPS_GT: True
+  SAVE_HEATMAPS_PRED: True
+GPUS: (0, 1)
+LABEL_PER_CLASS: 5
+LOG_DIR: log
+LOSS:
+  TOPK: 8
+  USE_DIFFERENT_JOINTS_WEIGHT: False
+  USE_OHKM: False
+  USE_TARGET_WEIGHT: True
+MODEL:
+  EXTRA:
+    FINAL_CONV_KERNEL: 1
+    PRETRAINED_LAYERS: ['conv1', 'bn1', 'conv2', 'bn2', 'layer1', 'transition1', 'stage2', 'transition2', 'stage3', 'transition3', 'stage4']
+    STAGE2:
+      BLOCK: BASIC
+      FUSE_METHOD: SUM
+      NUM_BLOCKS: [4, 4]
+      NUM_BRANCHES: 2
+      NUM_CHANNELS: [32, 64]
+      NUM_MODULES: 1
+    STAGE3:
+      BLOCK: BASIC
+      FUSE_METHOD: SUM
+      NUM_BLOCKS: [4, 4, 4]
+      NUM_BRANCHES: 3
+      NUM_CHANNELS: [32, 64, 128]
+      NUM_MODULES: 4
+    STAGE4:
+      BLOCK: BASIC
+      FUSE_METHOD: SUM
+      NUM_BLOCKS: [4, 4, 4, 4]
+      NUM_BRANCHES: 4
+      NUM_CHANNELS: [32, 64, 128, 256]
+      NUM_MODULES: 3
+  HEATMAP_SIZE: [64, 64]
+  IMAGE_SIZE: [256, 256]
+  INIT_WEIGHTS: True
+  NAME: pose_hrnet_part
+  NUM_JOINTS: 9
+  PRETRAINED: models/pytorch/imagenet/hrnet_w32-36af842e.pth
+  SIGMA: 2
+  TAG_PER_JOINT: True
+  TARGET_TYPE: gaussian
+OUTPUT_DIR: output_animal_hrnet5_part
+PIN_MEMORY: True
+PRINT_FREQ: 100
+RANK: 0
+TEST:
+  BATCH_SIZE_PER_GPU: 32
+  BBOX_THRE: 1.0
+  COCO_BBOX_FILE: 
+  FLIP_TEST: False
+  IMAGE_THRE: 0.0
+  IN_VIS_THRE: 0.2
+  MODEL_FILE: 
+  NMS_THRE: 1.0
+  OKS_THRE: 0.9
+  POST_PROCESS: True
+  SHIFT_HEATMAP: True
+  SOFT_NMS: False
+  USE_GT_BBOX: True
+TRAIN:
+  BATCH_SIZE_PER_GPU: 32
+  BEGIN_EPOCH: 0
+  CHECKPOINT: 
+  END_EPOCH: 210
+  GAMMA1: 0.99
+  GAMMA2: 0.0
+  LR: 0.001
+  LR_FACTOR: 0.1
+  LR_STEP: [170, 200]
+  MOMENTUM: 0.9
+  NESTEROV: False
+  OPTIMIZER: adam
+  RESUME: False
+  SHUFFLE: True
+  WD: 0.0001
+WORKERS: 4
+2023-07-03 04:53:40,023 => init weights from normal distribution
+2023-07-03 04:53:48,507 => loading pretrained model models/pytorch/imagenet/hrnet_w32-36af842e.pth
+2023-07-03 04:54:08,287 
+Total Parameters: 28,717,865
+----------------------------------------------------------------------------------------------------------------------------------
+Total Multiply Adds (For Convolution and Linear Layers only): 10.16357421875 GFLOPs
+----------------------------------------------------------------------------------------------------------------------------------
+Number of Layers
+Conv2d : 346 layers   BatchNorm2d : 328 layers   ReLU : 288 layers   Bottleneck : 13 layers   BasicBlock : 104 layers   Upsample : 28 layers   HighResolutionModule : 8 layers   
+2023-07-03 04:54:08,288 Loading training annotations
+2023-07-03 04:54:08,526 => num_images: 22450
+2023-07-03 04:54:08,531 number of annotated images: 40
+2023-07-03 04:54:08,533 => load 40 samples
+2023-07-03 04:54:08,533 Loading validation annotations
+2023-07-03 04:54:08,536 => num_images: 150
+2023-07-03 04:54:08,540 => load 150 samples
+2023-07-03 04:54:18,404 Epoch: [0][0/1]	Time 8.883s (8.883s)	Speed 4.5 samples/s	Data 1.373s (1.373s)	Loss 0.00153 (0.00153)	Accuracy 0.042 (0.042)
+2023-07-03 04:54:21,210 Test: [0/3]	Time 2.697 (2.697)	Loss 0.0015 (0.0015)	Accuracy 0.155 (0.155)
+2023-07-03 04:54:22,335 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:54:22,400 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:54:22,400 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:54:22,400 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:54:22,415 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:54:25,393 Epoch: [1][0/1]	Time 2.113s (2.113s)	Speed 18.9 samples/s	Data 1.230s (1.230s)	Loss 0.00166 (0.00166)	Accuracy 0.247 (0.247)
+2023-07-03 04:54:27,423 Test: [0/3]	Time 1.903 (1.903)	Loss 0.0015 (0.0015)	Accuracy 0.066 (0.066)
+2023-07-03 04:54:27,949 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:54:28,015 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:54:28,015 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:54:28,015 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:54:28,016 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:54:31,569 Epoch: [2][0/1]	Time 1.818s (1.818s)	Speed 22.0 samples/s	Data 1.215s (1.215s)	Loss 0.00169 (0.00169)	Accuracy 0.147 (0.147)
+2023-07-03 04:54:33,623 Test: [0/3]	Time 1.922 (1.922)	Loss 0.0015 (0.0015)	Accuracy 0.085 (0.085)
+2023-07-03 04:54:34,135 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:54:34,201 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:54:34,201 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:54:34,201 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:54:34,202 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:54:37,994 Epoch: [3][0/1]	Time 1.828s (1.828s)	Speed 21.9 samples/s	Data 1.217s (1.217s)	Loss 0.00145 (0.00145)	Accuracy 0.292 (0.292)
+2023-07-03 04:54:40,032 Test: [0/3]	Time 1.939 (1.939)	Loss 0.0015 (0.0015)	Accuracy 0.050 (0.050)
+2023-07-03 04:54:40,504 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:54:40,571 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:54:40,571 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:54:40,571 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:54:40,572 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:54:44,110 Epoch: [4][0/1]	Time 1.822s (1.822s)	Speed 22.0 samples/s	Data 1.143s (1.143s)	Loss 0.00131 (0.00131)	Accuracy 0.436 (0.436)
+2023-07-03 04:54:46,087 Test: [0/3]	Time 1.885 (1.885)	Loss 0.0015 (0.0015)	Accuracy 0.068 (0.068)
+2023-07-03 04:54:46,609 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:54:46,676 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:54:46,676 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:54:46,676 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:54:46,677 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:54:50,284 Epoch: [5][0/1]	Time 1.879s (1.879s)	Speed 21.3 samples/s	Data 1.193s (1.193s)	Loss 0.00116 (0.00116)	Accuracy 0.503 (0.503)
+2023-07-03 04:54:52,395 Test: [0/3]	Time 1.987 (1.987)	Loss 0.0015 (0.0015)	Accuracy 0.090 (0.090)
+2023-07-03 04:54:52,914 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:54:52,978 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:54:52,978 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:54:52,978 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:54:52,979 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:54:56,699 Epoch: [6][0/1]	Time 1.926s (1.926s)	Speed 20.8 samples/s	Data 1.315s (1.315s)	Loss 0.00100 (0.00100)	Accuracy 0.561 (0.561)
+2023-07-03 04:54:58,690 Test: [0/3]	Time 1.891 (1.891)	Loss 0.0015 (0.0015)	Accuracy 0.095 (0.095)
+2023-07-03 04:54:59,225 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:54:59,292 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:54:59,292 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:54:59,292 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:54:59,293 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:55:02,898 Epoch: [7][0/1]	Time 1.846s (1.846s)	Speed 21.7 samples/s	Data 1.159s (1.159s)	Loss 0.00103 (0.00103)	Accuracy 0.614 (0.614)
+2023-07-03 04:55:04,933 Test: [0/3]	Time 1.897 (1.897)	Loss 0.0015 (0.0015)	Accuracy 0.082 (0.082)
+2023-07-03 04:55:05,446 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:55:05,512 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:55:05,512 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:55:05,512 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:55:05,513 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:55:09,114 Epoch: [8][0/1]	Time 1.923s (1.923s)	Speed 20.8 samples/s	Data 1.241s (1.241s)	Loss 0.00090 (0.00090)	Accuracy 0.625 (0.625)
+2023-07-03 04:55:11,147 Test: [0/3]	Time 1.936 (1.936)	Loss 0.0015 (0.0015)	Accuracy 0.064 (0.064)
+2023-07-03 04:55:11,679 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:55:11,746 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:55:11,746 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:55:11,746 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:55:11,747 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:55:15,414 Epoch: [9][0/1]	Time 1.910s (1.910s)	Speed 20.9 samples/s	Data 1.212s (1.212s)	Loss 0.00080 (0.00080)	Accuracy 0.700 (0.700)
+2023-07-03 04:55:17,518 Test: [0/3]	Time 1.961 (1.961)	Loss 0.0015 (0.0015)	Accuracy 0.075 (0.075)
+2023-07-03 04:55:18,035 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:55:18,100 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:55:18,100 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:55:18,100 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:55:18,101 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:55:21,896 Epoch: [10][0/1]	Time 1.922s (1.922s)	Speed 20.8 samples/s	Data 1.233s (1.233s)	Loss 0.00075 (0.00075)	Accuracy 0.753 (0.753)
+2023-07-03 04:55:23,961 Test: [0/3]	Time 1.940 (1.940)	Loss 0.0015 (0.0015)	Accuracy 0.085 (0.085)
+2023-07-03 04:55:24,504 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:55:24,571 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:55:24,571 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:55:24,571 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:55:24,572 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:55:28,640 Epoch: [11][0/1]	Time 1.844s (1.844s)	Speed 21.7 samples/s	Data 1.174s (1.174s)	Loss 0.00066 (0.00066)	Accuracy 0.778 (0.778)
+2023-07-03 04:55:30,715 Test: [0/3]	Time 1.979 (1.979)	Loss 0.0015 (0.0015)	Accuracy 0.095 (0.095)
+2023-07-03 04:55:31,209 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:55:31,276 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:55:31,276 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:55:31,276 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:55:31,277 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:55:34,852 Epoch: [12][0/1]	Time 1.852s (1.852s)	Speed 21.6 samples/s	Data 1.159s (1.159s)	Loss 0.00061 (0.00061)	Accuracy 0.811 (0.811)
+2023-07-03 04:55:36,863 Test: [0/3]	Time 1.909 (1.909)	Loss 0.0015 (0.0015)	Accuracy 0.056 (0.056)
+2023-07-03 04:55:37,406 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:55:37,475 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:55:37,475 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:55:37,475 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:55:37,476 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:55:41,113 Epoch: [13][0/1]	Time 1.719s (1.719s)	Speed 23.3 samples/s	Data 1.203s (1.203s)	Loss 0.00055 (0.00055)	Accuracy 0.867 (0.867)
+2023-07-03 04:55:43,174 Test: [0/3]	Time 1.932 (1.932)	Loss 0.0015 (0.0015)	Accuracy 0.003 (0.003)
+2023-07-03 04:55:43,712 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:55:43,779 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:55:43,779 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:55:43,779 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:55:43,780 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:55:47,489 Epoch: [14][0/1]	Time 1.952s (1.952s)	Speed 20.5 samples/s	Data 1.260s (1.260s)	Loss 0.00050 (0.00050)	Accuracy 0.900 (0.900)
+2023-07-03 04:55:49,470 Test: [0/3]	Time 1.858 (1.858)	Loss 0.0015 (0.0015)	Accuracy 0.002 (0.002)
+2023-07-03 04:55:49,917 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:55:49,985 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:55:49,985 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:55:49,985 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:55:49,986 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:55:53,760 Epoch: [15][0/1]	Time 1.828s (1.828s)	Speed 21.9 samples/s	Data 1.171s (1.171s)	Loss 0.00047 (0.00047)	Accuracy 0.889 (0.889)
+2023-07-03 04:55:55,860 Test: [0/3]	Time 2.000 (2.000)	Loss 0.0015 (0.0015)	Accuracy 0.000 (0.000)
+2023-07-03 04:55:56,383 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:55:56,450 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:55:56,450 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:55:56,450 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:55:56,451 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:56:00,187 Epoch: [16][0/1]	Time 1.983s (1.983s)	Speed 20.2 samples/s	Data 1.294s (1.294s)	Loss 0.00043 (0.00043)	Accuracy 0.906 (0.906)
+2023-07-03 04:56:02,269 Test: [0/3]	Time 1.971 (1.971)	Loss 0.0015 (0.0015)	Accuracy 0.000 (0.000)
+2023-07-03 04:56:02,757 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:56:02,822 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:56:02,822 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:56:02,822 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:56:02,823 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:56:06,723 Epoch: [17][0/1]	Time 2.061s (2.061s)	Speed 19.4 samples/s	Data 1.310s (1.310s)	Loss 0.00037 (0.00037)	Accuracy 0.961 (0.961)
+2023-07-03 04:56:08,818 Test: [0/3]	Time 1.997 (1.997)	Loss 0.0015 (0.0015)	Accuracy 0.000 (0.000)
+2023-07-03 04:56:09,380 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:56:09,444 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:56:09,444 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:56:09,444 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:56:09,445 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:56:13,267 Epoch: [18][0/1]	Time 1.934s (1.934s)	Speed 20.7 samples/s	Data 1.258s (1.258s)	Loss 0.00032 (0.00032)	Accuracy 0.947 (0.947)
+2023-07-03 04:56:15,561 Test: [0/3]	Time 2.165 (2.165)	Loss 0.0015 (0.0015)	Accuracy 0.000 (0.000)
+2023-07-03 04:56:16,137 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:56:16,200 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:56:16,200 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:56:16,200 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:56:16,201 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:56:20,203 Epoch: [19][0/1]	Time 2.024s (2.024s)	Speed 19.8 samples/s	Data 1.324s (1.324s)	Loss 0.00031 (0.00031)	Accuracy 0.964 (0.964)
+2023-07-03 04:56:22,363 Test: [0/3]	Time 2.047 (2.047)	Loss 0.0015 (0.0015)	Accuracy 0.000 (0.000)
+2023-07-03 04:56:23,017 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:56:23,079 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:56:23,079 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:56:23,079 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:56:23,080 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:56:27,072 Epoch: [20][0/1]	Time 2.051s (2.051s)	Speed 19.5 samples/s	Data 1.373s (1.373s)	Loss 0.00029 (0.00029)	Accuracy 0.975 (0.975)
+2023-07-03 04:56:29,209 Test: [0/3]	Time 1.992 (1.992)	Loss 0.0015 (0.0015)	Accuracy 0.000 (0.000)
+2023-07-03 04:56:29,852 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:56:29,915 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:56:29,915 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:56:29,915 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:56:29,916 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:56:33,822 Epoch: [21][0/1]	Time 2.062s (2.062s)	Speed 19.4 samples/s	Data 1.370s (1.370s)	Loss 0.00025 (0.00025)	Accuracy 0.983 (0.983)
+2023-07-03 04:56:36,099 Test: [0/3]	Time 2.132 (2.132)	Loss 0.0015 (0.0015)	Accuracy 0.000 (0.000)
+2023-07-03 04:56:36,686 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:56:36,755 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:56:36,755 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:56:36,755 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:56:36,756 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:56:40,665 Epoch: [22][0/1]	Time 2.026s (2.026s)	Speed 19.7 samples/s	Data 1.334s (1.334s)	Loss 0.00022 (0.00022)	Accuracy 0.989 (0.989)
+2023-07-03 04:56:42,766 Test: [0/3]	Time 2.005 (2.005)	Loss 0.0015 (0.0015)	Accuracy 0.000 (0.000)
+2023-07-03 04:56:43,444 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:56:43,509 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:56:43,509 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:56:43,509 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:56:43,510 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:56:47,233 Epoch: [23][0/1]	Time 1.883s (1.883s)	Speed 21.2 samples/s	Data 1.264s (1.264s)	Loss 0.00021 (0.00021)	Accuracy 0.983 (0.983)
+2023-07-03 04:56:49,443 Test: [0/3]	Time 2.118 (2.118)	Loss 0.0015 (0.0015)	Accuracy 0.000 (0.000)
+2023-07-03 04:56:49,995 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:56:50,063 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:56:50,063 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:56:50,063 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:56:50,064 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:56:53,847 Epoch: [24][0/1]	Time 1.974s (1.974s)	Speed 20.3 samples/s	Data 1.344s (1.344s)	Loss 0.00019 (0.00019)	Accuracy 0.989 (0.989)
+2023-07-03 04:56:56,019 Test: [0/3]	Time 2.036 (2.036)	Loss 0.0015 (0.0015)	Accuracy 0.002 (0.002)
+2023-07-03 04:56:56,614 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:56:56,680 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:56:56,680 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:56:56,680 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:56:56,681 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:57:00,331 Epoch: [25][0/1]	Time 1.919s (1.919s)	Speed 20.8 samples/s	Data 1.235s (1.235s)	Loss 0.00016 (0.00016)	Accuracy 0.997 (0.997)
+2023-07-03 04:57:02,548 Test: [0/3]	Time 2.122 (2.122)	Loss 0.0015 (0.0015)	Accuracy 0.005 (0.005)
+2023-07-03 04:57:03,085 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:57:03,150 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:57:03,150 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:57:03,150 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:57:03,151 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:57:07,172 Epoch: [26][0/1]	Time 2.014s (2.014s)	Speed 19.9 samples/s	Data 1.328s (1.328s)	Loss 0.00015 (0.00015)	Accuracy 0.997 (0.997)
+2023-07-03 04:57:09,294 Test: [0/3]	Time 2.028 (2.028)	Loss 0.0015 (0.0015)	Accuracy 0.007 (0.007)
+2023-07-03 04:57:09,836 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:57:09,905 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:57:09,905 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:57:09,905 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:57:09,906 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:57:13,829 Epoch: [27][0/1]	Time 2.058s (2.058s)	Speed 19.4 samples/s	Data 1.370s (1.370s)	Loss 0.00013 (0.00013)	Accuracy 0.994 (0.994)
+2023-07-03 04:57:15,977 Test: [0/3]	Time 2.044 (2.044)	Loss 0.0015 (0.0015)	Accuracy 0.040 (0.040)
+2023-07-03 04:57:16,552 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:57:16,621 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:57:16,622 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:57:16,622 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:57:16,622 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:57:20,683 Epoch: [28][0/1]	Time 2.107s (2.107s)	Speed 19.0 samples/s	Data 1.423s (1.423s)	Loss 0.00012 (0.00012)	Accuracy 0.997 (0.997)
+2023-07-03 04:57:22,886 Test: [0/3]	Time 2.080 (2.080)	Loss 0.0015 (0.0015)	Accuracy 0.012 (0.012)
+2023-07-03 04:57:23,549 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:57:23,614 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:57:23,614 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:57:23,614 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:57:23,615 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:57:27,509 Epoch: [29][0/1]	Time 1.926s (1.926s)	Speed 20.8 samples/s	Data 1.268s (1.268s)	Loss 0.00012 (0.00012)	Accuracy 0.997 (0.997)
+2023-07-03 04:57:29,747 Test: [0/3]	Time 2.136 (2.136)	Loss 0.0015 (0.0015)	Accuracy 0.007 (0.007)
+2023-07-03 04:57:30,323 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:57:30,388 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:57:30,388 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:57:30,388 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:57:30,389 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:57:34,508 Epoch: [30][0/1]	Time 2.014s (2.014s)	Speed 19.9 samples/s	Data 1.317s (1.317s)	Loss 0.00011 (0.00011)	Accuracy 0.997 (0.997)
+2023-07-03 04:57:36,717 Test: [0/3]	Time 2.102 (2.102)	Loss 0.0015 (0.0015)	Accuracy 0.007 (0.007)
+2023-07-03 04:57:37,292 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:57:37,357 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:57:37,357 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:57:37,357 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:57:37,358 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:57:40,911 Epoch: [31][0/1]	Time 1.898s (1.898s)	Speed 21.1 samples/s	Data 1.201s (1.201s)	Loss 0.00010 (0.00010)	Accuracy 0.997 (0.997)
+2023-07-03 04:57:43,082 Test: [0/3]	Time 2.046 (2.046)	Loss 0.0015 (0.0015)	Accuracy 0.007 (0.007)
+2023-07-03 04:57:43,737 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:57:43,809 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:57:43,809 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:57:43,809 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:57:43,810 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:57:47,795 Epoch: [32][0/1]	Time 1.989s (1.989s)	Speed 20.1 samples/s	Data 1.307s (1.307s)	Loss 0.00009 (0.00009)	Accuracy 0.997 (0.997)
+2023-07-03 04:57:49,932 Test: [0/3]	Time 2.014 (2.014)	Loss 0.0015 (0.0015)	Accuracy 0.007 (0.007)
+2023-07-03 04:57:50,568 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:57:50,637 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:57:50,637 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:57:50,637 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:57:50,638 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:57:54,429 Epoch: [33][0/1]	Time 1.861s (1.861s)	Speed 21.5 samples/s	Data 1.190s (1.190s)	Loss 0.00008 (0.00008)	Accuracy 0.997 (0.997)
+2023-07-03 04:57:56,602 Test: [0/3]	Time 2.066 (2.066)	Loss 0.0015 (0.0015)	Accuracy 0.009 (0.009)
+2023-07-03 04:57:57,258 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:57:57,322 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:57:57,322 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:57:57,322 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:57:57,323 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:58:01,115 Epoch: [34][0/1]	Time 1.965s (1.965s)	Speed 20.4 samples/s	Data 1.277s (1.277s)	Loss 0.00008 (0.00008)	Accuracy 0.997 (0.997)
+2023-07-03 04:58:03,267 Test: [0/3]	Time 2.021 (2.021)	Loss 0.0015 (0.0015)	Accuracy 0.007 (0.007)
+2023-07-03 04:58:03,900 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:58:03,976 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:58:03,976 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:58:03,976 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:58:03,977 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:58:07,836 Epoch: [35][0/1]	Time 1.990s (1.990s)	Speed 20.1 samples/s	Data 1.295s (1.295s)	Loss 0.00006 (0.00006)	Accuracy 0.997 (0.997)
+2023-07-03 04:58:09,968 Test: [0/3]	Time 1.995 (1.995)	Loss 0.0015 (0.0015)	Accuracy 0.003 (0.003)
+2023-07-03 04:58:10,631 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:58:10,698 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:58:10,698 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:58:10,698 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:58:10,699 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:58:14,805 Epoch: [36][0/1]	Time 1.916s (1.916s)	Speed 20.9 samples/s	Data 1.354s (1.354s)	Loss 0.00006 (0.00006)	Accuracy 0.997 (0.997)
+2023-07-03 04:58:17,088 Test: [0/3]	Time 2.147 (2.147)	Loss 0.0015 (0.0015)	Accuracy 0.003 (0.003)
+2023-07-03 04:58:17,760 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:58:17,825 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:58:17,825 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:58:17,825 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:58:17,826 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:58:21,782 Epoch: [37][0/1]	Time 1.993s (1.993s)	Speed 20.1 samples/s	Data 1.289s (1.289s)	Loss 0.00006 (0.00006)	Accuracy 0.997 (0.997)
+2023-07-03 04:58:23,875 Test: [0/3]	Time 1.960 (1.960)	Loss 0.0015 (0.0015)	Accuracy 0.002 (0.002)
+2023-07-03 04:58:24,440 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:58:24,506 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:58:24,507 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:58:24,507 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:58:24,508 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:58:28,453 Epoch: [38][0/1]	Time 2.046s (2.046s)	Speed 19.6 samples/s	Data 1.363s (1.363s)	Loss 0.00005 (0.00005)	Accuracy 0.997 (0.997)
+2023-07-03 04:58:30,704 Test: [0/3]	Time 2.124 (2.124)	Loss 0.0015 (0.0015)	Accuracy 0.005 (0.005)
+2023-07-03 04:58:31,334 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:58:31,400 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:58:31,400 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:58:31,400 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:58:31,401 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:58:35,364 Epoch: [39][0/1]	Time 2.052s (2.052s)	Speed 19.5 samples/s	Data 1.367s (1.367s)	Loss 0.00005 (0.00005)	Accuracy 0.997 (0.997)
+2023-07-03 04:58:37,619 Test: [0/3]	Time 2.119 (2.119)	Loss 0.0015 (0.0015)	Accuracy 0.012 (0.012)
+2023-07-03 04:58:38,250 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:58:38,313 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:58:38,313 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:58:38,313 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:58:38,314 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:58:42,286 Epoch: [40][0/1]	Time 2.010s (2.010s)	Speed 19.9 samples/s	Data 1.327s (1.327s)	Loss 0.00004 (0.00004)	Accuracy 0.997 (0.997)
+2023-07-03 04:58:44,326 Test: [0/3]	Time 1.942 (1.942)	Loss 0.0015 (0.0015)	Accuracy 0.038 (0.038)
+2023-07-03 04:58:45,001 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:58:45,068 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:58:45,068 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:58:45,068 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:58:45,069 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:58:49,284 Epoch: [41][0/1]	Time 1.997s (1.997s)	Speed 20.0 samples/s	Data 1.327s (1.327s)	Loss 0.00004 (0.00004)	Accuracy 0.997 (0.997)
+2023-07-03 04:58:51,440 Test: [0/3]	Time 2.020 (2.020)	Loss 0.0015 (0.0015)	Accuracy 0.054 (0.054)
+2023-07-03 04:58:52,082 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:58:52,149 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:58:52,149 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:58:52,149 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:58:52,150 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:58:56,102 Epoch: [42][0/1]	Time 2.107s (2.107s)	Speed 19.0 samples/s	Data 1.409s (1.409s)	Loss 0.00004 (0.00004)	Accuracy 0.997 (0.997)
+2023-07-03 04:58:58,221 Test: [0/3]	Time 1.972 (1.972)	Loss 0.0015 (0.0015)	Accuracy 0.062 (0.062)
+2023-07-03 04:58:58,881 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:58:58,956 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:58:58,956 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:58:58,956 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:58:58,957 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:59:02,936 Epoch: [43][0/1]	Time 1.976s (1.976s)	Speed 20.2 samples/s	Data 1.303s (1.303s)	Loss 0.00004 (0.00004)	Accuracy 0.997 (0.997)
+2023-07-03 04:59:05,162 Test: [0/3]	Time 2.076 (2.076)	Loss 0.0015 (0.0015)	Accuracy 0.059 (0.059)
+2023-07-03 04:59:05,866 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:59:05,940 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:59:05,941 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:59:05,941 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:59:05,942 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:59:09,851 Epoch: [44][0/1]	Time 2.003s (2.003s)	Speed 20.0 samples/s	Data 1.348s (1.348s)	Loss 0.00004 (0.00004)	Accuracy 0.997 (0.997)
+2023-07-03 04:59:12,018 Test: [0/3]	Time 2.038 (2.038)	Loss 0.0015 (0.0015)	Accuracy 0.069 (0.069)
+2023-07-03 04:59:12,628 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:59:12,698 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:59:12,698 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:59:12,698 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:59:12,699 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:59:16,492 Epoch: [45][0/1]	Time 1.936s (1.936s)	Speed 20.7 samples/s	Data 1.274s (1.274s)	Loss 0.00003 (0.00003)	Accuracy 0.997 (0.997)
+2023-07-03 04:59:18,734 Test: [0/3]	Time 2.122 (2.122)	Loss 0.0015 (0.0015)	Accuracy 0.087 (0.087)
+2023-07-03 04:59:19,420 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:59:19,488 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:59:19,488 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:59:19,488 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:59:19,489 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:59:23,461 Epoch: [46][0/1]	Time 1.954s (1.954s)	Speed 20.5 samples/s	Data 1.263s (1.263s)	Loss 0.00003 (0.00003)	Accuracy 0.997 (0.997)
+2023-07-03 04:59:25,725 Test: [0/3]	Time 2.113 (2.113)	Loss 0.0015 (0.0015)	Accuracy 0.118 (0.118)
+2023-07-03 04:59:26,376 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:59:26,454 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:59:26,454 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:59:26,454 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:59:26,455 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:59:30,444 Epoch: [47][0/1]	Time 1.985s (1.985s)	Speed 20.1 samples/s	Data 1.302s (1.302s)	Loss 0.00003 (0.00003)	Accuracy 1.000 (1.000)
+2023-07-03 04:59:32,686 Test: [0/3]	Time 2.110 (2.110)	Loss 0.0015 (0.0015)	Accuracy 0.127 (0.127)
+2023-07-03 04:59:33,383 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:59:33,455 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:59:33,455 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:59:33,455 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:59:33,456 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:59:37,510 Epoch: [48][0/1]	Time 2.104s (2.104s)	Speed 19.0 samples/s	Data 1.410s (1.410s)	Loss 0.00003 (0.00003)	Accuracy 1.000 (1.000)
+2023-07-03 04:59:39,697 Test: [0/3]	Time 2.051 (2.051)	Loss 0.0015 (0.0015)	Accuracy 0.132 (0.132)
+2023-07-03 04:59:40,322 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:59:40,401 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:59:40,401 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:59:40,401 | pose_hrnet_part | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+2023-07-03 04:59:40,402 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:59:44,697 Epoch: [49][0/1]	Time 2.250s (2.250s)	Speed 17.8 samples/s	Data 1.509s (1.509s)	Loss 0.00003 (0.00003)	Accuracy 0.997 (0.997)
+2023-07-03 04:59:46,840 Test: [0/3]	Time 2.001 (2.001)	Loss 0.0015 (0.0015)	Accuracy 0.155 (0.155)
+2023-07-03 04:59:47,471 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:59:47,540 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:59:47,540 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:59:47,540 | pose_hrnet_part | 0.000 | 0.001 | 0.000 | 0.000 | 0.000 | 0.002 | 0.020 | 0.000 | 0.000 | 0.002 |
+2023-07-03 04:59:47,541 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:59:51,382 Epoch: [50][0/1]	Time 2.000s (2.000s)	Speed 20.0 samples/s	Data 1.352s (1.352s)	Loss 0.00003 (0.00003)	Accuracy 0.997 (0.997)
+2023-07-03 04:59:53,719 Test: [0/3]	Time 2.228 (2.228)	Loss 0.0015 (0.0015)	Accuracy 0.184 (0.184)
+2023-07-03 04:59:54,401 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 04:59:54,465 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 04:59:54,465 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 04:59:54,465 | pose_hrnet_part | 0.000 | 0.002 | 0.000 | 0.000 | 0.000 | 0.003 | 0.033 | 0.000 | 0.000 | 0.004 |
+2023-07-03 04:59:54,466 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 04:59:58,472 Epoch: [51][0/1]	Time 2.092s (2.092s)	Speed 19.1 samples/s	Data 1.419s (1.419s)	Loss 0.00003 (0.00003)	Accuracy 0.997 (0.997)
+2023-07-03 05:00:00,605 Test: [0/3]	Time 2.008 (2.008)	Loss 0.0015 (0.0015)	Accuracy 0.200 (0.200)
+2023-07-03 05:00:01,222 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:00:01,289 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:00:01,290 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:00:01,290 | pose_hrnet_part | 0.002 | 0.016 | 0.000 | 0.000 | 0.002 | 0.012 | 0.073 | 0.000 | 0.000 | 0.013 |
+2023-07-03 05:00:01,291 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:00:05,511 Epoch: [52][0/1]	Time 2.132s (2.132s)	Speed 18.8 samples/s	Data 1.419s (1.419s)	Loss 0.00003 (0.00003)	Accuracy 0.997 (0.997)
+2023-07-03 05:00:07,641 Test: [0/3]	Time 2.024 (2.024)	Loss 0.0015 (0.0015)	Accuracy 0.222 (0.222)
+2023-07-03 05:00:08,288 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:00:08,367 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:00:08,367 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:00:08,368 | pose_hrnet_part | 0.003 | 0.026 | 0.000 | 0.000 | 0.003 | 0.019 | 0.120 | 0.007 | 0.000 | 0.020 |
+2023-07-03 05:00:08,369 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:00:12,313 Epoch: [53][0/1]	Time 2.078s (2.078s)	Speed 19.2 samples/s	Data 1.373s (1.373s)	Loss 0.00002 (0.00002)	Accuracy 0.997 (0.997)
+2023-07-03 05:00:14,610 Test: [0/3]	Time 2.142 (2.142)	Loss 0.0015 (0.0015)	Accuracy 0.250 (0.250)
+2023-07-03 05:00:15,273 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:00:15,341 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:00:15,341 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:00:15,341 | pose_hrnet_part | 0.004 | 0.029 | 0.000 | 0.000 | 0.004 | 0.025 | 0.127 | 0.007 | 0.000 | 0.027 |
+2023-07-03 05:00:15,342 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:00:19,280 Epoch: [54][0/1]	Time 1.984s (1.984s)	Speed 20.2 samples/s	Data 1.329s (1.329s)	Loss 0.00002 (0.00002)	Accuracy 0.997 (0.997)
+2023-07-03 05:00:21,410 Test: [0/3]	Time 2.020 (2.020)	Loss 0.0015 (0.0015)	Accuracy 0.278 (0.278)
+2023-07-03 05:00:22,131 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:00:22,205 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:00:22,205 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:00:22,205 | pose_hrnet_part | 0.010 | 0.049 | 0.001 | 0.010 | 0.010 | 0.047 | 0.180 | 0.013 | 0.009 | 0.050 |
+2023-07-03 05:00:22,206 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:00:26,037 Epoch: [55][0/1]	Time 1.961s (1.961s)	Speed 20.4 samples/s	Data 1.333s (1.333s)	Loss 0.00002 (0.00002)	Accuracy 1.000 (1.000)
+2023-07-03 05:00:28,200 Test: [0/3]	Time 2.059 (2.059)	Loss 0.0015 (0.0015)	Accuracy 0.302 (0.302)
+2023-07-03 05:00:28,859 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:00:28,927 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:00:28,927 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:00:28,927 | pose_hrnet_part | 0.015 | 0.061 | 0.003 | 0.010 | 0.016 | 0.076 | 0.213 | 0.053 | 0.009 | 0.081 |
+2023-07-03 05:00:28,928 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:00:32,773 Epoch: [56][0/1]	Time 2.079s (2.079s)	Speed 19.2 samples/s	Data 1.411s (1.411s)	Loss 0.00002 (0.00002)	Accuracy 0.997 (0.997)
+2023-07-03 05:00:34,966 Test: [0/3]	Time 2.074 (2.074)	Loss 0.0015 (0.0015)	Accuracy 0.337 (0.337)
+2023-07-03 05:00:35,567 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:00:35,634 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:00:35,634 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:00:35,634 | pose_hrnet_part | 0.020 | 0.081 | 0.003 | 0.010 | 0.022 | 0.088 | 0.240 | 0.047 | 0.009 | 0.094 |
+2023-07-03 05:00:35,635 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:00:39,351 Epoch: [57][0/1]	Time 1.905s (1.905s)	Speed 21.0 samples/s	Data 1.212s (1.212s)	Loss 0.00002 (0.00002)	Accuracy 1.000 (1.000)
+2023-07-03 05:00:41,664 Test: [0/3]	Time 2.185 (2.185)	Loss 0.0015 (0.0015)	Accuracy 0.351 (0.351)
+2023-07-03 05:00:42,372 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:00:42,445 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:00:42,445 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:00:42,445 | pose_hrnet_part | 0.030 | 0.101 | 0.019 | 0.032 | 0.031 | 0.112 | 0.287 | 0.087 | 0.036 | 0.118 |
+2023-07-03 05:00:42,447 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:00:46,354 Epoch: [58][0/1]	Time 1.909s (1.909s)	Speed 21.0 samples/s	Data 1.233s (1.233s)	Loss 0.00002 (0.00002)	Accuracy 0.997 (0.997)
+2023-07-03 05:00:48,569 Test: [0/3]	Time 2.081 (2.081)	Loss 0.0015 (0.0015)	Accuracy 0.375 (0.375)
+2023-07-03 05:00:49,215 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:00:49,280 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:00:49,280 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:00:49,280 | pose_hrnet_part | 0.033 | 0.107 | 0.018 | 0.022 | 0.035 | 0.122 | 0.300 | 0.087 | 0.027 | 0.129 |
+2023-07-03 05:00:49,281 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:00:53,147 Epoch: [59][0/1]	Time 2.034s (2.034s)	Speed 19.7 samples/s	Data 1.347s (1.347s)	Loss 0.00002 (0.00002)	Accuracy 0.997 (0.997)
+2023-07-03 05:00:55,241 Test: [0/3]	Time 1.966 (1.966)	Loss 0.0015 (0.0015)	Accuracy 0.396 (0.396)
+2023-07-03 05:00:55,925 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:00:55,993 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:00:55,993 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:00:55,993 | pose_hrnet_part | 0.044 | 0.121 | 0.027 | 0.060 | 0.045 | 0.147 | 0.327 | 0.127 | 0.082 | 0.152 |
+2023-07-03 05:00:55,994 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:00:59,690 Epoch: [60][0/1]	Time 1.859s (1.859s)	Speed 21.5 samples/s	Data 1.290s (1.290s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:01:02,005 Test: [0/3]	Time 2.167 (2.167)	Loss 0.0015 (0.0015)	Accuracy 0.406 (0.406)
+2023-07-03 05:01:02,687 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:01:02,753 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:01:02,753 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:01:02,753 | pose_hrnet_part | 0.051 | 0.139 | 0.031 | 0.076 | 0.051 | 0.163 | 0.353 | 0.140 | 0.109 | 0.167 |
+2023-07-03 05:01:02,754 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:01:06,578 Epoch: [61][0/1]	Time 1.995s (1.995s)	Speed 20.0 samples/s	Data 1.334s (1.334s)	Loss 0.00002 (0.00002)	Accuracy 1.000 (1.000)
+2023-07-03 05:01:08,770 Test: [0/3]	Time 2.058 (2.058)	Loss 0.0015 (0.0015)	Accuracy 0.410 (0.410)
+2023-07-03 05:01:09,463 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:01:09,533 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:01:09,534 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:01:09,534 | pose_hrnet_part | 0.053 | 0.151 | 0.034 | 0.069 | 0.054 | 0.161 | 0.367 | 0.140 | 0.091 | 0.167 |
+2023-07-03 05:01:09,535 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:01:13,399 Epoch: [62][0/1]	Time 2.017s (2.017s)	Speed 19.8 samples/s	Data 1.368s (1.368s)	Loss 0.00002 (0.00002)	Accuracy 1.000 (1.000)
+2023-07-03 05:01:15,557 Test: [0/3]	Time 2.056 (2.056)	Loss 0.0015 (0.0015)	Accuracy 0.422 (0.422)
+2023-07-03 05:01:16,231 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:01:16,298 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:01:16,298 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:01:16,298 | pose_hrnet_part | 0.053 | 0.163 | 0.030 | 0.061 | 0.056 | 0.166 | 0.387 | 0.133 | 0.091 | 0.172 |
+2023-07-03 05:01:16,299 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:01:20,265 Epoch: [63][0/1]	Time 2.058s (2.058s)	Speed 19.4 samples/s	Data 1.356s (1.356s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:01:22,693 Test: [0/3]	Time 2.274 (2.274)	Loss 0.0015 (0.0015)	Accuracy 0.450 (0.450)
+2023-07-03 05:01:23,348 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:01:23,410 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:01:23,410 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:01:23,410 | pose_hrnet_part | 0.058 | 0.173 | 0.036 | 0.043 | 0.062 | 0.179 | 0.400 | 0.153 | 0.091 | 0.186 |
+2023-07-03 05:01:23,411 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:01:27,303 Epoch: [64][0/1]	Time 2.010s (2.010s)	Speed 19.9 samples/s	Data 1.330s (1.330s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:01:29,562 Test: [0/3]	Time 2.109 (2.109)	Loss 0.0015 (0.0015)	Accuracy 0.460 (0.460)
+2023-07-03 05:01:30,287 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:01:30,358 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:01:30,359 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:01:30,359 | pose_hrnet_part | 0.063 | 0.182 | 0.042 | 0.047 | 0.066 | 0.189 | 0.413 | 0.173 | 0.100 | 0.196 |
+2023-07-03 05:01:30,360 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:01:34,368 Epoch: [65][0/1]	Time 1.897s (1.897s)	Speed 21.1 samples/s	Data 1.226s (1.226s)	Loss 0.00002 (0.00002)	Accuracy 1.000 (1.000)
+2023-07-03 05:01:36,518 Test: [0/3]	Time 2.011 (2.011)	Loss 0.0015 (0.0015)	Accuracy 0.462 (0.462)
+2023-07-03 05:01:37,154 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:01:37,219 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:01:37,219 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:01:37,219 | pose_hrnet_part | 0.072 | 0.202 | 0.044 | 0.046 | 0.076 | 0.203 | 0.433 | 0.180 | 0.109 | 0.211 |
+2023-07-03 05:01:37,220 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:01:41,627 Epoch: [66][0/1]	Time 2.171s (2.171s)	Speed 18.4 samples/s	Data 1.489s (1.489s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:01:43,755 Test: [0/3]	Time 2.019 (2.019)	Loss 0.0015 (0.0015)	Accuracy 0.486 (0.486)
+2023-07-03 05:01:44,400 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:01:44,470 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:01:44,470 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:01:44,470 | pose_hrnet_part | 0.080 | 0.222 | 0.045 | 0.051 | 0.085 | 0.215 | 0.453 | 0.180 | 0.127 | 0.222 |
+2023-07-03 05:01:44,471 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:01:48,127 Epoch: [67][0/1]	Time 1.894s (1.894s)	Speed 21.1 samples/s	Data 1.296s (1.296s)	Loss 0.00002 (0.00002)	Accuracy 1.000 (1.000)
+2023-07-03 05:01:50,496 Test: [0/3]	Time 2.246 (2.246)	Loss 0.0015 (0.0015)	Accuracy 0.502 (0.502)
+2023-07-03 05:01:51,205 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:01:51,281 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:01:51,281 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:01:51,282 | pose_hrnet_part | 0.088 | 0.245 | 0.054 | 0.058 | 0.094 | 0.232 | 0.487 | 0.207 | 0.136 | 0.240 |
+2023-07-03 05:01:51,283 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:01:55,125 Epoch: [68][0/1]	Time 2.057s (2.057s)	Speed 19.4 samples/s	Data 1.356s (1.356s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:01:57,336 Test: [0/3]	Time 2.077 (2.077)	Loss 0.0015 (0.0015)	Accuracy 0.509 (0.509)
+2023-07-03 05:01:57,910 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:01:57,984 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:01:57,984 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:01:57,984 | pose_hrnet_part | 0.089 | 0.245 | 0.056 | 0.049 | 0.095 | 0.234 | 0.487 | 0.213 | 0.118 | 0.243 |
+2023-07-03 05:01:57,985 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:02:02,015 Epoch: [69][0/1]	Time 2.007s (2.007s)	Speed 19.9 samples/s	Data 1.331s (1.331s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:02:04,121 Test: [0/3]	Time 2.002 (2.002)	Loss 0.0015 (0.0015)	Accuracy 0.521 (0.521)
+2023-07-03 05:02:04,807 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:02:04,884 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:02:04,884 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:02:04,884 | pose_hrnet_part | 0.097 | 0.268 | 0.062 | 0.053 | 0.105 | 0.245 | 0.507 | 0.220 | 0.136 | 0.254 |
+2023-07-03 05:02:04,885 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:02:08,742 Epoch: [70][0/1]	Time 2.000s (2.000s)	Speed 20.0 samples/s	Data 1.319s (1.319s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:02:11,042 Test: [0/3]	Time 2.194 (2.194)	Loss 0.0015 (0.0015)	Accuracy 0.514 (0.514)
+2023-07-03 05:02:11,679 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:02:11,741 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:02:11,741 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:02:11,741 | pose_hrnet_part | 0.101 | 0.264 | 0.062 | 0.061 | 0.108 | 0.250 | 0.500 | 0.220 | 0.145 | 0.258 |
+2023-07-03 05:02:11,742 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:02:15,848 Epoch: [71][0/1]	Time 2.158s (2.158s)	Speed 18.5 samples/s	Data 1.470s (1.470s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:02:18,071 Test: [0/3]	Time 2.091 (2.091)	Loss 0.0015 (0.0015)	Accuracy 0.514 (0.514)
+2023-07-03 05:02:18,691 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:02:18,769 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:02:18,769 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:02:18,770 | pose_hrnet_part | 0.098 | 0.255 | 0.054 | 0.060 | 0.107 | 0.247 | 0.493 | 0.207 | 0.145 | 0.255 |
+2023-07-03 05:02:18,772 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:02:21,957 Epoch: [72][0/1]	Time 1.980s (1.980s)	Speed 20.2 samples/s	Data 1.296s (1.296s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:02:24,099 Test: [0/3]	Time 2.037 (2.037)	Loss 0.0015 (0.0015)	Accuracy 0.526 (0.526)
+2023-07-03 05:02:24,715 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:02:24,779 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:02:24,779 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:02:24,779 | pose_hrnet_part | 0.100 | 0.275 | 0.061 | 0.036 | 0.111 | 0.248 | 0.513 | 0.220 | 0.164 | 0.255 |
+2023-07-03 05:02:24,780 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:02:27,801 Epoch: [73][0/1]	Time 1.994s (1.994s)	Speed 20.1 samples/s	Data 1.308s (1.308s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:02:29,879 Test: [0/3]	Time 1.976 (1.976)	Loss 0.0014 (0.0014)	Accuracy 0.516 (0.516)
+2023-07-03 05:02:30,510 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:02:30,577 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:02:30,577 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:02:30,577 | pose_hrnet_part | 0.125 | 0.298 | 0.093 | 0.039 | 0.136 | 0.251 | 0.507 | 0.213 | 0.164 | 0.258 |
+2023-07-03 05:02:30,578 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:02:34,425 Epoch: [74][0/1]	Time 2.010s (2.010s)	Speed 19.9 samples/s	Data 1.291s (1.291s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:02:36,528 Test: [0/3]	Time 1.990 (1.990)	Loss 0.0014 (0.0014)	Accuracy 0.536 (0.536)
+2023-07-03 05:02:37,116 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:02:37,190 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:02:37,190 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:02:37,190 | pose_hrnet_part | 0.144 | 0.321 | 0.126 | 0.050 | 0.153 | 0.259 | 0.513 | 0.240 | 0.173 | 0.266 |
+2023-07-03 05:02:37,191 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:02:40,974 Epoch: [75][0/1]	Time 1.960s (1.960s)	Speed 20.4 samples/s	Data 1.495s (1.495s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:02:43,214 Test: [0/3]	Time 2.113 (2.113)	Loss 0.0014 (0.0014)	Accuracy 0.538 (0.538)
+2023-07-03 05:02:43,945 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:02:44,016 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:02:44,016 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:02:44,016 | pose_hrnet_part | 0.163 | 0.362 | 0.149 | 0.095 | 0.169 | 0.261 | 0.527 | 0.233 | 0.164 | 0.269 |
+2023-07-03 05:02:44,017 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:02:48,603 Epoch: [76][0/1]	Time 2.233s (2.233s)	Speed 17.9 samples/s	Data 1.531s (1.531s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:02:50,825 Test: [0/3]	Time 2.096 (2.096)	Loss 0.0014 (0.0014)	Accuracy 0.556 (0.556)
+2023-07-03 05:02:51,494 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:02:51,560 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:02:51,560 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:02:51,560 | pose_hrnet_part | 0.183 | 0.406 | 0.166 | 0.089 | 0.193 | 0.273 | 0.540 | 0.240 | 0.155 | 0.283 |
+2023-07-03 05:02:51,561 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:02:55,351 Epoch: [77][0/1]	Time 1.986s (1.986s)	Speed 20.1 samples/s	Data 1.328s (1.328s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:02:57,614 Test: [0/3]	Time 2.113 (2.113)	Loss 0.0014 (0.0014)	Accuracy 0.550 (0.550)
+2023-07-03 05:02:58,256 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:02:58,324 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:02:58,324 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:02:58,324 | pose_hrnet_part | 0.196 | 0.451 | 0.179 | 0.092 | 0.207 | 0.279 | 0.573 | 0.253 | 0.173 | 0.287 |
+2023-07-03 05:02:58,325 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:03:01,959 Epoch: [78][0/1]	Time 1.875s (1.875s)	Speed 21.3 samples/s	Data 1.265s (1.265s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:03:04,244 Test: [0/3]	Time 2.174 (2.174)	Loss 0.0014 (0.0014)	Accuracy 0.552 (0.552)
+2023-07-03 05:03:04,911 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:03:04,977 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:03:04,977 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:03:04,977 | pose_hrnet_part | 0.201 | 0.485 | 0.171 | 0.073 | 0.214 | 0.283 | 0.587 | 0.260 | 0.182 | 0.291 |
+2023-07-03 05:03:04,978 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:03:09,044 Epoch: [79][0/1]	Time 2.065s (2.065s)	Speed 19.4 samples/s	Data 1.374s (1.374s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:03:11,213 Test: [0/3]	Time 2.053 (2.053)	Loss 0.0014 (0.0014)	Accuracy 0.561 (0.561)
+2023-07-03 05:03:11,904 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:03:11,990 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:03:11,990 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:03:11,990 | pose_hrnet_part | 0.207 | 0.487 | 0.173 | 0.122 | 0.220 | 0.280 | 0.580 | 0.247 | 0.164 | 0.289 |
+2023-07-03 05:03:11,991 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:03:15,985 Epoch: [80][0/1]	Time 2.134s (2.134s)	Speed 18.7 samples/s	Data 1.466s (1.466s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:03:18,232 Test: [0/3]	Time 2.137 (2.137)	Loss 0.0014 (0.0014)	Accuracy 0.562 (0.562)
+2023-07-03 05:03:18,906 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:03:18,978 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:03:18,979 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:03:18,979 | pose_hrnet_part | 0.221 | 0.508 | 0.189 | 0.110 | 0.236 | 0.279 | 0.573 | 0.253 | 0.155 | 0.289 |
+2023-07-03 05:03:18,979 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:03:22,899 Epoch: [81][0/1]	Time 2.099s (2.099s)	Speed 19.1 samples/s	Data 1.392s (1.392s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:03:25,225 Test: [0/3]	Time 2.193 (2.193)	Loss 0.0014 (0.0014)	Accuracy 0.559 (0.559)
+2023-07-03 05:03:25,894 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:03:25,971 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:03:25,972 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:03:25,972 | pose_hrnet_part | 0.211 | 0.512 | 0.175 | 0.113 | 0.223 | 0.281 | 0.573 | 0.253 | 0.173 | 0.289 |
+2023-07-03 05:03:25,973 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:03:29,152 Epoch: [82][0/1]	Time 1.983s (1.983s)	Speed 20.2 samples/s	Data 1.306s (1.306s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:03:31,269 Test: [0/3]	Time 2.011 (2.011)	Loss 0.0014 (0.0014)	Accuracy 0.556 (0.556)
+2023-07-03 05:03:31,946 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:03:32,020 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:03:32,020 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:03:32,020 | pose_hrnet_part | 0.218 | 0.514 | 0.184 | 0.122 | 0.232 | 0.286 | 0.573 | 0.267 | 0.182 | 0.294 |
+2023-07-03 05:03:32,021 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:03:35,147 Epoch: [83][0/1]	Time 2.101s (2.101s)	Speed 19.0 samples/s	Data 1.407s (1.407s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:03:37,272 Test: [0/3]	Time 1.997 (1.997)	Loss 0.0013 (0.0013)	Accuracy 0.554 (0.554)
+2023-07-03 05:03:37,924 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:03:38,006 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:03:38,007 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:03:38,007 | pose_hrnet_part | 0.214 | 0.517 | 0.176 | 0.128 | 0.227 | 0.283 | 0.573 | 0.267 | 0.182 | 0.291 |
+2023-07-03 05:03:38,008 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:03:40,966 Epoch: [84][0/1]	Time 1.959s (1.959s)	Speed 20.4 samples/s	Data 1.342s (1.342s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:03:43,291 Test: [0/3]	Time 2.191 (2.191)	Loss 0.0013 (0.0013)	Accuracy 0.561 (0.561)
+2023-07-03 05:03:43,986 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:03:44,056 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:03:44,056 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:03:44,057 | pose_hrnet_part | 0.209 | 0.528 | 0.182 | 0.136 | 0.220 | 0.278 | 0.580 | 0.273 | 0.173 | 0.286 |
+2023-07-03 05:03:44,058 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:03:47,349 Epoch: [85][0/1]	Time 2.040s (2.040s)	Speed 19.6 samples/s	Data 1.359s (1.359s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:03:49,578 Test: [0/3]	Time 2.103 (2.103)	Loss 0.0013 (0.0013)	Accuracy 0.561 (0.561)
+2023-07-03 05:03:50,244 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:03:50,313 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:03:50,314 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:03:50,314 | pose_hrnet_part | 0.222 | 0.544 | 0.201 | 0.146 | 0.235 | 0.282 | 0.593 | 0.267 | 0.173 | 0.291 |
+2023-07-03 05:03:50,315 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:03:54,318 Epoch: [86][0/1]	Time 2.154s (2.154s)	Speed 18.6 samples/s	Data 1.463s (1.463s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:03:56,460 Test: [0/3]	Time 2.010 (2.010)	Loss 0.0013 (0.0013)	Accuracy 0.569 (0.569)
+2023-07-03 05:03:57,101 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:03:57,178 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:03:57,178 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:03:57,178 | pose_hrnet_part | 0.229 | 0.546 | 0.210 | 0.178 | 0.240 | 0.287 | 0.593 | 0.273 | 0.200 | 0.294 |
+2023-07-03 05:03:57,179 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:04:00,944 Epoch: [87][0/1]	Time 1.979s (1.979s)	Speed 20.2 samples/s	Data 1.277s (1.277s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:04:03,217 Test: [0/3]	Time 2.124 (2.124)	Loss 0.0013 (0.0013)	Accuracy 0.569 (0.569)
+2023-07-03 05:04:03,933 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:04:03,999 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:04:03,999 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:04:03,999 | pose_hrnet_part | 0.228 | 0.554 | 0.195 | 0.175 | 0.238 | 0.292 | 0.593 | 0.267 | 0.182 | 0.301 |
+2023-07-03 05:04:04,000 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:04:07,145 Epoch: [88][0/1]	Time 1.911s (1.911s)	Speed 20.9 samples/s	Data 1.244s (1.244s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:04:09,372 Test: [0/3]	Time 2.094 (2.094)	Loss 0.0013 (0.0013)	Accuracy 0.571 (0.571)
+2023-07-03 05:04:10,048 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:04:10,123 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:04:10,123 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:04:10,123 | pose_hrnet_part | 0.227 | 0.550 | 0.178 | 0.166 | 0.238 | 0.293 | 0.593 | 0.273 | 0.182 | 0.302 |
+2023-07-03 05:04:10,124 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:04:13,360 Epoch: [89][0/1]	Time 2.063s (2.063s)	Speed 19.4 samples/s	Data 1.363s (1.363s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:04:15,582 Test: [0/3]	Time 2.080 (2.080)	Loss 0.0013 (0.0013)	Accuracy 0.571 (0.571)
+2023-07-03 05:04:16,253 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:04:16,321 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:04:16,321 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:04:16,321 | pose_hrnet_part | 0.238 | 0.562 | 0.207 | 0.167 | 0.247 | 0.293 | 0.607 | 0.280 | 0.182 | 0.301 |
+2023-07-03 05:04:16,322 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:04:20,354 Epoch: [90][0/1]	Time 2.052s (2.052s)	Speed 19.5 samples/s	Data 1.349s (1.349s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:04:22,672 Test: [0/3]	Time 2.176 (2.176)	Loss 0.0012 (0.0012)	Accuracy 0.569 (0.569)
+2023-07-03 05:04:23,317 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:04:23,384 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:04:23,384 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:04:23,384 | pose_hrnet_part | 0.237 | 0.550 | 0.214 | 0.158 | 0.250 | 0.291 | 0.600 | 0.280 | 0.182 | 0.299 |
+2023-07-03 05:04:23,385 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:04:26,576 Epoch: [91][0/1]	Time 2.211s (2.211s)	Speed 18.1 samples/s	Data 1.537s (1.537s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:04:28,743 Test: [0/3]	Time 2.062 (2.062)	Loss 0.0012 (0.0012)	Accuracy 0.566 (0.566)
+2023-07-03 05:04:29,435 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:04:29,515 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:04:29,515 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:04:29,515 | pose_hrnet_part | 0.237 | 0.546 | 0.195 | 0.158 | 0.248 | 0.291 | 0.600 | 0.260 | 0.191 | 0.299 |
+2023-07-03 05:04:29,516 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:04:32,607 Epoch: [92][0/1]	Time 2.067s (2.067s)	Speed 19.3 samples/s	Data 1.376s (1.376s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:04:34,704 Test: [0/3]	Time 1.957 (1.957)	Loss 0.0012 (0.0012)	Accuracy 0.562 (0.562)
+2023-07-03 05:04:35,399 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:04:35,468 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:04:35,468 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:04:35,468 | pose_hrnet_part | 0.235 | 0.526 | 0.195 | 0.162 | 0.246 | 0.291 | 0.587 | 0.260 | 0.200 | 0.298 |
+2023-07-03 05:04:35,469 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:04:38,485 Epoch: [93][0/1]	Time 2.028s (2.028s)	Speed 19.7 samples/s	Data 1.354s (1.354s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:04:40,763 Test: [0/3]	Time 2.142 (2.142)	Loss 0.0012 (0.0012)	Accuracy 0.569 (0.569)
+2023-07-03 05:04:41,435 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:04:41,508 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:04:41,508 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:04:41,508 | pose_hrnet_part | 0.238 | 0.527 | 0.209 | 0.154 | 0.250 | 0.291 | 0.587 | 0.280 | 0.191 | 0.299 |
+2023-07-03 05:04:41,509 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:04:45,503 Epoch: [94][0/1]	Time 2.005s (2.005s)	Speed 20.0 samples/s	Data 1.313s (1.313s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:04:47,789 Test: [0/3]	Time 2.152 (2.152)	Loss 0.0012 (0.0012)	Accuracy 0.571 (0.571)
+2023-07-03 05:04:48,439 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:04:48,503 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:04:48,504 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:04:48,504 | pose_hrnet_part | 0.236 | 0.524 | 0.218 | 0.133 | 0.250 | 0.291 | 0.587 | 0.287 | 0.182 | 0.300 |
+2023-07-03 05:04:48,504 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:04:51,583 Epoch: [95][0/1]	Time 2.086s (2.086s)	Speed 19.2 samples/s	Data 1.387s (1.387s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:04:53,726 Test: [0/3]	Time 1.988 (1.988)	Loss 0.0012 (0.0012)	Accuracy 0.571 (0.571)
+2023-07-03 05:04:54,366 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:04:54,433 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:04:54,433 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:04:54,433 | pose_hrnet_part | 0.233 | 0.524 | 0.207 | 0.138 | 0.244 | 0.291 | 0.580 | 0.280 | 0.182 | 0.299 |
+2023-07-03 05:04:54,434 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:04:57,526 Epoch: [96][0/1]	Time 2.019s (2.019s)	Speed 19.8 samples/s	Data 1.355s (1.355s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:04:59,856 Test: [0/3]	Time 2.174 (2.174)	Loss 0.0012 (0.0012)	Accuracy 0.568 (0.568)
+2023-07-03 05:05:00,556 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:05:00,628 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:05:00,628 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:05:00,628 | pose_hrnet_part | 0.232 | 0.526 | 0.209 | 0.134 | 0.247 | 0.290 | 0.593 | 0.273 | 0.182 | 0.299 |
+2023-07-03 05:05:00,629 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:05:03,661 Epoch: [97][0/1]	Time 1.953s (1.953s)	Speed 20.5 samples/s	Data 1.344s (1.344s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:05:05,852 Test: [0/3]	Time 2.094 (2.094)	Loss 0.0012 (0.0012)	Accuracy 0.575 (0.575)
+2023-07-03 05:05:06,526 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:05:06,602 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:05:06,602 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:05:06,602 | pose_hrnet_part | 0.233 | 0.526 | 0.221 | 0.135 | 0.247 | 0.288 | 0.587 | 0.280 | 0.182 | 0.296 |
+2023-07-03 05:05:06,603 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:05:09,743 Epoch: [98][0/1]	Time 2.040s (2.040s)	Speed 19.6 samples/s	Data 1.343s (1.343s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:05:12,046 Test: [0/3]	Time 2.187 (2.187)	Loss 0.0011 (0.0011)	Accuracy 0.580 (0.580)
+2023-07-03 05:05:12,683 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:05:12,762 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:05:12,762 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:05:12,762 | pose_hrnet_part | 0.240 | 0.548 | 0.231 | 0.155 | 0.252 | 0.296 | 0.600 | 0.293 | 0.209 | 0.303 |
+2023-07-03 05:05:12,763 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:05:16,620 Epoch: [99][0/1]	Time 1.959s (1.959s)	Speed 20.4 samples/s	Data 1.263s (1.263s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:05:18,854 Test: [0/3]	Time 2.091 (2.091)	Loss 0.0011 (0.0011)	Accuracy 0.576 (0.576)
+2023-07-03 05:05:19,573 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:05:19,647 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:05:19,647 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:05:19,647 | pose_hrnet_part | 0.237 | 0.530 | 0.213 | 0.120 | 0.251 | 0.293 | 0.587 | 0.280 | 0.191 | 0.301 |
+2023-07-03 05:05:19,648 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:05:22,859 Epoch: [100][0/1]	Time 2.074s (2.074s)	Speed 19.3 samples/s	Data 1.355s (1.355s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:05:25,098 Test: [0/3]	Time 2.104 (2.104)	Loss 0.0011 (0.0011)	Accuracy 0.569 (0.569)
+2023-07-03 05:05:25,773 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:05:25,853 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:05:25,853 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:05:25,853 | pose_hrnet_part | 0.238 | 0.554 | 0.212 | 0.114 | 0.252 | 0.291 | 0.600 | 0.280 | 0.182 | 0.300 |
+2023-07-03 05:05:25,854 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:05:28,892 Epoch: [101][0/1]	Time 2.039s (2.039s)	Speed 19.6 samples/s	Data 1.341s (1.341s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:05:31,183 Test: [0/3]	Time 2.148 (2.148)	Loss 0.0011 (0.0011)	Accuracy 0.578 (0.578)
+2023-07-03 05:05:31,846 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:05:31,924 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:05:31,924 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:05:31,925 | pose_hrnet_part | 0.246 | 0.546 | 0.218 | 0.132 | 0.259 | 0.294 | 0.593 | 0.280 | 0.173 | 0.304 |
+2023-07-03 05:05:31,926 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:05:35,908 Epoch: [102][0/1]	Time 1.923s (1.923s)	Speed 20.8 samples/s	Data 1.256s (1.256s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:05:38,092 Test: [0/3]	Time 2.060 (2.060)	Loss 0.0011 (0.0011)	Accuracy 0.582 (0.582)
+2023-07-03 05:05:38,841 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:05:38,909 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:05:38,909 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:05:38,909 | pose_hrnet_part | 0.249 | 0.559 | 0.230 | 0.144 | 0.261 | 0.295 | 0.600 | 0.287 | 0.191 | 0.304 |
+2023-07-03 05:05:38,910 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:05:42,469 Epoch: [103][0/1]	Time 2.022s (2.022s)	Speed 19.8 samples/s	Data 1.396s (1.396s)	Loss 0.00001 (0.00001)	Accuracy 1.000 (1.000)
+2023-07-03 05:05:44,561 Test: [0/3]	Time 1.967 (1.967)	Loss 0.0011 (0.0011)	Accuracy 0.580 (0.580)
+2023-07-03 05:05:45,175 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:05:45,245 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:05:45,245 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:05:45,245 | pose_hrnet_part | 0.248 | 0.549 | 0.233 | 0.130 | 0.259 | 0.293 | 0.600 | 0.280 | 0.173 | 0.303 |
+2023-07-03 05:05:45,246 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:05:48,265 Epoch: [104][0/1]	Time 1.955s (1.955s)	Speed 20.5 samples/s	Data 1.318s (1.318s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:05:50,388 Test: [0/3]	Time 1.980 (1.980)	Loss 0.0011 (0.0011)	Accuracy 0.582 (0.582)
+2023-07-03 05:05:51,095 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:05:51,161 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:05:51,161 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:05:51,161 | pose_hrnet_part | 0.252 | 0.552 | 0.242 | 0.131 | 0.263 | 0.293 | 0.600 | 0.280 | 0.164 | 0.304 |
+2023-07-03 05:05:51,162 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:05:54,982 Epoch: [105][0/1]	Time 1.992s (1.992s)	Speed 20.1 samples/s	Data 1.358s (1.358s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:05:57,109 Test: [0/3]	Time 2.015 (2.015)	Loss 0.0011 (0.0011)	Accuracy 0.583 (0.583)
+2023-07-03 05:05:57,760 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:05:57,827 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:05:57,827 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:05:57,827 | pose_hrnet_part | 0.250 | 0.566 | 0.238 | 0.129 | 0.263 | 0.296 | 0.613 | 0.287 | 0.182 | 0.305 |
+2023-07-03 05:05:57,828 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:06:00,799 Epoch: [106][0/1]	Time 1.967s (1.967s)	Speed 20.3 samples/s	Data 1.290s (1.290s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:06:02,942 Test: [0/3]	Time 1.983 (1.983)	Loss 0.0011 (0.0011)	Accuracy 0.589 (0.589)
+2023-07-03 05:06:03,569 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:06:03,635 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:06:03,635 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:06:03,635 | pose_hrnet_part | 0.256 | 0.562 | 0.250 | 0.141 | 0.266 | 0.302 | 0.613 | 0.300 | 0.209 | 0.309 |
+2023-07-03 05:06:03,636 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:06:07,346 Epoch: [107][0/1]	Time 1.877s (1.877s)	Speed 21.3 samples/s	Data 1.216s (1.216s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:06:09,458 Test: [0/3]	Time 1.976 (1.976)	Loss 0.0011 (0.0011)	Accuracy 0.590 (0.590)
+2023-07-03 05:06:10,138 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:06:10,212 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:06:10,212 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:06:10,212 | pose_hrnet_part | 0.260 | 0.573 | 0.248 | 0.154 | 0.272 | 0.303 | 0.620 | 0.293 | 0.200 | 0.312 |
+2023-07-03 05:06:10,213 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:06:13,957 Epoch: [108][0/1]	Time 1.930s (1.930s)	Speed 20.7 samples/s	Data 1.238s (1.238s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:06:16,044 Test: [0/3]	Time 1.973 (1.973)	Loss 0.0011 (0.0011)	Accuracy 0.594 (0.594)
+2023-07-03 05:06:16,674 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:06:16,740 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:06:16,740 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:06:16,740 | pose_hrnet_part | 0.257 | 0.555 | 0.249 | 0.138 | 0.269 | 0.298 | 0.607 | 0.293 | 0.182 | 0.307 |
+2023-07-03 05:06:16,741 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:06:19,888 Epoch: [109][0/1]	Time 1.955s (1.955s)	Speed 20.5 samples/s	Data 1.332s (1.332s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:06:21,919 Test: [0/3]	Time 1.917 (1.917)	Loss 0.0011 (0.0011)	Accuracy 0.592 (0.592)
+2023-07-03 05:06:22,541 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:06:22,614 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:06:22,614 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:06:22,615 | pose_hrnet_part | 0.262 | 0.566 | 0.257 | 0.154 | 0.272 | 0.304 | 0.613 | 0.300 | 0.200 | 0.312 |
+2023-07-03 05:06:22,615 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:06:26,487 Epoch: [110][0/1]	Time 1.833s (1.833s)	Speed 21.8 samples/s	Data 1.226s (1.226s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:06:28,700 Test: [0/3]	Time 2.058 (2.058)	Loss 0.0011 (0.0011)	Accuracy 0.587 (0.587)
+2023-07-03 05:06:29,363 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:06:29,429 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:06:29,430 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:06:29,430 | pose_hrnet_part | 0.257 | 0.557 | 0.252 | 0.174 | 0.266 | 0.303 | 0.613 | 0.300 | 0.218 | 0.310 |
+2023-07-03 05:06:29,430 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:06:32,383 Epoch: [111][0/1]	Time 1.953s (1.953s)	Speed 20.5 samples/s	Data 1.339s (1.339s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:06:34,524 Test: [0/3]	Time 1.984 (1.984)	Loss 0.0010 (0.0010)	Accuracy 0.583 (0.583)
+2023-07-03 05:06:35,160 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:06:35,234 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:06:35,234 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:06:35,234 | pose_hrnet_part | 0.256 | 0.571 | 0.243 | 0.168 | 0.266 | 0.304 | 0.620 | 0.293 | 0.227 | 0.310 |
+2023-07-03 05:06:35,235 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:06:38,294 Epoch: [112][0/1]	Time 2.004s (2.004s)	Speed 20.0 samples/s	Data 1.343s (1.343s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:06:40,471 Test: [0/3]	Time 2.023 (2.023)	Loss 0.0010 (0.0010)	Accuracy 0.590 (0.590)
+2023-07-03 05:06:41,105 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:06:41,174 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:06:41,174 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:06:41,174 | pose_hrnet_part | 0.253 | 0.567 | 0.237 | 0.154 | 0.265 | 0.299 | 0.613 | 0.287 | 0.191 | 0.308 |
+2023-07-03 05:06:41,175 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:06:44,348 Epoch: [113][0/1]	Time 1.951s (1.951s)	Speed 20.5 samples/s	Data 1.322s (1.322s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:06:46,457 Test: [0/3]	Time 1.989 (1.989)	Loss 0.0010 (0.0010)	Accuracy 0.602 (0.602)
+2023-07-03 05:06:47,086 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:06:47,153 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:06:47,153 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:06:47,153 | pose_hrnet_part | 0.261 | 0.565 | 0.241 | 0.161 | 0.272 | 0.305 | 0.613 | 0.287 | 0.209 | 0.312 |
+2023-07-03 05:06:47,154 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:06:50,119 Epoch: [114][0/1]	Time 2.000s (2.000s)	Speed 20.0 samples/s	Data 1.370s (1.370s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:06:52,148 Test: [0/3]	Time 1.894 (1.894)	Loss 0.0010 (0.0010)	Accuracy 0.594 (0.594)
+2023-07-03 05:06:52,780 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:06:52,847 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:06:52,847 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:06:52,847 | pose_hrnet_part | 0.259 | 0.562 | 0.234 | 0.160 | 0.271 | 0.305 | 0.613 | 0.280 | 0.200 | 0.313 |
+2023-07-03 05:06:52,848 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:06:55,952 Epoch: [115][0/1]	Time 1.867s (1.867s)	Speed 21.4 samples/s	Data 1.268s (1.268s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:06:58,025 Test: [0/3]	Time 1.938 (1.938)	Loss 0.0010 (0.0010)	Accuracy 0.595 (0.595)
+2023-07-03 05:06:58,691 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:06:58,763 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:06:58,763 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:06:58,763 | pose_hrnet_part | 0.261 | 0.572 | 0.244 | 0.142 | 0.274 | 0.305 | 0.620 | 0.293 | 0.200 | 0.314 |
+2023-07-03 05:06:58,764 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:07:01,719 Epoch: [116][0/1]	Time 1.892s (1.892s)	Speed 21.1 samples/s	Data 1.268s (1.268s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:07:03,892 Test: [0/3]	Time 2.004 (2.004)	Loss 0.0010 (0.0010)	Accuracy 0.590 (0.590)
+2023-07-03 05:07:04,530 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:07:04,596 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:07:04,596 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:07:04,596 | pose_hrnet_part | 0.258 | 0.554 | 0.242 | 0.147 | 0.271 | 0.302 | 0.600 | 0.293 | 0.182 | 0.312 |
+2023-07-03 05:07:04,597 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:07:07,643 Epoch: [117][0/1]	Time 1.938s (1.938s)	Speed 20.6 samples/s	Data 1.308s (1.308s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:07:09,736 Test: [0/3]	Time 1.960 (1.960)	Loss 0.0010 (0.0010)	Accuracy 0.592 (0.592)
+2023-07-03 05:07:10,312 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:07:10,381 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:07:10,381 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:07:10,381 | pose_hrnet_part | 0.255 | 0.552 | 0.237 | 0.154 | 0.268 | 0.302 | 0.607 | 0.287 | 0.200 | 0.310 |
+2023-07-03 05:07:10,382 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:07:13,359 Epoch: [118][0/1]	Time 1.929s (1.929s)	Speed 20.7 samples/s	Data 1.318s (1.318s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:07:15,461 Test: [0/3]	Time 1.954 (1.954)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:07:16,116 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:07:16,186 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:07:16,186 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:07:16,186 | pose_hrnet_part | 0.250 | 0.538 | 0.237 | 0.132 | 0.262 | 0.295 | 0.593 | 0.287 | 0.191 | 0.304 |
+2023-07-03 05:07:16,187 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:07:19,147 Epoch: [119][0/1]	Time 1.943s (1.943s)	Speed 20.6 samples/s	Data 1.319s (1.319s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:07:21,308 Test: [0/3]	Time 2.015 (2.015)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:07:21,895 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:07:21,961 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:07:21,961 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:07:21,961 | pose_hrnet_part | 0.254 | 0.556 | 0.237 | 0.135 | 0.266 | 0.297 | 0.607 | 0.287 | 0.200 | 0.305 |
+2023-07-03 05:07:21,962 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:07:24,970 Epoch: [120][0/1]	Time 2.009s (2.009s)	Speed 19.9 samples/s	Data 1.349s (1.349s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:07:27,103 Test: [0/3]	Time 1.980 (1.980)	Loss 0.0010 (0.0010)	Accuracy 0.583 (0.583)
+2023-07-03 05:07:27,753 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:07:27,822 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:07:27,822 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:07:27,823 | pose_hrnet_part | 0.255 | 0.555 | 0.234 | 0.136 | 0.266 | 0.297 | 0.607 | 0.273 | 0.200 | 0.304 |
+2023-07-03 05:07:27,824 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:07:30,824 Epoch: [121][0/1]	Time 2.022s (2.022s)	Speed 19.8 samples/s	Data 1.403s (1.403s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:07:33,009 Test: [0/3]	Time 2.051 (2.051)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:07:33,675 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:07:33,745 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:07:33,745 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:07:33,745 | pose_hrnet_part | 0.256 | 0.567 | 0.239 | 0.131 | 0.269 | 0.299 | 0.613 | 0.287 | 0.191 | 0.308 |
+2023-07-03 05:07:33,746 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:07:36,675 Epoch: [122][0/1]	Time 1.841s (1.841s)	Speed 21.7 samples/s	Data 1.214s (1.214s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:07:38,852 Test: [0/3]	Time 2.031 (2.031)	Loss 0.0010 (0.0010)	Accuracy 0.587 (0.587)
+2023-07-03 05:07:39,472 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:07:39,539 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:07:39,539 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:07:39,539 | pose_hrnet_part | 0.256 | 0.550 | 0.238 | 0.117 | 0.270 | 0.299 | 0.600 | 0.280 | 0.173 | 0.309 |
+2023-07-03 05:07:39,540 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:07:42,768 Epoch: [123][0/1]	Time 2.018s (2.018s)	Speed 19.8 samples/s	Data 1.390s (1.390s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:07:44,780 Test: [0/3]	Time 1.871 (1.871)	Loss 0.0010 (0.0010)	Accuracy 0.587 (0.587)
+2023-07-03 05:07:45,451 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:07:45,518 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:07:45,518 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:07:45,518 | pose_hrnet_part | 0.255 | 0.550 | 0.245 | 0.109 | 0.269 | 0.300 | 0.600 | 0.293 | 0.173 | 0.310 |
+2023-07-03 05:07:45,519 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:07:48,680 Epoch: [124][0/1]	Time 1.932s (1.932s)	Speed 20.7 samples/s	Data 1.293s (1.293s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:07:50,780 Test: [0/3]	Time 1.979 (1.979)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:07:51,429 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:07:51,498 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:07:51,498 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:07:51,498 | pose_hrnet_part | 0.256 | 0.546 | 0.240 | 0.113 | 0.272 | 0.301 | 0.593 | 0.287 | 0.200 | 0.309 |
+2023-07-03 05:07:51,499 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:07:54,490 Epoch: [125][0/1]	Time 1.854s (1.854s)	Speed 21.6 samples/s	Data 1.223s (1.223s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:07:56,670 Test: [0/3]	Time 2.029 (2.029)	Loss 0.0010 (0.0010)	Accuracy 0.592 (0.592)
+2023-07-03 05:07:57,309 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:07:57,374 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:07:57,374 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:07:57,374 | pose_hrnet_part | 0.261 | 0.569 | 0.240 | 0.129 | 0.275 | 0.306 | 0.613 | 0.287 | 0.209 | 0.314 |
+2023-07-03 05:07:57,375 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:08:00,421 Epoch: [126][0/1]	Time 2.044s (2.044s)	Speed 19.6 samples/s	Data 1.386s (1.386s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:08:02,509 Test: [0/3]	Time 1.927 (1.927)	Loss 0.0010 (0.0010)	Accuracy 0.590 (0.590)
+2023-07-03 05:08:03,173 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:08:03,243 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:08:03,244 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:08:03,244 | pose_hrnet_part | 0.257 | 0.560 | 0.239 | 0.118 | 0.269 | 0.302 | 0.607 | 0.280 | 0.209 | 0.309 |
+2023-07-03 05:08:03,245 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:08:06,279 Epoch: [127][0/1]	Time 1.962s (1.962s)	Speed 20.4 samples/s	Data 1.348s (1.348s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:08:08,485 Test: [0/3]	Time 2.061 (2.061)	Loss 0.0010 (0.0010)	Accuracy 0.587 (0.587)
+2023-07-03 05:08:09,133 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:08:09,203 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:08:09,203 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:08:09,203 | pose_hrnet_part | 0.258 | 0.562 | 0.231 | 0.124 | 0.272 | 0.302 | 0.607 | 0.273 | 0.209 | 0.309 |
+2023-07-03 05:08:09,205 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:08:12,451 Epoch: [128][0/1]	Time 2.017s (2.017s)	Speed 19.8 samples/s	Data 1.366s (1.366s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:08:14,684 Test: [0/3]	Time 2.077 (2.077)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:08:15,301 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:08:15,366 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:08:15,366 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:08:15,366 | pose_hrnet_part | 0.255 | 0.558 | 0.239 | 0.125 | 0.267 | 0.301 | 0.600 | 0.280 | 0.209 | 0.309 |
+2023-07-03 05:08:15,367 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:08:18,550 Epoch: [129][0/1]	Time 1.946s (1.946s)	Speed 20.6 samples/s	Data 1.294s (1.294s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:08:20,721 Test: [0/3]	Time 2.035 (2.035)	Loss 0.0010 (0.0010)	Accuracy 0.582 (0.582)
+2023-07-03 05:08:21,408 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:08:21,476 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:08:21,477 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:08:21,477 | pose_hrnet_part | 0.253 | 0.555 | 0.237 | 0.110 | 0.266 | 0.299 | 0.600 | 0.280 | 0.191 | 0.308 |
+2023-07-03 05:08:21,478 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:08:24,212 Epoch: [130][0/1]	Time 1.734s (1.734s)	Speed 23.1 samples/s	Data 1.185s (1.185s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:08:26,411 Test: [0/3]	Time 2.030 (2.030)	Loss 0.0010 (0.0010)	Accuracy 0.583 (0.583)
+2023-07-03 05:08:26,980 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:08:27,078 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:08:27,079 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:08:27,079 | pose_hrnet_part | 0.255 | 0.567 | 0.239 | 0.129 | 0.266 | 0.297 | 0.613 | 0.280 | 0.209 | 0.304 |
+2023-07-03 05:08:27,080 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:08:30,331 Epoch: [131][0/1]	Time 1.963s (1.963s)	Speed 20.4 samples/s	Data 1.335s (1.335s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:08:32,456 Test: [0/3]	Time 1.989 (1.989)	Loss 0.0010 (0.0010)	Accuracy 0.582 (0.582)
+2023-07-03 05:08:32,962 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:08:33,031 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:08:33,031 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:08:33,031 | pose_hrnet_part | 0.258 | 0.578 | 0.239 | 0.120 | 0.269 | 0.300 | 0.620 | 0.280 | 0.209 | 0.307 |
+2023-07-03 05:08:33,032 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:08:36,162 Epoch: [132][0/1]	Time 1.985s (1.985s)	Speed 20.2 samples/s	Data 1.364s (1.364s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:08:38,347 Test: [0/3]	Time 2.027 (2.027)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:08:38,909 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:08:38,979 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:08:38,980 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:08:38,980 | pose_hrnet_part | 0.261 | 0.568 | 0.240 | 0.134 | 0.273 | 0.304 | 0.613 | 0.280 | 0.209 | 0.312 |
+2023-07-03 05:08:38,981 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:08:41,826 Epoch: [133][0/1]	Time 1.738s (1.738s)	Speed 23.0 samples/s	Data 1.253s (1.253s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:08:43,940 Test: [0/3]	Time 1.968 (1.968)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:08:44,325 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:08:44,390 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:08:44,390 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:08:44,390 | pose_hrnet_part | 0.256 | 0.557 | 0.237 | 0.124 | 0.268 | 0.302 | 0.607 | 0.280 | 0.209 | 0.309 |
+2023-07-03 05:08:44,391 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:08:47,154 Epoch: [134][0/1]	Time 1.747s (1.747s)	Speed 22.9 samples/s	Data 1.327s (1.327s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:08:49,180 Test: [0/3]	Time 1.904 (1.904)	Loss 0.0010 (0.0010)	Accuracy 0.590 (0.590)
+2023-07-03 05:08:49,607 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:08:49,673 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:08:49,673 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:08:49,673 | pose_hrnet_part | 0.256 | 0.549 | 0.239 | 0.112 | 0.269 | 0.301 | 0.600 | 0.287 | 0.191 | 0.309 |
+2023-07-03 05:08:49,674 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:08:52,447 Epoch: [135][0/1]	Time 1.754s (1.754s)	Speed 22.8 samples/s	Data 1.265s (1.265s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:08:54,448 Test: [0/3]	Time 1.885 (1.885)	Loss 0.0010 (0.0010)	Accuracy 0.594 (0.594)
+2023-07-03 05:08:54,883 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:08:54,951 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:08:54,951 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:08:54,951 | pose_hrnet_part | 0.263 | 0.577 | 0.252 | 0.134 | 0.275 | 0.309 | 0.620 | 0.300 | 0.227 | 0.315 |
+2023-07-03 05:08:54,952 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:08:58,429 Epoch: [136][0/1]	Time 1.641s (1.641s)	Speed 24.4 samples/s	Data 1.215s (1.215s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:09:00,416 Test: [0/3]	Time 1.859 (1.859)	Loss 0.0010 (0.0010)	Accuracy 0.592 (0.592)
+2023-07-03 05:09:00,831 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:09:00,898 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:09:00,898 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:09:00,898 | pose_hrnet_part | 0.262 | 0.570 | 0.244 | 0.146 | 0.272 | 0.306 | 0.613 | 0.293 | 0.218 | 0.313 |
+2023-07-03 05:09:00,899 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:09:03,837 Epoch: [137][0/1]	Time 1.679s (1.679s)	Speed 23.8 samples/s	Data 1.268s (1.268s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:09:05,820 Test: [0/3]	Time 1.867 (1.867)	Loss 0.0010 (0.0010)	Accuracy 0.583 (0.583)
+2023-07-03 05:09:06,220 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:09:06,287 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:09:06,287 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:09:06,287 | pose_hrnet_part | 0.256 | 0.560 | 0.242 | 0.142 | 0.267 | 0.303 | 0.607 | 0.293 | 0.218 | 0.309 |
+2023-07-03 05:09:06,288 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:09:08,906 Epoch: [138][0/1]	Time 1.633s (1.633s)	Speed 24.5 samples/s	Data 1.217s (1.217s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:09:10,934 Test: [0/3]	Time 1.890 (1.890)	Loss 0.0010 (0.0010)	Accuracy 0.578 (0.578)
+2023-07-03 05:09:11,336 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:09:11,403 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:09:11,403 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:09:11,403 | pose_hrnet_part | 0.253 | 0.552 | 0.235 | 0.125 | 0.265 | 0.298 | 0.600 | 0.287 | 0.200 | 0.306 |
+2023-07-03 05:09:11,404 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:09:14,118 Epoch: [139][0/1]	Time 1.640s (1.640s)	Speed 24.4 samples/s	Data 1.235s (1.235s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:09:16,094 Test: [0/3]	Time 1.850 (1.850)	Loss 0.0010 (0.0010)	Accuracy 0.582 (0.582)
+2023-07-03 05:09:16,490 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:09:16,557 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:09:16,557 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:09:16,557 | pose_hrnet_part | 0.258 | 0.556 | 0.240 | 0.140 | 0.269 | 0.304 | 0.607 | 0.287 | 0.218 | 0.311 |
+2023-07-03 05:09:16,558 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:09:19,511 Epoch: [140][0/1]	Time 1.755s (1.755s)	Speed 22.8 samples/s	Data 1.222s (1.222s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:09:21,498 Test: [0/3]	Time 1.869 (1.869)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:09:21,912 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:09:21,983 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:09:21,983 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:09:21,983 | pose_hrnet_part | 0.259 | 0.556 | 0.243 | 0.132 | 0.272 | 0.306 | 0.600 | 0.293 | 0.209 | 0.314 |
+2023-07-03 05:09:21,984 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:09:24,861 Epoch: [141][0/1]	Time 1.866s (1.866s)	Speed 21.4 samples/s	Data 1.320s (1.320s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:09:26,819 Test: [0/3]	Time 1.824 (1.824)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:09:27,220 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:09:27,286 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:09:27,286 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:09:27,286 | pose_hrnet_part | 0.260 | 0.560 | 0.236 | 0.141 | 0.272 | 0.304 | 0.607 | 0.280 | 0.218 | 0.311 |
+2023-07-03 05:09:27,287 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:09:30,078 Epoch: [142][0/1]	Time 1.773s (1.773s)	Speed 22.6 samples/s	Data 1.278s (1.278s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:09:32,043 Test: [0/3]	Time 1.829 (1.829)	Loss 0.0010 (0.0010)	Accuracy 0.585 (0.585)
+2023-07-03 05:09:32,456 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:09:32,522 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:09:32,522 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:09:32,522 | pose_hrnet_part | 0.256 | 0.543 | 0.237 | 0.124 | 0.269 | 0.302 | 0.593 | 0.287 | 0.200 | 0.310 |
+2023-07-03 05:09:32,523 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:09:35,468 Epoch: [143][0/1]	Time 1.763s (1.763s)	Speed 22.7 samples/s	Data 1.281s (1.281s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:09:37,477 Test: [0/3]	Time 1.890 (1.890)	Loss 0.0010 (0.0010)	Accuracy 0.592 (0.592)
+2023-07-03 05:09:37,899 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:09:37,971 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:09:37,971 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:09:37,971 | pose_hrnet_part | 0.257 | 0.554 | 0.238 | 0.134 | 0.268 | 0.305 | 0.607 | 0.287 | 0.218 | 0.312 |
+2023-07-03 05:09:37,972 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:09:40,669 Epoch: [144][0/1]	Time 1.688s (1.688s)	Speed 23.7 samples/s	Data 1.249s (1.249s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:09:42,729 Test: [0/3]	Time 1.928 (1.928)	Loss 0.0010 (0.0010)	Accuracy 0.599 (0.599)
+2023-07-03 05:09:43,126 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:09:43,192 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:09:43,192 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:09:43,192 | pose_hrnet_part | 0.263 | 0.558 | 0.240 | 0.141 | 0.276 | 0.309 | 0.607 | 0.287 | 0.218 | 0.316 |
+2023-07-03 05:09:43,193 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:09:46,745 Epoch: [145][0/1]	Time 1.711s (1.711s)	Speed 23.4 samples/s	Data 1.284s (1.284s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:09:48,724 Test: [0/3]	Time 1.860 (1.860)	Loss 0.0010 (0.0010)	Accuracy 0.604 (0.604)
+2023-07-03 05:09:49,181 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:09:49,248 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:09:49,248 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:09:49,248 | pose_hrnet_part | 0.268 | 0.573 | 0.247 | 0.142 | 0.280 | 0.311 | 0.613 | 0.293 | 0.218 | 0.318 |
+2023-07-03 05:09:49,249 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:09:52,659 Epoch: [146][0/1]	Time 1.641s (1.641s)	Speed 24.4 samples/s	Data 1.236s (1.236s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:09:54,678 Test: [0/3]	Time 1.874 (1.874)	Loss 0.0010 (0.0010)	Accuracy 0.597 (0.597)
+2023-07-03 05:09:55,150 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:09:55,216 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:09:55,216 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:09:55,216 | pose_hrnet_part | 0.263 | 0.570 | 0.245 | 0.144 | 0.274 | 0.304 | 0.613 | 0.293 | 0.227 | 0.310 |
+2023-07-03 05:09:55,217 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:09:57,901 Epoch: [147][0/1]	Time 1.638s (1.638s)	Speed 24.4 samples/s	Data 1.231s (1.231s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:09:59,935 Test: [0/3]	Time 1.919 (1.919)	Loss 0.0010 (0.0010)	Accuracy 0.592 (0.592)
+2023-07-03 05:10:00,357 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:10:00,424 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:10:00,424 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:10:00,424 | pose_hrnet_part | 0.260 | 0.566 | 0.238 | 0.137 | 0.270 | 0.306 | 0.613 | 0.287 | 0.227 | 0.312 |
+2023-07-03 05:10:00,425 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:10:03,060 Epoch: [148][0/1]	Time 1.688s (1.688s)	Speed 23.7 samples/s	Data 1.267s (1.267s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:10:05,072 Test: [0/3]	Time 1.876 (1.876)	Loss 0.0010 (0.0010)	Accuracy 0.592 (0.592)
+2023-07-03 05:10:05,536 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:10:05,603 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:10:05,603 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:10:05,603 | pose_hrnet_part | 0.261 | 0.567 | 0.236 | 0.144 | 0.271 | 0.305 | 0.613 | 0.273 | 0.227 | 0.311 |
+2023-07-03 05:10:05,604 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:10:08,334 Epoch: [149][0/1]	Time 1.654s (1.654s)	Speed 24.2 samples/s	Data 1.250s (1.250s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:10:10,359 Test: [0/3]	Time 1.909 (1.909)	Loss 0.0010 (0.0010)	Accuracy 0.599 (0.599)
+2023-07-03 05:10:10,746 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:10:10,812 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:10:10,812 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:10:10,813 | pose_hrnet_part | 0.259 | 0.555 | 0.237 | 0.123 | 0.271 | 0.301 | 0.600 | 0.280 | 0.218 | 0.307 |
+2023-07-03 05:10:10,813 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:10:13,479 Epoch: [150][0/1]	Time 1.699s (1.699s)	Speed 23.5 samples/s	Data 1.287s (1.287s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:10:15,499 Test: [0/3]	Time 1.885 (1.885)	Loss 0.0010 (0.0010)	Accuracy 0.597 (0.597)
+2023-07-03 05:10:15,992 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:10:16,058 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:10:16,058 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:10:16,058 | pose_hrnet_part | 0.263 | 0.567 | 0.239 | 0.141 | 0.274 | 0.304 | 0.613 | 0.280 | 0.218 | 0.311 |
+2023-07-03 05:10:16,059 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:10:18,702 Epoch: [151][0/1]	Time 1.724s (1.724s)	Speed 23.2 samples/s	Data 1.308s (1.308s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:10:20,759 Test: [0/3]	Time 1.937 (1.937)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:10:21,148 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:10:21,213 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:10:21,213 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:10:21,213 | pose_hrnet_part | 0.257 | 0.558 | 0.238 | 0.132 | 0.269 | 0.301 | 0.607 | 0.287 | 0.227 | 0.307 |
+2023-07-03 05:10:21,214 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:10:24,108 Epoch: [152][0/1]	Time 1.720s (1.720s)	Speed 23.3 samples/s	Data 1.306s (1.306s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:10:26,139 Test: [0/3]	Time 1.912 (1.912)	Loss 0.0010 (0.0010)	Accuracy 0.590 (0.590)
+2023-07-03 05:10:26,566 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:10:26,632 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:10:26,632 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:10:26,632 | pose_hrnet_part | 0.260 | 0.560 | 0.239 | 0.137 | 0.271 | 0.303 | 0.607 | 0.287 | 0.227 | 0.309 |
+2023-07-03 05:10:26,633 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:10:29,547 Epoch: [153][0/1]	Time 1.711s (1.711s)	Speed 23.4 samples/s	Data 1.269s (1.269s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:10:31,631 Test: [0/3]	Time 1.962 (1.962)	Loss 0.0010 (0.0010)	Accuracy 0.592 (0.592)
+2023-07-03 05:10:32,047 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:10:32,114 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:10:32,114 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:10:32,114 | pose_hrnet_part | 0.257 | 0.560 | 0.243 | 0.125 | 0.270 | 0.303 | 0.607 | 0.293 | 0.209 | 0.310 |
+2023-07-03 05:10:32,115 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:10:34,779 Epoch: [154][0/1]	Time 1.739s (1.739s)	Speed 23.0 samples/s	Data 1.330s (1.330s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:10:36,802 Test: [0/3]	Time 1.889 (1.889)	Loss 0.0010 (0.0010)	Accuracy 0.592 (0.592)
+2023-07-03 05:10:37,299 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:10:37,365 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:10:37,365 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:10:37,365 | pose_hrnet_part | 0.255 | 0.557 | 0.238 | 0.124 | 0.268 | 0.301 | 0.600 | 0.287 | 0.209 | 0.309 |
+2023-07-03 05:10:37,366 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:10:40,037 Epoch: [155][0/1]	Time 1.658s (1.658s)	Speed 24.1 samples/s	Data 1.227s (1.227s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:10:42,156 Test: [0/3]	Time 1.978 (1.978)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:10:42,584 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:10:42,651 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:10:42,651 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:10:42,651 | pose_hrnet_part | 0.254 | 0.557 | 0.239 | 0.131 | 0.266 | 0.298 | 0.607 | 0.280 | 0.218 | 0.304 |
+2023-07-03 05:10:42,652 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:10:45,453 Epoch: [156][0/1]	Time 1.697s (1.697s)	Speed 23.6 samples/s	Data 1.290s (1.290s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:10:47,501 Test: [0/3]	Time 1.912 (1.912)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:10:47,930 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:10:48,026 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:10:48,026 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:10:48,026 | pose_hrnet_part | 0.258 | 0.559 | 0.237 | 0.129 | 0.270 | 0.302 | 0.600 | 0.280 | 0.209 | 0.309 |
+2023-07-03 05:10:48,027 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:10:50,828 Epoch: [157][0/1]	Time 1.605s (1.605s)	Speed 24.9 samples/s	Data 1.191s (1.191s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:10:52,835 Test: [0/3]	Time 1.866 (1.866)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:10:53,335 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:10:53,430 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:10:53,430 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:10:53,430 | pose_hrnet_part | 0.259 | 0.561 | 0.241 | 0.139 | 0.269 | 0.304 | 0.607 | 0.293 | 0.227 | 0.310 |
+2023-07-03 05:10:53,431 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:10:56,081 Epoch: [158][0/1]	Time 1.681s (1.681s)	Speed 23.8 samples/s	Data 1.278s (1.278s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:10:58,028 Test: [0/3]	Time 1.832 (1.832)	Loss 0.0010 (0.0010)	Accuracy 0.592 (0.592)
+2023-07-03 05:10:58,505 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:10:58,601 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:10:58,601 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:10:58,601 | pose_hrnet_part | 0.259 | 0.566 | 0.235 | 0.136 | 0.272 | 0.309 | 0.613 | 0.287 | 0.218 | 0.317 |
+2023-07-03 05:10:58,602 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:11:01,223 Epoch: [159][0/1]	Time 1.685s (1.685s)	Speed 23.7 samples/s	Data 1.280s (1.280s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:11:03,204 Test: [0/3]	Time 1.860 (1.860)	Loss 0.0010 (0.0010)	Accuracy 0.592 (0.592)
+2023-07-03 05:11:03,708 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:11:03,774 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:11:03,775 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:11:03,775 | pose_hrnet_part | 0.263 | 0.565 | 0.247 | 0.139 | 0.274 | 0.308 | 0.613 | 0.293 | 0.227 | 0.314 |
+2023-07-03 05:11:03,775 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:11:06,614 Epoch: [160][0/1]	Time 1.752s (1.752s)	Speed 22.8 samples/s	Data 1.341s (1.341s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:11:08,612 Test: [0/3]	Time 1.853 (1.853)	Loss 0.0010 (0.0010)	Accuracy 0.590 (0.590)
+2023-07-03 05:11:09,093 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:11:09,160 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:11:09,160 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:11:09,160 | pose_hrnet_part | 0.265 | 0.569 | 0.248 | 0.144 | 0.275 | 0.309 | 0.613 | 0.293 | 0.227 | 0.315 |
+2023-07-03 05:11:09,161 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:11:11,787 Epoch: [161][0/1]	Time 1.695s (1.695s)	Speed 23.6 samples/s	Data 1.286s (1.286s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:11:13,736 Test: [0/3]	Time 1.835 (1.835)	Loss 0.0010 (0.0010)	Accuracy 0.590 (0.590)
+2023-07-03 05:11:14,228 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:11:14,294 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:11:14,295 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:11:14,295 | pose_hrnet_part | 0.261 | 0.558 | 0.238 | 0.136 | 0.274 | 0.307 | 0.607 | 0.280 | 0.218 | 0.314 |
+2023-07-03 05:11:14,295 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:11:17,001 Epoch: [162][0/1]	Time 1.627s (1.627s)	Speed 24.6 samples/s	Data 1.222s (1.222s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:11:18,975 Test: [0/3]	Time 1.860 (1.860)	Loss 0.0010 (0.0010)	Accuracy 0.594 (0.594)
+2023-07-03 05:11:19,465 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:11:19,531 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:11:19,531 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:11:19,532 | pose_hrnet_part | 0.263 | 0.564 | 0.240 | 0.139 | 0.274 | 0.308 | 0.613 | 0.287 | 0.218 | 0.315 |
+2023-07-03 05:11:19,532 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:11:22,224 Epoch: [163][0/1]	Time 1.688s (1.688s)	Speed 23.7 samples/s	Data 1.262s (1.262s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:11:24,188 Test: [0/3]	Time 1.835 (1.835)	Loss 0.0010 (0.0010)	Accuracy 0.595 (0.595)
+2023-07-03 05:11:24,683 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:11:24,749 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:11:24,749 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:11:24,749 | pose_hrnet_part | 0.260 | 0.560 | 0.241 | 0.138 | 0.271 | 0.303 | 0.607 | 0.287 | 0.209 | 0.311 |
+2023-07-03 05:11:24,750 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:11:27,391 Epoch: [164][0/1]	Time 1.615s (1.615s)	Speed 24.8 samples/s	Data 1.203s (1.203s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:11:29,323 Test: [0/3]	Time 1.818 (1.818)	Loss 0.0010 (0.0010)	Accuracy 0.597 (0.597)
+2023-07-03 05:11:29,801 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:11:29,867 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:11:29,867 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:11:29,867 | pose_hrnet_part | 0.264 | 0.572 | 0.241 | 0.146 | 0.275 | 0.307 | 0.613 | 0.287 | 0.218 | 0.314 |
+2023-07-03 05:11:29,868 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:11:32,527 Epoch: [165][0/1]	Time 1.649s (1.649s)	Speed 24.3 samples/s	Data 1.243s (1.243s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:11:34,444 Test: [0/3]	Time 1.802 (1.802)	Loss 0.0010 (0.0010)	Accuracy 0.594 (0.594)
+2023-07-03 05:11:34,948 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:11:35,014 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:11:35,014 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:11:35,014 | pose_hrnet_part | 0.264 | 0.566 | 0.239 | 0.142 | 0.275 | 0.308 | 0.613 | 0.280 | 0.209 | 0.316 |
+2023-07-03 05:11:35,015 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:11:37,675 Epoch: [166][0/1]	Time 1.704s (1.704s)	Speed 23.5 samples/s	Data 1.299s (1.299s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:11:39,679 Test: [0/3]	Time 1.882 (1.882)	Loss 0.0010 (0.0010)	Accuracy 0.590 (0.590)
+2023-07-03 05:11:40,097 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:11:40,163 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:11:40,163 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:11:40,163 | pose_hrnet_part | 0.265 | 0.552 | 0.237 | 0.130 | 0.277 | 0.309 | 0.600 | 0.280 | 0.209 | 0.317 |
+2023-07-03 05:11:40,164 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:11:42,911 Epoch: [167][0/1]	Time 1.633s (1.633s)	Speed 24.5 samples/s	Data 1.223s (1.223s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:11:44,923 Test: [0/3]	Time 1.870 (1.870)	Loss 0.0010 (0.0010)	Accuracy 0.594 (0.594)
+2023-07-03 05:11:45,328 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:11:45,395 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:11:45,395 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:11:45,395 | pose_hrnet_part | 0.263 | 0.554 | 0.238 | 0.129 | 0.276 | 0.307 | 0.600 | 0.287 | 0.209 | 0.314 |
+2023-07-03 05:11:45,396 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:11:48,139 Epoch: [168][0/1]	Time 1.654s (1.654s)	Speed 24.2 samples/s	Data 1.246s (1.246s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:11:50,124 Test: [0/3]	Time 1.840 (1.840)	Loss 0.0010 (0.0010)	Accuracy 0.592 (0.592)
+2023-07-03 05:11:50,514 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:11:50,580 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:11:50,581 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:11:50,581 | pose_hrnet_part | 0.262 | 0.560 | 0.237 | 0.151 | 0.272 | 0.303 | 0.607 | 0.280 | 0.218 | 0.310 |
+2023-07-03 05:11:50,581 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:11:53,341 Epoch: [169][0/1]	Time 1.650s (1.650s)	Speed 24.2 samples/s	Data 1.242s (1.242s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:11:55,304 Test: [0/3]	Time 1.841 (1.841)	Loss 0.0010 (0.0010)	Accuracy 0.592 (0.592)
+2023-07-03 05:11:55,723 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:11:55,789 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:11:55,789 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:11:55,789 | pose_hrnet_part | 0.260 | 0.559 | 0.237 | 0.151 | 0.270 | 0.303 | 0.607 | 0.280 | 0.218 | 0.309 |
+2023-07-03 05:11:55,790 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:11:58,382 Epoch: [170][0/1]	Time 1.592s (1.592s)	Speed 25.1 samples/s	Data 1.189s (1.189s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:12:00,375 Test: [0/3]	Time 1.876 (1.876)	Loss 0.0010 (0.0010)	Accuracy 0.592 (0.592)
+2023-07-03 05:12:00,804 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:12:00,870 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:12:00,870 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:12:00,870 | pose_hrnet_part | 0.260 | 0.558 | 0.237 | 0.151 | 0.270 | 0.303 | 0.607 | 0.280 | 0.218 | 0.309 |
+2023-07-03 05:12:00,871 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:12:03,784 Epoch: [171][0/1]	Time 1.729s (1.729s)	Speed 23.1 samples/s	Data 1.250s (1.250s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:12:05,740 Test: [0/3]	Time 1.839 (1.839)	Loss 0.0010 (0.0010)	Accuracy 0.590 (0.590)
+2023-07-03 05:12:06,178 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:12:06,243 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:12:06,243 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:12:06,243 | pose_hrnet_part | 0.260 | 0.558 | 0.237 | 0.149 | 0.270 | 0.303 | 0.607 | 0.280 | 0.218 | 0.310 |
+2023-07-03 05:12:06,244 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:12:09,198 Epoch: [172][0/1]	Time 1.680s (1.680s)	Speed 23.8 samples/s	Data 1.251s (1.251s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:12:11,141 Test: [0/3]	Time 1.827 (1.827)	Loss 0.0010 (0.0010)	Accuracy 0.594 (0.594)
+2023-07-03 05:12:11,558 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:12:11,623 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:12:11,623 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:12:11,623 | pose_hrnet_part | 0.260 | 0.558 | 0.237 | 0.149 | 0.271 | 0.305 | 0.607 | 0.287 | 0.218 | 0.312 |
+2023-07-03 05:12:11,624 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:12:14,603 Epoch: [173][0/1]	Time 1.710s (1.710s)	Speed 23.4 samples/s	Data 1.261s (1.261s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:12:16,585 Test: [0/3]	Time 1.863 (1.863)	Loss 0.0010 (0.0010)	Accuracy 0.590 (0.590)
+2023-07-03 05:12:16,968 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:12:17,035 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:12:17,035 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:12:17,035 | pose_hrnet_part | 0.260 | 0.552 | 0.239 | 0.134 | 0.272 | 0.307 | 0.600 | 0.287 | 0.209 | 0.315 |
+2023-07-03 05:12:17,036 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:12:19,760 Epoch: [174][0/1]	Time 1.758s (1.758s)	Speed 22.7 samples/s	Data 1.277s (1.277s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:12:21,727 Test: [0/3]	Time 1.852 (1.852)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:12:22,138 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:12:22,205 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:12:22,205 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:12:22,205 | pose_hrnet_part | 0.258 | 0.551 | 0.238 | 0.134 | 0.270 | 0.305 | 0.600 | 0.287 | 0.209 | 0.313 |
+2023-07-03 05:12:22,206 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:12:24,923 Epoch: [175][0/1]	Time 1.671s (1.671s)	Speed 23.9 samples/s	Data 1.258s (1.258s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:12:26,908 Test: [0/3]	Time 1.848 (1.848)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:12:27,314 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:12:27,380 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:12:27,380 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:12:27,380 | pose_hrnet_part | 0.258 | 0.551 | 0.238 | 0.128 | 0.270 | 0.306 | 0.600 | 0.287 | 0.209 | 0.314 |
+2023-07-03 05:12:27,381 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:12:29,937 Epoch: [176][0/1]	Time 1.537s (1.537s)	Speed 26.0 samples/s	Data 1.130s (1.130s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:12:31,898 Test: [0/3]	Time 1.845 (1.845)	Loss 0.0010 (0.0010)	Accuracy 0.587 (0.587)
+2023-07-03 05:12:32,295 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:12:32,360 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:12:32,360 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:12:32,360 | pose_hrnet_part | 0.258 | 0.551 | 0.238 | 0.126 | 0.270 | 0.306 | 0.600 | 0.287 | 0.209 | 0.314 |
+2023-07-03 05:12:32,361 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:12:35,177 Epoch: [177][0/1]	Time 1.740s (1.740s)	Speed 23.0 samples/s	Data 1.249s (1.249s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:12:37,166 Test: [0/3]	Time 1.873 (1.873)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:12:37,552 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:12:37,618 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:12:37,618 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:12:37,618 | pose_hrnet_part | 0.258 | 0.552 | 0.238 | 0.128 | 0.270 | 0.305 | 0.600 | 0.287 | 0.209 | 0.313 |
+2023-07-03 05:12:37,619 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:12:40,563 Epoch: [178][0/1]	Time 1.762s (1.762s)	Speed 22.7 samples/s	Data 1.274s (1.274s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:12:42,519 Test: [0/3]	Time 1.827 (1.827)	Loss 0.0010 (0.0010)	Accuracy 0.587 (0.587)
+2023-07-03 05:12:42,934 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:12:43,037 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:12:43,037 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:12:43,037 | pose_hrnet_part | 0.259 | 0.554 | 0.244 | 0.133 | 0.271 | 0.307 | 0.607 | 0.293 | 0.209 | 0.314 |
+2023-07-03 05:12:43,038 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:12:45,872 Epoch: [179][0/1]	Time 1.722s (1.722s)	Speed 23.2 samples/s	Data 1.239s (1.239s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:12:47,830 Test: [0/3]	Time 1.838 (1.838)	Loss 0.0010 (0.0010)	Accuracy 0.587 (0.587)
+2023-07-03 05:12:48,233 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:12:48,302 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:12:48,302 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:12:48,302 | pose_hrnet_part | 0.261 | 0.568 | 0.238 | 0.146 | 0.273 | 0.308 | 0.613 | 0.287 | 0.218 | 0.315 |
+2023-07-03 05:12:48,303 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:12:51,178 Epoch: [180][0/1]	Time 1.685s (1.685s)	Speed 23.7 samples/s	Data 1.224s (1.224s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:12:53,119 Test: [0/3]	Time 1.826 (1.826)	Loss 0.0010 (0.0010)	Accuracy 0.587 (0.587)
+2023-07-03 05:12:53,532 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:12:53,600 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:12:53,600 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:12:53,600 | pose_hrnet_part | 0.260 | 0.568 | 0.239 | 0.147 | 0.271 | 0.307 | 0.613 | 0.287 | 0.218 | 0.314 |
+2023-07-03 05:12:53,601 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:12:56,490 Epoch: [181][0/1]	Time 1.833s (1.833s)	Speed 21.8 samples/s	Data 1.317s (1.317s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:12:58,435 Test: [0/3]	Time 1.829 (1.829)	Loss 0.0010 (0.0010)	Accuracy 0.587 (0.587)
+2023-07-03 05:12:58,854 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:12:58,920 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:12:58,920 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:12:58,920 | pose_hrnet_part | 0.261 | 0.569 | 0.237 | 0.147 | 0.272 | 0.307 | 0.613 | 0.287 | 0.218 | 0.314 |
+2023-07-03 05:12:58,921 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:13:01,955 Epoch: [182][0/1]	Time 1.841s (1.841s)	Speed 21.7 samples/s	Data 1.320s (1.320s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:13:03,900 Test: [0/3]	Time 1.827 (1.827)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:13:04,311 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:13:04,376 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:13:04,377 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:13:04,377 | pose_hrnet_part | 0.263 | 0.569 | 0.243 | 0.152 | 0.274 | 0.309 | 0.613 | 0.293 | 0.227 | 0.315 |
+2023-07-03 05:13:04,377 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:13:07,072 Epoch: [183][0/1]	Time 1.777s (1.777s)	Speed 22.5 samples/s	Data 1.286s (1.286s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:13:09,015 Test: [0/3]	Time 1.824 (1.824)	Loss 0.0010 (0.0010)	Accuracy 0.583 (0.583)
+2023-07-03 05:13:09,404 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:13:09,471 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:13:09,471 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:13:09,471 | pose_hrnet_part | 0.260 | 0.568 | 0.242 | 0.151 | 0.270 | 0.305 | 0.613 | 0.293 | 0.227 | 0.312 |
+2023-07-03 05:13:09,472 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:13:12,161 Epoch: [184][0/1]	Time 1.766s (1.766s)	Speed 22.6 samples/s	Data 1.259s (1.259s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:13:14,094 Test: [0/3]	Time 1.819 (1.819)	Loss 0.0010 (0.0010)	Accuracy 0.582 (0.582)
+2023-07-03 05:13:14,507 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:13:14,574 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:13:14,574 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:13:14,574 | pose_hrnet_part | 0.258 | 0.558 | 0.241 | 0.139 | 0.270 | 0.304 | 0.607 | 0.293 | 0.227 | 0.310 |
+2023-07-03 05:13:14,575 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:13:17,340 Epoch: [185][0/1]	Time 1.819s (1.819s)	Speed 22.0 samples/s	Data 1.305s (1.305s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:13:19,343 Test: [0/3]	Time 1.889 (1.889)	Loss 0.0010 (0.0010)	Accuracy 0.582 (0.582)
+2023-07-03 05:13:19,733 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:13:19,799 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:13:19,799 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:13:19,799 | pose_hrnet_part | 0.257 | 0.558 | 0.235 | 0.136 | 0.270 | 0.303 | 0.607 | 0.287 | 0.218 | 0.310 |
+2023-07-03 05:13:19,800 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:13:22,436 Epoch: [186][0/1]	Time 1.727s (1.727s)	Speed 23.2 samples/s	Data 1.317s (1.317s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:13:24,529 Test: [0/3]	Time 1.972 (1.972)	Loss 0.0010 (0.0010)	Accuracy 0.583 (0.583)
+2023-07-03 05:13:24,941 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:13:25,041 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:13:25,042 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:13:25,042 | pose_hrnet_part | 0.259 | 0.558 | 0.241 | 0.145 | 0.270 | 0.304 | 0.607 | 0.293 | 0.227 | 0.310 |
+2023-07-03 05:13:25,042 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:13:27,821 Epoch: [187][0/1]	Time 1.711s (1.711s)	Speed 23.4 samples/s	Data 1.304s (1.304s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:13:29,862 Test: [0/3]	Time 1.923 (1.923)	Loss 0.0010 (0.0010)	Accuracy 0.583 (0.583)
+2023-07-03 05:13:30,262 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:13:30,330 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:13:30,330 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:13:30,330 | pose_hrnet_part | 0.257 | 0.558 | 0.241 | 0.139 | 0.268 | 0.303 | 0.607 | 0.293 | 0.227 | 0.309 |
+2023-07-03 05:13:30,331 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:13:33,048 Epoch: [188][0/1]	Time 1.707s (1.707s)	Speed 23.4 samples/s	Data 1.297s (1.297s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:13:35,055 Test: [0/3]	Time 1.892 (1.892)	Loss 0.0010 (0.0010)	Accuracy 0.582 (0.582)
+2023-07-03 05:13:35,443 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:13:35,509 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:13:35,509 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:13:35,510 | pose_hrnet_part | 0.257 | 0.559 | 0.235 | 0.134 | 0.269 | 0.303 | 0.607 | 0.287 | 0.218 | 0.309 |
+2023-07-03 05:13:35,510 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:13:38,134 Epoch: [189][0/1]	Time 1.705s (1.705s)	Speed 23.5 samples/s	Data 1.214s (1.214s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:13:40,133 Test: [0/3]	Time 1.883 (1.883)	Loss 0.0010 (0.0010)	Accuracy 0.582 (0.582)
+2023-07-03 05:13:40,522 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:13:40,632 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:13:40,632 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:13:40,632 | pose_hrnet_part | 0.257 | 0.559 | 0.236 | 0.136 | 0.269 | 0.301 | 0.607 | 0.287 | 0.218 | 0.308 |
+2023-07-03 05:13:40,633 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:13:43,373 Epoch: [190][0/1]	Time 1.704s (1.704s)	Speed 23.5 samples/s	Data 1.281s (1.281s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:13:45,419 Test: [0/3]	Time 1.929 (1.929)	Loss 0.0010 (0.0010)	Accuracy 0.582 (0.582)
+2023-07-03 05:13:45,840 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:13:45,905 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:13:45,905 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:13:45,905 | pose_hrnet_part | 0.258 | 0.558 | 0.242 | 0.145 | 0.270 | 0.303 | 0.607 | 0.293 | 0.227 | 0.309 |
+2023-07-03 05:13:45,906 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:13:48,600 Epoch: [191][0/1]	Time 1.661s (1.661s)	Speed 24.1 samples/s	Data 1.237s (1.237s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:13:50,653 Test: [0/3]	Time 1.935 (1.935)	Loss 0.0010 (0.0010)	Accuracy 0.583 (0.583)
+2023-07-03 05:13:51,086 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:13:51,151 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:13:51,151 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:13:51,152 | pose_hrnet_part | 0.257 | 0.559 | 0.242 | 0.139 | 0.269 | 0.302 | 0.607 | 0.293 | 0.227 | 0.308 |
+2023-07-03 05:13:51,152 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:13:53,942 Epoch: [192][0/1]	Time 1.786s (1.786s)	Speed 22.4 samples/s	Data 1.370s (1.370s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:13:56,002 Test: [0/3]	Time 1.916 (1.916)	Loss 0.0010 (0.0010)	Accuracy 0.582 (0.582)
+2023-07-03 05:13:56,425 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:13:56,492 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:13:56,492 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:13:56,492 | pose_hrnet_part | 0.258 | 0.559 | 0.241 | 0.137 | 0.269 | 0.303 | 0.607 | 0.293 | 0.227 | 0.309 |
+2023-07-03 05:13:56,493 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:13:59,244 Epoch: [193][0/1]	Time 1.684s (1.684s)	Speed 23.8 samples/s	Data 1.265s (1.265s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:14:01,270 Test: [0/3]	Time 1.909 (1.909)	Loss 0.0010 (0.0010)	Accuracy 0.583 (0.583)
+2023-07-03 05:14:01,697 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:14:01,763 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:14:01,763 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:14:01,763 | pose_hrnet_part | 0.257 | 0.558 | 0.241 | 0.140 | 0.268 | 0.303 | 0.607 | 0.293 | 0.227 | 0.309 |
+2023-07-03 05:14:01,764 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:14:04,332 Epoch: [194][0/1]	Time 1.675s (1.675s)	Speed 23.9 samples/s	Data 1.268s (1.268s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:14:06,316 Test: [0/3]	Time 1.869 (1.869)	Loss 0.0010 (0.0010)	Accuracy 0.587 (0.587)
+2023-07-03 05:14:06,794 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:14:06,860 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:14:06,860 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:14:06,860 | pose_hrnet_part | 0.259 | 0.558 | 0.249 | 0.147 | 0.270 | 0.305 | 0.607 | 0.300 | 0.227 | 0.311 |
+2023-07-03 05:14:06,861 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:14:09,156 Epoch: [195][0/1]	Time 1.604s (1.604s)	Speed 24.9 samples/s	Data 1.197s (1.197s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:14:11,194 Test: [0/3]	Time 1.910 (1.910)	Loss 0.0010 (0.0010)	Accuracy 0.585 (0.585)
+2023-07-03 05:14:11,588 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:14:11,655 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:14:11,655 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:14:11,655 | pose_hrnet_part | 0.258 | 0.556 | 0.249 | 0.135 | 0.269 | 0.302 | 0.600 | 0.300 | 0.218 | 0.309 |
+2023-07-03 05:14:11,656 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:14:14,223 Epoch: [196][0/1]	Time 1.560s (1.560s)	Speed 25.6 samples/s	Data 1.151s (1.151s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:14:16,301 Test: [0/3]	Time 1.923 (1.923)	Loss 0.0010 (0.0010)	Accuracy 0.585 (0.585)
+2023-07-03 05:14:16,728 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:14:16,793 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:14:16,793 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:14:16,793 | pose_hrnet_part | 0.258 | 0.559 | 0.244 | 0.142 | 0.269 | 0.302 | 0.607 | 0.293 | 0.227 | 0.308 |
+2023-07-03 05:14:16,794 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:14:19,410 Epoch: [197][0/1]	Time 1.660s (1.660s)	Speed 24.1 samples/s	Data 1.251s (1.251s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:14:21,364 Test: [0/3]	Time 1.818 (1.818)	Loss 0.0010 (0.0010)	Accuracy 0.585 (0.585)
+2023-07-03 05:14:21,867 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:14:21,935 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:14:21,935 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:14:21,935 | pose_hrnet_part | 0.256 | 0.559 | 0.237 | 0.138 | 0.267 | 0.301 | 0.607 | 0.287 | 0.218 | 0.307 |
+2023-07-03 05:14:21,936 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:14:24,592 Epoch: [198][0/1]	Time 1.696s (1.696s)	Speed 23.6 samples/s	Data 1.290s (1.290s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:14:26,540 Test: [0/3]	Time 1.828 (1.828)	Loss 0.0010 (0.0010)	Accuracy 0.587 (0.587)
+2023-07-03 05:14:27,017 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:14:27,084 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:14:27,084 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:14:27,084 | pose_hrnet_part | 0.259 | 0.560 | 0.236 | 0.138 | 0.270 | 0.303 | 0.607 | 0.287 | 0.218 | 0.310 |
+2023-07-03 05:14:27,085 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:14:29,811 Epoch: [199][0/1]	Time 1.646s (1.646s)	Speed 24.3 samples/s	Data 1.220s (1.220s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:14:31,821 Test: [0/3]	Time 1.843 (1.843)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:14:32,281 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:14:32,347 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:14:32,347 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:14:32,347 | pose_hrnet_part | 0.258 | 0.559 | 0.236 | 0.138 | 0.270 | 0.303 | 0.607 | 0.287 | 0.218 | 0.309 |
+2023-07-03 05:14:32,348 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:14:34,943 Epoch: [200][0/1]	Time 1.656s (1.656s)	Speed 24.2 samples/s	Data 1.251s (1.251s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:14:36,865 Test: [0/3]	Time 1.807 (1.807)	Loss 0.0010 (0.0010)	Accuracy 0.587 (0.587)
+2023-07-03 05:14:37,329 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:14:37,396 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:14:37,396 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:14:37,396 | pose_hrnet_part | 0.258 | 0.560 | 0.238 | 0.137 | 0.270 | 0.303 | 0.607 | 0.287 | 0.218 | 0.309 |
+2023-07-03 05:14:37,397 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:14:39,983 Epoch: [201][0/1]	Time 1.714s (1.714s)	Speed 23.3 samples/s	Data 1.304s (1.304s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:14:41,992 Test: [0/3]	Time 1.864 (1.864)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:14:42,490 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:14:42,555 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:14:42,555 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:14:42,555 | pose_hrnet_part | 0.259 | 0.561 | 0.238 | 0.137 | 0.270 | 0.303 | 0.607 | 0.287 | 0.218 | 0.309 |
+2023-07-03 05:14:42,556 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:14:45,133 Epoch: [202][0/1]	Time 1.664s (1.664s)	Speed 24.0 samples/s	Data 1.229s (1.229s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:14:47,106 Test: [0/3]	Time 1.829 (1.829)	Loss 0.0010 (0.0010)	Accuracy 0.587 (0.587)
+2023-07-03 05:14:47,582 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:14:47,648 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:14:47,648 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:14:47,648 | pose_hrnet_part | 0.259 | 0.561 | 0.238 | 0.137 | 0.271 | 0.303 | 0.607 | 0.287 | 0.218 | 0.309 |
+2023-07-03 05:14:47,649 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:14:50,270 Epoch: [203][0/1]	Time 1.687s (1.687s)	Speed 23.7 samples/s	Data 1.275s (1.275s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:14:52,216 Test: [0/3]	Time 1.822 (1.822)	Loss 0.0010 (0.0010)	Accuracy 0.589 (0.589)
+2023-07-03 05:14:52,684 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:14:52,751 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:14:52,751 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:14:52,751 | pose_hrnet_part | 0.258 | 0.560 | 0.237 | 0.137 | 0.270 | 0.303 | 0.607 | 0.287 | 0.218 | 0.309 |
+2023-07-03 05:14:52,752 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:14:55,415 Epoch: [204][0/1]	Time 1.730s (1.730s)	Speed 23.1 samples/s	Data 1.332s (1.332s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:14:57,421 Test: [0/3]	Time 1.863 (1.863)	Loss 0.0010 (0.0010)	Accuracy 0.585 (0.585)
+2023-07-03 05:14:57,906 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:14:57,972 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:14:57,972 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:14:57,972 | pose_hrnet_part | 0.258 | 0.559 | 0.242 | 0.142 | 0.269 | 0.302 | 0.607 | 0.293 | 0.227 | 0.308 |
+2023-07-03 05:14:57,973 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:15:00,505 Epoch: [205][0/1]	Time 1.624s (1.624s)	Speed 24.6 samples/s	Data 1.217s (1.217s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:15:02,529 Test: [0/3]	Time 1.873 (1.873)	Loss 0.0010 (0.0010)	Accuracy 0.583 (0.583)
+2023-07-03 05:15:03,021 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:15:03,088 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:15:03,088 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:15:03,088 | pose_hrnet_part | 0.259 | 0.559 | 0.245 | 0.153 | 0.269 | 0.303 | 0.607 | 0.293 | 0.227 | 0.309 |
+2023-07-03 05:15:03,089 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:15:05,728 Epoch: [206][0/1]	Time 1.646s (1.646s)	Speed 24.3 samples/s	Data 1.241s (1.241s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:15:07,664 Test: [0/3]	Time 1.817 (1.817)	Loss 0.0010 (0.0010)	Accuracy 0.583 (0.583)
+2023-07-03 05:15:08,081 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:15:08,148 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:15:08,148 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:15:08,148 | pose_hrnet_part | 0.258 | 0.559 | 0.244 | 0.140 | 0.269 | 0.302 | 0.607 | 0.293 | 0.227 | 0.308 |
+2023-07-03 05:15:08,149 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:15:10,790 Epoch: [207][0/1]	Time 1.623s (1.623s)	Speed 24.6 samples/s	Data 1.215s (1.215s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:15:12,760 Test: [0/3]	Time 1.857 (1.857)	Loss 0.0010 (0.0010)	Accuracy 0.587 (0.587)
+2023-07-03 05:15:13,159 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:15:13,225 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:15:13,225 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:15:13,225 | pose_hrnet_part | 0.258 | 0.559 | 0.244 | 0.153 | 0.270 | 0.304 | 0.607 | 0.293 | 0.227 | 0.310 |
+2023-07-03 05:15:13,226 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:15:16,039 Epoch: [208][0/1]	Time 1.647s (1.647s)	Speed 24.3 samples/s	Data 1.218s (1.218s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:15:18,001 Test: [0/3]	Time 1.847 (1.847)	Loss 0.0010 (0.0010)	Accuracy 0.587 (0.587)
+2023-07-03 05:15:18,424 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:15:18,490 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:15:18,490 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:15:18,490 | pose_hrnet_part | 0.257 | 0.559 | 0.238 | 0.137 | 0.270 | 0.303 | 0.607 | 0.287 | 0.218 | 0.310 |
+2023-07-03 05:15:18,491 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:15:21,105 Epoch: [209][0/1]	Time 1.607s (1.607s)	Speed 24.9 samples/s	Data 1.200s (1.200s)	Loss 0.00000 (0.00000)	Accuracy 1.000 (1.000)
+2023-07-03 05:15:23,047 Test: [0/3]	Time 1.828 (1.828)	Loss 0.0010 (0.0010)	Accuracy 0.585 (0.585)
+2023-07-03 05:15:23,441 => writing results json to output/output_animal_hrnet5_part/results/keypoints_val_results_0.json
+2023-07-03 05:15:23,507 | Arch | AP | Ap .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
+2023-07-03 05:15:23,507 |---|---|---|---|---|---|---|---|---|---|---|
+2023-07-03 05:15:23,507 | pose_hrnet_part | 0.257 | 0.559 | 0.238 | 0.148 | 0.269 | 0.302 | 0.607 | 0.287 | 0.218 | 0.309 |
+2023-07-03 05:15:23,508 => saving checkpoint to output/output_animal_hrnet5_part
+2023-07-03 05:15:24,551 => saving final model state to output/output_animal_hrnet5_part/final_state.pth
+2023-07-03 05:15:24,551 Best accuracy 0.2675360665729505 at epoch 146

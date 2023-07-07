@@ -89,6 +89,7 @@ def main():
 
     logger.info(pprint.pformat(args))
     logger.info(cfg)
+    
 
     # cudnn related setting
     cudnn.benchmark = cfg.CUDNN.BENCHMARK
@@ -129,7 +130,7 @@ def main():
                 normalize,
             ])
         )
-        valid_dataset = eval('dataset_animal.' + 'ap10k')(
+        valid_dataset = eval('dataset_animal.' + 'animalweb')(
             cfg, cfg.DATASET.ROOT, cfg.DATASET.VAL_SET, False,
             transforms.Compose([
                 transforms.ToTensor(),
